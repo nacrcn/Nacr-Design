@@ -1,36 +1,174 @@
-# Nacr Design
+<h1 align="center">Nacr Design</h1>
 
-#### Description
-Nacr Design 是一套为 Nuxt 3/4 打造的企业级 Vue 3 组件库，提供 **80+ 高质量组件**、丰富的组合式函数和开箱即用的图表能力，助你快速搭建现代化 Web 应用。
+<p align="center">
+  <strong>Enterprise-grade UI Component Library for Nuxt 3/4</strong>
+</p>
 
-#### Software Architecture
-Software architecture description
+<p align="center">
+  <a href="http://design.nacr.cn/">🏠 Documentation</a> ·
+  <a href="https://npmjs.com/package/nacr-design">
+    <img src="https://img.shields.io/npm/v/nacr-design.svg" alt="npm version" />
+  </a>
+  <a href="https://npmjs.com/package/nacr-design">
+    <img src="https://img.shields.io/npm/dm/nacr-design.svg" alt="npm downloads" />
+  </a>
+  <a href="https://gitee.com/wuaxcn/nacr-design">
+    <img src="https://img.shields.io/badge/Gitee-wuaxcn%2Fnacr--design-C71D23?logo=gitee" alt="Gitee" />
+  </a>
+  <a href="https://github.com/nacrcn/Nacr-Design">
+    <img src="https://img.shields.io/badge/GitHub-nacrcn%2FNacr--Design-181717?logo=github" alt="GitHub" />
+  </a>
+  <a href="https://github.com/nacrcn/Nacr-Design/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license" />
+  </a>
+</p>
 
-#### Installation
+---
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## Introduction
 
-#### Instructions
+Nacr Design is an enterprise-grade Vue 3 component library built for Nuxt 3/4, providing **80+ high-quality components**, rich composables and out-of-the-box chart capabilities to help you build modern web applications quickly.
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+👉 **Live Demo: [http://design.nacr.cn/](http://design.nacr.cn/)**
 
-#### Contribution
+### Features
 
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
+- **Nuxt Module** — Integrate with a single line of config, auto-import components & composables
+- **80+ Components** — Covering basic, layout, navigation, data entry, data display, feedback scenarios
+- **ECharts Integration** — Built-in `NChart` component + `useChart` composable, on-demand loading
+- **TypeScript** — Full type inference, first-class IDE autocomplete
+- **Markdown Support** — Built-in Markdown editor and rendering components
+- **Theme Customization** — CSS variables + BEM naming, flexible and controllable
+- **Tree-shakable** — On-demand import, optimal bundle size
 
+---
 
-#### Gitee Feature
+## Installation
 
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+```bash
+# npm
+npm install nacr-design
+
+# pnpm
+pnpm add nacr-design
+
+# yarn
+yarn add nacr-design
+```
+
+## Quick Start
+
+Register the module in `nuxt.config.ts`:
+
+```ts
+export default defineNuxtConfig({
+  modules: ['nacr-design'],
+
+  // Optional configuration
+  nacrDesign: {
+    prefix: 'N',          // Component prefix, default 'N'
+    global: true,         // Global registration, default true
+    iconfontUrl: '',      // Iconfont SVG icon URL
+  },
+})
+```
+
+Components are auto-available, no manual import needed:
+
+```vue
+<template>
+  <NButton variant="primary">Confirm</NButton>
+  <NInput v-model="value" label="Name" />
+  <NChart :option="chartOption" height="300" />
+</template>
+```
+
+Composables are also auto-imported:
+
+```ts
+const { state, toggle } = useToggle()
+const { loading, withLoading } = useLoading()
+const { success, error } = useMessage()
+const { info } = useNotification()
+const { setOption, resize } = useChart(chartRef)
+```
+
+---
+
+## Composables
+
+| Function | Description |
+| --- | --- |
+| `useToggle` | Boolean state toggle |
+| `useLoading` | Async loading state management, auto-track Promise |
+| `useMessage` | Lightweight message tips (success / error / warning / info) |
+| `useNotification` | Notification management |
+| `useChart` | ECharts instance management, auto resize & destroy |
+
+---
+
+## Version Management
+
+This project uses [Changesets](https://github.com/changesets/changesets) for versioning and changelog.
+
+### Add a changeset
+
+After each meaningful change, run:
+
+```bash
+pnpm changeset
+```
+
+Follow the prompts to select the change type (patch / minor / major) and write a description.
+
+### Publish a new version
+
+```bash
+# 1. Consume all changesets, update version numbers and generate CHANGELOG
+pnpm changeset:version
+
+# 2. Build and publish to npm
+pnpm release
+```
+
+---
+
+## Development
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start dev server
+pnpm dev
+
+# Build
+pnpm build
+
+# Build documentation site
+pnpm build:docs
+
+# Type check
+pnpm typecheck
+```
+
+---
+
+## Contributing
+
+Issues and Pull Requests are welcome!
+
+---
+
+## Links
+
+- 🏠 Documentation: [http://design.nacr.cn/](http://design.nacr.cn/)
+- 📦 npm: [https://www.npmjs.com/package/nacr-design](https://www.npmjs.com/package/nacr-design)
+- 🐙 Gitee: [https://gitee.com/wuaxcn/nacr-design](https://gitee.com/wuaxcn/nacr-design)
+- 🐙 GitHub: [https://github.com/nacrcn/Nacr-Design](https://github.com/nacrcn/Nacr-Design)
+
+---
+
+## License
+
+[MIT](./LICENSE)

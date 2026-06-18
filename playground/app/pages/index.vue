@@ -149,7 +149,8 @@ async function submit() {
 import { ref } from 'vue'
 definePageMeta({ layout: 'doc' })
 
-const version = '0.1.0'
+const { data: versionData } = await useFetch('/api/npm-version')
+const version = computed(() => versionData.value?.version || '0.1.0')
 const inputVal = ref('')
 const switchVal = ref(true)
 

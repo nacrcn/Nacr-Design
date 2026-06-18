@@ -13,6 +13,12 @@
     <img src="https://img.shields.io/npm/dm/nacr-design.svg" alt="npm downloads" />
   </a>
   <a href="https://gitee.com/wuaxcn/nacr-design">
+    <img src="https://img.shields.io/badge/Gitee-wuaxcn%2Fnacr--design-C71D23?logo=gitee" alt="Gitee" />
+  </a>
+  <a href="https://github.com/nacrcn/Nacr-Design">
+    <img src="https://img.shields.io/badge/GitHub-nacrcn%2FNacr--Design-181717?logo=github" alt="GitHub" />
+  </a>
+  <a href="https://github.com/nacrcn/Nacr-Design/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license" />
   </a>
 </p>
@@ -277,6 +283,7 @@ pnpm typecheck
 - 🏠 官网文档：[http://design.nacr.cn/](http://design.nacr.cn/)
 - 📦 npm 包：[https://www.npmjs.com/package/nacr-design](https://www.npmjs.com/package/nacr-design)
 - 🐙 Gitee：[https://gitee.com/wuaxcn/nacr-design](https://gitee.com/wuaxcn/nacr-design)
+- 🐙 GitHub：[https://github.com/nacrcn/Nacr-Design](https://github.com/nacrcn/Nacr-Design)
 
 ---
 
