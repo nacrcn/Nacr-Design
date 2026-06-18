@@ -1,6 +1,6 @@
 {
   "name": "nacr-design",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "NacrDesign - A Nuxt 3/4 UI Component Library",
   "type": "module",
   "license": "MIT",

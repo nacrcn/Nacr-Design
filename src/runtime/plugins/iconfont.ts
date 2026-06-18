@@ -1,4 +1,4 @@
-import { defineNuxtPlugin } from '#app'
+import { defineNuxtPlugin, useRuntimeConfig } from '#imports'
 
 /**
  * iconfont 图标插件
@@ -6,10 +6,10 @@ import { defineNuxtPlugin } from '#app'
  * - 默认加载组件库内置图标（Symbol 模式），去掉硬编码 fill 以支持 color 属性
  * - 用户可通过 nacrDesign.iconfontUrl 额外引入自定义图标
  */
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin(() => {
   if (import.meta.server) return
 
-  const config = nuxtApp.runtimeConfig
+  const config = useRuntimeConfig()
   const customUrl = config.public.nacrDesign?.iconfontUrl
 
   // 加载内置图标（Symbol 模式 JS）
