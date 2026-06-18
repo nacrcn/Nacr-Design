@@ -1,0 +1,30 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: v0.1.0
+    - heading "NacrDesign" [level=1] [ref=e7]
+    - paragraph [ref=e8]: 基于 Nuxt 3/4 的现代化 Vue 组件库
+    - paragraph [ref=e9]: 简洁、灵活、高性能，为构建优雅的用户界面而生
+    - generic [ref=e10]:
+      - link "快速开始" [ref=e11] [cursor=pointer]:
+        - /url: /guide/start
+        - text: 快速开始
+        - img [ref=e12]
+      - link "查看组件" [ref=e14] [cursor=pointer]:
+        - /url: /components/button
+  - generic [ref=e15]:
+    - generic [ref=e16]:
+      - img [ref=e18]
+      - heading "Nuxt 原生" [level=3] [ref=e21]
+      - paragraph [ref=e22]: 作为 Nuxt Module 开发，完美融入 Nuxt 生态，支持自动导入与 SSR。
+    - generic [ref=e23]:
+      - img [ref=e25]
+      - heading "TypeScript" [level=3] [ref=e28]
+      - paragraph [ref=e29]: 完整的 TypeScript 类型支持，开发时享受类型安全与智能提示。
+    - generic [ref=e30]:
+      - img [ref=e32]
+      - heading "可定制" [level=3] [ref=e35]
+      - paragraph [ref=e36]: 基于 CSS 变量的设计架构，轻松定制主题色、圆角、间距等样式。
+    - generic [ref=e37]:
+      - img [ref=e39]
+      - heading "组合式函数" [level=3] [ref=e41]
+      - paragraph [ref=e42]: 提供 useToggle、useLoading、useMessage 等实用 Composable。

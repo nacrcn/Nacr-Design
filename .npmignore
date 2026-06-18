@@ -1,0 +1,27 @@
+# 开发目录
+playground/
+src/
+
+# 工具配置
+.github/
+.codebuddy/
+changeset/
+
+# 开发文件
+tsconfig.json
+.npmignore
+.gitignore
+.editorconfig
+.prettierrc
+.eslintrc*
+
+# 文档
+README.md
+CHANGELOG.md
+LICENSE
+
+# 构建缓存
+node_modules/
+.nuxt/
+.output/
+dist/

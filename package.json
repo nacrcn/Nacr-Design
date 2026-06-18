@@ -1,0 +1,65 @@
+{
+  "name": "nacr-design",
+  "version": "0.1.0",
+  "description": "NacrDesign - A Nuxt 3/4 UI Component Library",
+  "type": "module",
+  "license": "MIT",
+  "author": "Nacr",
+  "main": "./dist/module.mjs",
+  "typesVersions": {
+    "*": {
+      ".": ["./dist/types.d.mts"]
+    }
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "types": "./dist/types.d.mts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "nuxt dev playground",
+    "build": "nuxt-module-build",
+    "prepublishOnly": "npm run build",
+    "release": "pnpm changeset:version && pnpm build && pnpm changeset publish",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "typecheck": "nuxt typecheck playground",
+    "build:docs": "npm run build && nuxt generate playground",
+    "preview:docs": "nuxt preview playground"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.17.5",
+    "echarts": "^6.1.0",
+    "marked": "^18.0.5"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.7.0",
+    "@changesets/cli": "^2.31.0",
+    "@nuxt/module-builder": "^1.0.6",
+    "@nuxt/schema": "^4.4.5",
+    "nuxt": "^4.4.4",
+    "typescript": "^5.8.3",
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.2.8"
+  },
+  "peerDependencies": {
+    "nuxt": "^3.0.0 || ^4.0.0",
+    "vue": "^3.5.0"
+  },
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "vue",
+    "ui",
+    "component-library",
+    "nacr-design"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/wuaxcn/nacr-design"
+  }
+}

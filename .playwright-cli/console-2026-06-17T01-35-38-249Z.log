@@ -1,0 +1,968 @@
+[     244ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Page not found: /favicon.svg) @ http://localhost:3000/favicon.svg:0
+[     647ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] request 0.071ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[     647ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] render:before 0.027ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[     648ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] page:loading:start 0.012ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[     648ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:created 0.537ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[     648ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] vue:setup 0.006ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[     648ms] [WARNING] %cssr:warn%c [nuxt] Your project has layouts but `<NuxtLayout />` has not been detected. Make sure you are using `<NuxtLayout />` in your app to render layouts. If `<NuxtLayout />` is rendered conditionally, this warning can be triggered before it is mounted. 
+      background: #f39c12;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      
+  at checkIfLayoutUsed (E:\Nacr\Nacrdesign\playground\node_modules\nuxt\dist\app\plugins\check-if-layout-used.js)
+  at process.processTicksAndRejections (node:internal/process/task_queues)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[     648ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:rendered 0.401ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[     649ms] [LOG] [nuxt-app] dev:ssr-logs: 2.450927734375 ms [Array(7)] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[     652ms] [LOG] [nuxt-app] page:loading:start: 0.258056640625 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[     654ms] [LOG] [nuxt-app] app:created: 3.06298828125 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[     654ms] [LOG] [nuxt-app] app:beforeMount: 0.06396484375 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[     658ms] [LOG] [nuxt-app] vue:setup: 0.87109375 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[     661ms] [INFO] <Suspense> is an experimental feature and its API will likely change. @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js?v=ae8012cc:7268
+[     674ms] [LOG] [nuxt-app] app:mounted: 0.1630859375 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[     674ms] [LOG] [nuxt-app] page:finish: 0.090087890625 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[     674ms] [LOG] [nuxt-app] page:loading:end: 0.052978515625 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[     677ms] [LOG] [nuxt-app] app:suspense:resolve: 2.22705078125 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[     679ms] [WARNING] [nuxt] Your project has layouts but `<NuxtLayout />` has not been detected. Make sure you are using `<NuxtLayout />` in your app to render layouts. If `<NuxtLayout />` is rendered conditionally, this warning can be triggered before it is mounted. @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/nuxt/dist/app/plugins/check-if-layout-used.js?v=ae8012cc:11
+[     703ms] [LOG] [nuxt-app] link:prefetch: 0.848876953125 ms [/guide/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[     728ms] [LOG] ✨ %cNuxt DevTools %c Press Shift + Alt + D to open DevTools color: black; border-radius: 3px 0 0 3px; padding: 2px 2px 1px 10px; background: #00DC82 border-radius: 0 3px 3px 0; padding: 2px 10px 1px 2px; background: #00DC8220  @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js?v=ae8012cc:51
+[     731ms] [WARNING] Timer '[nuxt-app] link:prefetch' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[     731ms] [LOG] [nuxt-app] link:prefetch: 29.030029296875 ms [/components/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41613ms] [WARNING] Timer '[nuxt-app] page:finish' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[   41613ms] [LOG] [nuxt-app] page:finish: 40939.119140625 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41614ms] [WARNING] Timer '[nuxt-app] page:loading:end' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[   41614ms] [LOG] [nuxt-app] page:loading:end: 40939.889892578125 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41760ms] [WARNING] Timer '[nuxt-app] link:prefetch' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[   41761ms] [LOG] [nuxt-app] link:prefetch: 41059.1259765625 ms [/] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41762ms] [LOG] [nuxt-app] link:prefetch : 1.041015625 ms [/guide/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41762ms] [LOG] [nuxt-app] link:prefetch  : 1.3310546875 ms [/components/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41763ms] [LOG] [nuxt-app] link:prefetch   : 1.622802734375 ms [/guide/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41763ms] [LOG] [nuxt-app] link:prefetch    : 1.8681640625 ms [/components/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41763ms] [LOG] [nuxt-app] link:prefetch     : 2.094970703125 ms [/components/card] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41763ms] [LOG] [nuxt-app] link:prefetch      : 2.30908203125 ms [/components/input] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41764ms] [LOG] [nuxt-app] link:prefetch       : 2.48095703125 ms [/composables/use-toggle] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41764ms] [LOG] [nuxt-app] link:prefetch        : 2.705078125 ms [/composables/use-loading] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41764ms] [LOG] [nuxt-app] link:prefetch         : 2.9521484375 ms [/composables/use-message] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41764ms] [LOG] [nuxt-app] link:prefetch          : 3.23583984375 ms [/guide/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[   41765ms] [LOG] [nuxt-app] link:prefetch           : 3.4150390625 ms [/components/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  106382ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/dosc.vue?macro=true:0
+[  106382ms] [ERROR] [vite] Failed to reload /@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  106390ms] TypeError: Cannot read properties of undefined (reading 'default')
+    at http://localhost:3000/_nuxt/@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs:12:39
+    at http://localhost:3000/_nuxt/@vite/client:66:95
+    at http://localhost:3000/_nuxt/@vite/client:218:52
+    at http://localhost:3000/_nuxt/@vite/client:196:55
+    at Array.forEach (<anonymous>)
+    at HMRClient.queueUpdate (http://localhost:3000/_nuxt/@vite/client:196:33)
+    at async Promise.all (index 0)
+    at async handleMessage (http://localhost:3000/_nuxt/@vite/client:838:4)
+[  119522ms] [WARNING] Timer '[nuxt-app] page:finish' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  119522ms] [LOG] [nuxt-app] page:finish: 118848.07397460938 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  119523ms] [WARNING] Timer '[nuxt-app] page:loading:end' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  119524ms] [LOG] [nuxt-app] page:loading:end: 118849.26904296875 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  119554ms] [WARNING] Timer '[nuxt-app] link:prefetch' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  119555ms] [WARNING] Timer '[nuxt-app] link:prefetch ' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  119555ms] [LOG] [nuxt-app] link:prefetch: 118852.60400390625 ms [/guide/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  119555ms] [LOG] [nuxt-app] link:prefetch : 77794.46313476562 ms [/components/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  131158ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/dosc.vue?t=1781660269371&macro=true:0
+[  131159ms] [ERROR] [vite] Failed to reload /pages/dosc.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  149390ms] [WARNING] [Vue Router warn]: No match found for location with path "/playground/app/pages/guide/start.vue/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  149391ms] [WARNING] [Vue Router warn]: No match found for location with path "/playground/app/pages/guide/start.vue/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  158481ms] [WARNING] [Vue Router warn]: No match found for location with path "/docs/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  158482ms] [WARNING] [Vue Router warn]: No match found for location with path "/docs/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  171906ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/components/button.vue?t=1781660310150&macro=true:0
+[  171906ms] [ERROR] [vite] Failed to reload /pages/components/button.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  172065ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/components/card.vue?t=1781660310286&macro=true:0
+[  172065ms] [ERROR] [vite] Failed to reload /pages/components/card.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  172287ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/components/input.vue?t=1781660310490&macro=true:0
+[  172288ms] [ERROR] [vite] Failed to reload /pages/components/input.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  172344ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs?t=1781660310576:0
+[  172345ms] [ERROR] [vite] Failed to reload /@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  172352ms] TypeError: Cannot read properties of undefined (reading 'default')
+    at http://localhost:3000/_nuxt/@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs?t=1781660310086:12:39
+    at http://localhost:3000/_nuxt/@vite/client:66:95
+    at http://localhost:3000/_nuxt/@vite/client:218:52
+    at http://localhost:3000/_nuxt/@vite/client:196:55
+    at Array.forEach (<anonymous>)
+    at HMRClient.queueUpdate (http://localhost:3000/_nuxt/@vite/client:196:33)
+    at async Promise.all (index 0)
+    at async handleMessage (http://localhost:3000/_nuxt/@vite/client:838:4)
+[  172984ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] request 0.073ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  172984ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] render:before 0.017ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  172984ms] [LOG] %cssr:success%c Vite server hmr 31 files 
+      background: #2ecc71;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      in 0.571ms 
+  at vite_node_entry_default (/node_modules/@nuxt/vite-builder/dist/vite-node-entry.mjs)
+  at process.processTicksAndRejections (node:internal/process/task_queues)
+  at async Object.renderToString (/node_modules/vue-bundle-renderer/dist/runtime.mjs)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  172984ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] page:loading:start 0.021ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  172985ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:created 1.006ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  172985ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] vue:setup 0.012ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  172985ms] [WARNING] %cssr:warn%c [nuxt] Your project has layouts but `<NuxtLayout />` has not been detected. Make sure you are using `<NuxtLayout />` in your app to render layouts. If `<NuxtLayout />` is rendered conditionally, this warning can be triggered before it is mounted. 
+      background: #f39c12;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      
+  at checkIfLayoutUsed (E:\Nacr\Nacrdesign\playground\node_modules\nuxt\dist\app\plugins\check-if-layout-used.js)
+  at process.processTicksAndRejections (node:internal/process/task_queues)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  172985ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:rendered 0.447ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  172985ms] [LOG] [nuxt-app] dev:ssr-logs: 1.48291015625 ms [Array(8)] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  172987ms] [LOG] [nuxt-app] page:loading:start: 0.18701171875 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  172988ms] [LOG] [nuxt-app] app:created: 1.4921875 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  172988ms] [LOG] [nuxt-app] app:beforeMount: 0.051025390625 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  172989ms] [LOG] [nuxt-app] vue:setup: 0.427001953125 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  172990ms] [INFO] <Suspense> is an experimental feature and its API will likely change. @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js?v=ae8012cc:7268
+[  172996ms] [LOG] [nuxt-app] app:mounted: 0.18701171875 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  172997ms] [LOG] [nuxt-app] page:finish: 0.30419921875 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  172998ms] [LOG] [nuxt-app] page:loading:end: 0.322021484375 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  172999ms] [LOG] [nuxt-app] app:suspense:resolve: 1.257080078125 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  173007ms] [WARNING] [nuxt] Your project has layouts but `<NuxtLayout />` has not been detected. Make sure you are using `<NuxtLayout />` in your app to render layouts. If `<NuxtLayout />` is rendered conditionally, this warning can be triggered before it is mounted. @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/nuxt/dist/app/plugins/check-if-layout-used.js?v=ae8012cc:11
+[  173021ms] [LOG] ✨ %cNuxt DevTools %c Press Shift + Alt + D to open DevTools color: black; border-radius: 3px 0 0 3px; padding: 2px 2px 1px 10px; background: #00DC82 border-radius: 0 3px 3px 0; padding: 2px 10px 1px 2px; background: #00DC8220  @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js?v=ae8012cc:51
+[  173034ms] [LOG] [nuxt-app] link:prefetch: 1.6640625 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  173034ms] [LOG] [nuxt-app] link:prefetch : 0.732177734375 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  198670ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/composables/use-loading.vue?t=1781660336914&macro=true:0
+[  198670ms] [ERROR] [vite] Failed to reload /pages/composables/use-loading.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  198913ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/composables/use-message.vue?t=1781660337141&macro=true:0
+[  198913ms] [ERROR] [vite] Failed to reload /pages/composables/use-message.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  199044ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/composables/use-toggle.vue?t=1781660337271&macro=true:0
+[  199044ms] [ERROR] [vite] Failed to reload /pages/composables/use-toggle.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  204885ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/docs/use-loading.vue?t=1781660343133&macro=true:0
+[  204886ms] [ERROR] [vite] Failed to reload /pages/docs/use-loading.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  205087ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/docs/use-message.vue?t=1781660343297&macro=true:0
+[  205088ms] [ERROR] [vite] Failed to reload /pages/docs/use-message.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  205299ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/docs/use-toggle.vue?t=1781660343532&macro=true:0
+[  205299ms] [ERROR] [vite] Failed to reload /pages/docs/use-toggle.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  205335ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs?t=1781660343571:0
+[  205335ms] [ERROR] [vite] Failed to reload /@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  205339ms] TypeError: Cannot read properties of undefined (reading 'default')
+    at http://localhost:3000/_nuxt/@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs?t=1781660343101:12:39
+    at http://localhost:3000/_nuxt/@vite/client:66:95
+    at http://localhost:3000/_nuxt/@vite/client:218:52
+    at http://localhost:3000/_nuxt/@vite/client:196:55
+    at Array.forEach (<anonymous>)
+    at HMRClient.queueUpdate (http://localhost:3000/_nuxt/@vite/client:196:33)
+    at async Promise.all (index 0)
+    at async handleMessage (http://localhost:3000/_nuxt/@vite/client:838:4)
+[  205733ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] request 0.057ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  205734ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] render:before 0.012ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  205734ms] [LOG] %cssr:success%c Vite server hmr 41 files 
+      background: #2ecc71;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      in 0.554ms 
+  at vite_node_entry_default (/node_modules/@nuxt/vite-builder/dist/vite-node-entry.mjs)
+  at process.processTicksAndRejections (node:internal/process/task_queues)
+  at async Object.renderToString (/node_modules/vue-bundle-renderer/dist/runtime.mjs)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  205734ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] page:loading:start 0.013ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  205734ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:created 0.624ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  205734ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] vue:setup 0.01ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  205734ms] [WARNING] %cssr:warn%c [nuxt] Your project has layouts but `<NuxtLayout />` has not been detected. Make sure you are using `<NuxtLayout />` in your app to render layouts. If `<NuxtLayout />` is rendered conditionally, this warning can be triggered before it is mounted. 
+      background: #f39c12;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      
+  at checkIfLayoutUsed (E:\Nacr\Nacrdesign\playground\node_modules\nuxt\dist\app\plugins\check-if-layout-used.js)
+  at process.processTicksAndRejections (node:internal/process/task_queues)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  205734ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:rendered 0.457ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  205734ms] [LOG] [nuxt-app] dev:ssr-logs: 0.953857421875 ms [Array(8)] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  205736ms] [LOG] [nuxt-app] page:loading:start: 0.201904296875 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  205737ms] [LOG] [nuxt-app] app:created: 1.47607421875 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  205737ms] [LOG] [nuxt-app] app:beforeMount: 0.05908203125 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  205738ms] [LOG] [nuxt-app] vue:setup: 0.299072265625 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  205739ms] [INFO] <Suspense> is an experimental feature and its API will likely change. @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js?v=ae8012cc:7268
+[  205747ms] [LOG] [nuxt-app] app:mounted: 0.223876953125 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  205748ms] [LOG] [nuxt-app] page:finish: 0.107177734375 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  205748ms] [LOG] [nuxt-app] page:loading:end: 0.055908203125 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  205749ms] [LOG] [nuxt-app] app:suspense:resolve: 0.886962890625 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  205754ms] [WARNING] [nuxt] Your project has layouts but `<NuxtLayout />` has not been detected. Make sure you are using `<NuxtLayout />` in your app to render layouts. If `<NuxtLayout />` is rendered conditionally, this warning can be triggered before it is mounted. @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/nuxt/dist/app/plugins/check-if-layout-used.js?t=1781660333039&v=ae8012cc:11
+[  205783ms] [LOG] ✨ %cNuxt DevTools %c Press Shift + Alt + D to open DevTools color: black; border-radius: 3px 0 0 3px; padding: 2px 2px 1px 10px; background: #00DC82 border-radius: 0 3px 3px 0; padding: 2px 10px 1px 2px; background: #00DC8220  @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js?v=ae8012cc:51
+[  205794ms] [LOG] [nuxt-app] link:prefetch: 0.843994140625 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  205794ms] [LOG] [nuxt-app] link:prefetch : 0.409912109375 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  207304ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/composables/use-loading.vue?t=1781660345541&macro=true:0
+[  207305ms] [ERROR] [vite] Failed to reload /pages/composables/use-loading.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  207316ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/composables/use-message.vue?t=1781660345542&macro=true:0
+[  207317ms] [ERROR] [vite] Failed to reload /pages/composables/use-message.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  207338ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/composables/use-toggle.vue?t=1781660345543&macro=true:0
+[  207338ms] [ERROR] [vite] Failed to reload /pages/composables/use-toggle.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  256444ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/guide/start.vue?t=1781660394684&macro=true:0
+[  256445ms] [ERROR] [vite] Failed to reload /pages/guide/start.vue?macro=true. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[  379647ms] [WARNING] [Vue warn]: Failed to resolve component: NMessageContainer
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <App key=4 > 
+  at <NuxtRoot> @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js?v=ae8012cc:49
+[  379665ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  379666ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  379666ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  379667ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  379674ms] [WARNING] Timer '[nuxt-app] page:finish' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  379674ms] [LOG] [nuxt-app] page:finish: 173926.10498046875 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379675ms] [WARNING] Timer '[nuxt-app] page:loading:end' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  379675ms] [LOG] [nuxt-app] page:loading:end: 173926.89599609375 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379711ms] [WARNING] Timer '[nuxt-app] link:prefetch' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  379711ms] [WARNING] Timer '[nuxt-app] link:prefetch ' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  379711ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  379712ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  379713ms] [LOG] [nuxt-app] link:prefetch: 173919.36987304688 ms [/] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379713ms] [LOG] [nuxt-app] link:prefetch : 173919.0400390625 ms [/guide/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379713ms] [LOG] [nuxt-app] link:prefetch  : 1.5810546875 ms [/components/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379713ms] [LOG] [nuxt-app] link:prefetch   : 1.719970703125 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379714ms] [LOG] [nuxt-app] link:prefetch    : 1.969970703125 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379714ms] [LOG] [nuxt-app] link:prefetch     : 2.208984375 ms [/docs/card] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379714ms] [LOG] [nuxt-app] link:prefetch      : 2.4140625 ms [/docs/input] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379714ms] [LOG] [nuxt-app] link:prefetch       : 2.589111328125 ms [/docs/composables/use-toggle] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379715ms] [LOG] [nuxt-app] link:prefetch        : 2.763916015625 ms [/docs/composables/use-loading] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379715ms] [LOG] [nuxt-app] link:prefetch         : 2.718017578125 ms [/docs/composables/use-message] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379715ms] [LOG] [nuxt-app] link:prefetch          : 2.871826171875 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  379715ms] [LOG] [nuxt-app] link:prefetch           : 3.152099609375 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380434ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] request 0.053ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  380434ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] render:before 0.012ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  380435ms] [LOG] %cssr:success%c Vite server hmr 40 files 
+      background: #2ecc71;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      in 0.504ms 
+  at vite_node_entry_default (/node_modules/@nuxt/vite-builder/dist/vite-node-entry.mjs)
+  at process.processTicksAndRejections (node:internal/process/task_queues)
+  at async Object.renderToString (/node_modules/vue-bundle-renderer/dist/runtime.mjs)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  380437ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] page:loading:start 0.013ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  380437ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:created 0.684ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  380437ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] vue:setup 0.017ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  380437ms] [WARNING] %cssr:warn%c [Vue Router warn]: No match found for location with path "/guide/start" 
+      background: #f39c12;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      
+  at warn$1 (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\devtools-DCoWQoU_.js)
+  at Object.resolve (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+  at ComputedRefImpl.fn (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  380437ms] [WARNING] %cssr:warn%c [Vue Router warn]: No match found for location with path "/components/button" 
+      background: #f39c12;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      
+  at warn$1 (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\devtools-DCoWQoU_.js)
+  at Object.resolve (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+  at ComputedRefImpl.fn (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  380437ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:rendered 0.053ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  380438ms] [LOG] [nuxt-app] dev:ssr-logs: 3.450927734375 ms [Array(9)] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380441ms] [LOG] [nuxt-app] page:loading:start: 0.337158203125 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380442ms] [LOG] [nuxt-app] app:created: 2.015869140625 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380442ms] [LOG] [nuxt-app] app:beforeMount: 0.068115234375 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380444ms] [LOG] [nuxt-app] vue:setup: 0.468017578125 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380445ms] [INFO] <Suspense> is an experimental feature and its API will likely change. @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js?v=ae8012cc:7268
+[  380450ms] [LOG] [nuxt-app] app:mounted: 0.544921875 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380487ms] [LOG] ✨ %cNuxt DevTools %c Press Shift + Alt + D to open DevTools color: black; border-radius: 3px 0 0 3px; padding: 2px 2px 1px 10px; background: #00DC82 border-radius: 0 3px 3px 0; padding: 2px 10px 1px 2px; background: #00DC8220  @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js?v=ae8012cc:51
+[  380509ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  380509ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  380510ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  380510ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  380517ms] [LOG] [nuxt-app] page:finish: 0.240966796875 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380518ms] [LOG] [nuxt-app] page:loading:end: 0.14111328125 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380532ms] [LOG] [nuxt-app] app:suspense:resolve: 0.798095703125 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380574ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  380574ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  380574ms] [LOG] [nuxt-app] link:prefetch: 0.948974609375 ms [/] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380575ms] [LOG] [nuxt-app] link:prefetch : 0.889892578125 ms [/guide/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380575ms] [LOG] [nuxt-app] link:prefetch  : 0.764892578125 ms [/components/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380575ms] [LOG] [nuxt-app] link:prefetch   : 0.8798828125 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380575ms] [LOG] [nuxt-app] link:prefetch    : 1.011962890625 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380575ms] [LOG] [nuxt-app] link:prefetch     : 1.14111328125 ms [/docs/card] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380575ms] [LOG] [nuxt-app] link:prefetch      : 1.27392578125 ms [/docs/input] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380575ms] [LOG] [nuxt-app] link:prefetch       : 1.398193359375 ms [/docs/composables/use-toggle] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380576ms] [LOG] [nuxt-app] link:prefetch        : 1.551025390625 ms [/docs/composables/use-loading] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380576ms] [LOG] [nuxt-app] link:prefetch         : 1.64892578125 ms [/docs/composables/use-message] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380576ms] [LOG] [nuxt-app] link:prefetch          : 1.787109375 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  380576ms] [LOG] [nuxt-app] link:prefetch           : 1.91796875 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809414ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] request 0.082ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  809414ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] render:before 0.021ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  809414ms] [LOG] %cssr:success%c Vite server hmr 19 files 
+      background: #2ecc71;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      in 0.723ms 
+  at vite_node_entry_default (/node_modules/@nuxt/vite-builder/dist/vite-node-entry.mjs)
+  at process.processTicksAndRejections (node:internal/process/task_queues)
+  at async Object.renderToString (/node_modules/vue-bundle-renderer/dist/runtime.mjs)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  809415ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] page:loading:start 0.011ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  809415ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:created 0.514ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  809415ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] vue:setup 0.008ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  809415ms] [WARNING] %cssr:warn%c [Vue Router warn]: No match found for location with path "/guide/start" 
+      background: #f39c12;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      
+  at warn$1 (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\devtools-DCoWQoU_.js)
+  at Object.resolve (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+  at ComputedRefImpl.fn (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  809415ms] [WARNING] %cssr:warn%c [Vue Router warn]: No match found for location with path "/components/button" 
+      background: #f39c12;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      
+  at warn$1 (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\devtools-DCoWQoU_.js)
+  at Object.resolve (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+  at ComputedRefImpl.fn (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  809415ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:rendered 0.067ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=ae8012cc:47
+[  809415ms] [LOG] [nuxt-app] dev:ssr-logs: 1.0029296875 ms [Array(9)] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809417ms] [LOG] [nuxt-app] page:loading:start: 0.158203125 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809417ms] [LOG] [nuxt-app] app:created: 1.15283203125 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809417ms] [LOG] [nuxt-app] app:beforeMount: 0.050048828125 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809418ms] [LOG] [nuxt-app] vue:setup: 0.239990234375 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809419ms] [INFO] <Suspense> is an experimental feature and its API will likely change. @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js?v=ae8012cc:7268
+[  809422ms] [LOG] [nuxt-app] app:mounted: 0.2490234375 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809455ms] [LOG] ✨ %cNuxt DevTools %c Press Shift + Alt + D to open DevTools color: black; border-radius: 3px 0 0 3px; padding: 2px 2px 1px 10px; background: #00DC82 border-radius: 0 3px 3px 0; padding: 2px 10px 1px 2px; background: #00DC8220  @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js?v=ae8012cc:51
+[  809467ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  809468ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  809468ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  809469ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  809480ms] [LOG] [nuxt-app] page:finish: 0.279052734375 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809481ms] [LOG] [nuxt-app] page:loading:end: 0.260009765625 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809482ms] [LOG] [nuxt-app] app:suspense:resolve: 0.926025390625 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809509ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  809510ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=ae8012cc:10
+[  809510ms] [LOG] [nuxt-app] link:prefetch: 0.663818359375 ms [/] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809510ms] [LOG] [nuxt-app] link:prefetch : 0.68603515625 ms [/guide/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809510ms] [LOG] [nuxt-app] link:prefetch  : 0.644775390625 ms [/components/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809510ms] [LOG] [nuxt-app] link:prefetch   : 0.696044921875 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809510ms] [LOG] [nuxt-app] link:prefetch    : 0.822021484375 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809511ms] [LOG] [nuxt-app] link:prefetch     : 0.953857421875 ms [/docs/card] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809511ms] [LOG] [nuxt-app] link:prefetch      : 1.077880859375 ms [/docs/input] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809511ms] [LOG] [nuxt-app] link:prefetch       : 1.200927734375 ms [/docs/composables/use-toggle] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809511ms] [LOG] [nuxt-app] link:prefetch        : 1.3271484375 ms [/docs/composables/use-loading] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809511ms] [LOG] [nuxt-app] link:prefetch         : 1.44482421875 ms [/docs/composables/use-message] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809511ms] [LOG] [nuxt-app] link:prefetch          : 1.570068359375 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  809511ms] [LOG] [nuxt-app] link:prefetch           : 1.703125 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  819665ms] [WARNING] Timer '[nuxt-app] link:prefetch' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  819665ms] [WARNING] Timer '[nuxt-app] link:prefetch ' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  819666ms] [LOG] [nuxt-app] link:prefetch: 10156.73388671875 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  819666ms] [LOG] [nuxt-app] link:prefetch : 10156.8349609375 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  819682ms] [WARNING] Timer '[nuxt-app] link:prefetch' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  819682ms] [WARNING] Timer '[nuxt-app] link:prefetch ' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  819682ms] [WARNING] Timer '[nuxt-app] link:prefetch  ' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  819682ms] [WARNING] Timer '[nuxt-app] link:prefetch   ' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  819682ms] [WARNING] Timer '[nuxt-app] link:prefetch    ' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  819682ms] [WARNING] Timer '[nuxt-app] link:prefetch     ' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:241
+[  819683ms] [LOG] [nuxt-app] link:prefetch: 10173.492919921875 ms [/docs/icon] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  819683ms] [LOG] [nuxt-app] link:prefetch : 10173.530029296875 ms [/docs/card] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  819683ms] [LOG] [nuxt-app] link:prefetch  : 10173.491943359375 ms [/docs/input] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  819683ms] [LOG] [nuxt-app] link:prefetch   : 10173.5400390625 ms [/docs/composables/use-toggle] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  819683ms] [LOG] [nuxt-app] link:prefetch    : 10173.66015625 ms [/docs/composables/use-loading] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  819683ms] [LOG] [nuxt-app] link:prefetch     : 10173.808837890625 ms [/docs/composables/use-message] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=ae8012cc:246
+[  847393ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/_nuxt/@vite/client:864
+[  848652ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[  848667ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[  848711ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/favicon.ico:0
+[  848901ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[  849165ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[  849401ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[  849615ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[  849821ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[  850253ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[  855185ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] request 0.104ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=632d4778:47
+[  855186ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] render:before 0.048ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=632d4778:47
+[  855186ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] page:loading:start 0.014ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=632d4778:47
+[  855186ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:created 0.475ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=632d4778:47
+[  855186ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] vue:setup 0.006ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=632d4778:47
+[  855186ms] [WARNING] %cssr:warn%c [Vue Router warn]: No match found for location with path "/guide/start" 
+      background: #f39c12;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      
+  at warn$1 (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\devtools-DCoWQoU_.js)
+  at Object.resolve (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+  at ComputedRefImpl.fn (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=632d4778:47
+[  855186ms] [WARNING] %cssr:warn%c [Vue Router warn]: No match found for location with path "/components/button" 
+      background: #f39c12;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      
+  at warn$1 (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\devtools-DCoWQoU_.js)
+  at Object.resolve (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+  at ComputedRefImpl.fn (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=632d4778:47
+[  855186ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:rendered 0.04ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=632d4778:47
+[  855187ms] [LOG] [nuxt-app] dev:ssr-logs: 2.16796875 ms [Array(8)] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855192ms] [LOG] [nuxt-app] page:loading:start: 0.35693359375 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855194ms] [LOG] [nuxt-app] app:created: 4.205078125 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855195ms] [LOG] [nuxt-app] app:beforeMount: 0.1279296875 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855199ms] [LOG] [nuxt-app] vue:setup: 0.951904296875 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855202ms] [INFO] <Suspense> is an experimental feature and its API will likely change. @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js?v=632d4778:7268
+[  855221ms] [LOG] [nuxt-app] app:mounted: 0.588134765625 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855543ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=632d4778:10
+[  855545ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=632d4778:10
+[  855546ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=632d4778:10
+[  855547ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=632d4778:10
+[  855558ms] [LOG] [nuxt-app] page:finish: 0.27099609375 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855559ms] [LOG] [nuxt-app] page:loading:end: 0.070068359375 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855562ms] [LOG] [nuxt-app] app:suspense:resolve: 2.961181640625 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855581ms] [LOG] ✨ %cNuxt DevTools %c Press Shift + Alt + D to open DevTools color: black; border-radius: 3px 0 0 3px; padding: 2px 2px 1px 10px; background: #00DC82 border-radius: 0 3px 3px 0; padding: 2px 10px 1px 2px; background: #00DC8220  @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js?v=632d4778:51
+[  855616ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=632d4778:10
+[  855616ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=632d4778:10
+[  855616ms] [LOG] [nuxt-app] link:prefetch: 0.89599609375 ms [/] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855616ms] [LOG] [nuxt-app] link:prefetch : 0.903076171875 ms [/guide/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855617ms] [LOG] [nuxt-app] link:prefetch  : 0.8701171875 ms [/components/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855617ms] [LOG] [nuxt-app] link:prefetch   : 0.947998046875 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855617ms] [LOG] [nuxt-app] link:prefetch    : 1.070068359375 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855617ms] [LOG] [nuxt-app] link:prefetch     : 1.197021484375 ms [/docs/icon] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855617ms] [LOG] [nuxt-app] link:prefetch      : 1.34716796875 ms [/docs/card] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855617ms] [LOG] [nuxt-app] link:prefetch       : 1.47802734375 ms [/docs/input] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855618ms] [LOG] [nuxt-app] link:prefetch        : 1.609130859375 ms [/docs/composables/use-toggle] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855618ms] [LOG] [nuxt-app] link:prefetch         : 1.72509765625 ms [/docs/composables/use-loading] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855618ms] [LOG] [nuxt-app] link:prefetch          : 1.904052734375 ms [/docs/composables/use-message] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855618ms] [LOG] [nuxt-app] link:prefetch           : 2.0439453125 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[  855618ms] [LOG] [nuxt-app] link:prefetch            : 2.216064453125 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=632d4778:246
+[ 1042524ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/_nuxt/@vite/client:864
+[ 1043570ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[ 1043580ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[ 1043588ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/favicon.ico:0
+[ 1043790ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[ 1044007ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[ 1044311ms] [ERROR] Failed to load resource: the server responded with a status of 503 (Service Unavailable) @ http://localhost:3000/:0
+[ 1047995ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] request 0.082ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=662774d9:47
+[ 1047995ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nitro-runtime] render:before 0.028ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=662774d9:47
+[ 1047995ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] page:loading:start 0.011ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=662774d9:47
+[ 1047995ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:created 0.374ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=662774d9:47
+[ 1047995ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] vue:setup 0.007ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=662774d9:47
+[ 1047995ms] [WARNING] %cssr:warn%c [Vue Router warn]: No match found for location with path "/guide/start" 
+      background: #f39c12;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      
+  at warn$1 (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\devtools-DCoWQoU_.js)
+  at Object.resolve (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+  at ComputedRefImpl.fn (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=662774d9:47
+[ 1047996ms] [WARNING] %cssr:warn%c [Vue Router warn]: No match found for location with path "/components/button" 
+      background: #f39c12;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      
+  at warn$1 (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\devtools-DCoWQoU_.js)
+  at Object.resolve (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+  at ComputedRefImpl.fn (E:\Nacr\Nacrdesign\playground\node_modules\vue-router\dist\vue-router.js)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=662774d9:47
+[ 1047996ms] [LOG] %cssr%c %s: %s 
+      background: #7f8c8d;
+      border-radius: 0.5em;
+      color: white;
+      font-weight: bold;
+      padding: 2px 0.5em;
+      [nuxt-app] app:rendered 0.052ms 
+  at timeLogImpl (node:internal/console/constructor)
+  at node:internal/console/constructor
+  at timeLogImpl (node:internal/util/debuglog)
+ @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/consola/dist/browser.mjs?v=662774d9:47
+[ 1047996ms] [LOG] [nuxt-app] dev:ssr-logs: 1.697021484375 ms [Array(8)] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048000ms] [LOG] [nuxt-app] page:loading:start: 0.279052734375 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048001ms] [LOG] [nuxt-app] app:created: 2.613037109375 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048002ms] [LOG] [nuxt-app] app:beforeMount: 0.06591796875 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048006ms] [LOG] [nuxt-app] vue:setup: 0.967041015625 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048009ms] [INFO] <Suspense> is an experimental feature and its API will likely change. @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js?v=662774d9:7268
+[ 1048018ms] [LOG] [nuxt-app] app:mounted: 0.238037109375 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048146ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=662774d9:10
+[ 1048147ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=662774d9:10
+[ 1048147ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=662774d9:10
+[ 1048148ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=662774d9:10
+[ 1048159ms] [LOG] [nuxt-app] page:finish: 0.197998046875 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048159ms] [LOG] [nuxt-app] page:loading:end: 0.05615234375 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048161ms] [LOG] [nuxt-app] app:suspense:resolve: 1.89794921875 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048178ms] [LOG] ✨ %cNuxt DevTools %c Press Shift + Alt + D to open DevTools color: black; border-radius: 3px 0 0 3px; padding: 2px 2px 1px 10px; background: #00DC82 border-radius: 0 3px 3px 0; padding: 2px 10px 1px 2px; background: #00DC8220  @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js?v=662774d9:51
+[ 1048207ms] [WARNING] [Vue Router warn]: No match found for location with path "/guide/start" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=662774d9:10
+[ 1048207ms] [WARNING] [Vue Router warn]: No match found for location with path "/components/button" @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/vue-router/dist/devtools-DCoWQoU_.js?v=662774d9:10
+[ 1048208ms] [LOG] [nuxt-app] link:prefetch: 0.801025390625 ms [/] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048208ms] [LOG] [nuxt-app] link:prefetch : 0.757080078125 ms [/guide/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048208ms] [LOG] [nuxt-app] link:prefetch  : 0.7119140625 ms [/components/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048208ms] [LOG] [nuxt-app] link:prefetch   : 0.775146484375 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048208ms] [LOG] [nuxt-app] link:prefetch    : 0.90283203125 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048209ms] [LOG] [nuxt-app] link:prefetch     : 1.023193359375 ms [/docs/icon] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048209ms] [LOG] [nuxt-app] link:prefetch      : 1.153076171875 ms [/docs/card] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048209ms] [LOG] [nuxt-app] link:prefetch       : 1.273193359375 ms [/docs/input] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048209ms] [LOG] [nuxt-app] link:prefetch        : 1.413818359375 ms [/docs/composables/use-toggle] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048209ms] [LOG] [nuxt-app] link:prefetch         : 1.530029296875 ms [/docs/composables/use-loading] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048209ms] [LOG] [nuxt-app] link:prefetch          : 1.635009765625 ms [/docs/composables/use-message] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048209ms] [LOG] [nuxt-app] link:prefetch           : 1.756103515625 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1048210ms] [LOG] [nuxt-app] link:prefetch            : 1.875 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1586194ms] [WARNING] Timer '[nuxt-app] page:finish' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:241
+[ 1586195ms] [LOG] [nuxt-app] page:finish: 538035.8000488281 ms [Object] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1586196ms] [WARNING] Timer '[nuxt-app] page:loading:end' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:241
+[ 1586196ms] [LOG] [nuxt-app] page:loading:end: 538036.6611328125 ms [] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1586232ms] [WARNING] Timer '[nuxt-app] link:prefetch' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:241
+[ 1586232ms] [WARNING] Timer '[nuxt-app] link:prefetch ' already exists @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:241
+[ 1586233ms] [LOG] [nuxt-app] link:prefetch: 538025.7521972656 ms [/docs/start] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 1586233ms] [LOG] [nuxt-app] link:prefetch : 538025.9020996094 ms [/docs/button] @ http://localhost:3000/_nuxt/@fs/E:/Nacr/Nacrdesign/playground/node_modules/hookable/dist/index.mjs?v=662774d9:246
+[ 2251308ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_nuxt/pages/docs/table.vue?macro=true:0
+[ 2251308ms] [ERROR] [vite] Failed to reload /@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[ 2251321ms] TypeError: Cannot read properties of undefined (reading 'default')
+    at http://localhost:3000/_nuxt/@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs?t=1781662389286:12:39
+    at http://localhost:3000/_nuxt/@vite/client:66:95
+    at http://localhost:3000/_nuxt/@vite/client:218:52
+    at http://localhost:3000/_nuxt/@vite/client:196:55
+    at Array.forEach (<anonymous>)
+    at HMRClient.queueUpdate (http://localhost:3000/_nuxt/@vite/client:196:33)
+    at async Promise.all (index 0)
+    at async handleMessage (http://localhost:3000/_nuxt/@vite/client:838:4)
+[ 2251470ms] [ERROR] [vite] Failed to reload /@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/_nuxt/@vite/client:808
+[ 2251529ms] TypeError: Cannot read properties of undefined (reading 'default')
+    at http://localhost:3000/_nuxt/@id/virtual:nuxt:E%3A%2FNacr%2FNacrdesign%2Fplayground%2F.nuxt%2Froutes.mjs?t=1781662389286:12:39
+    at http://localhost:3000/_nuxt/@vite/client:66:95
+    at http://localhost:3000/_nuxt/@vite/client:218:52
+    at http://localhost:3000/_nuxt/@vite/client:196:55
+    at Array.forEach (<anonymous>)
+    at HMRClient.queueUpdate (http://localhost:3000/_nuxt/@vite/client:196:33)
+    at async Promise.all (index 0)
+    at async handleMessage (http://localhost:3000/_nuxt/@vite/client:838:4)
+[ 2252247ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Vite Error) @ http://localhost:3000/:0
+[ 2252402ms] [WARNING] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing. @ http://localhost:3000/:460
