@@ -26,6 +26,10 @@ const menu = [
     title: '开发指南',
     items: [
       { label: '快速开始', path: '/docs/start' },
+      { label: '介绍', path: '/docs/intro' },
+      { label: '更新记录', path: '/docs/changelog' },
+      { label: '开发团队', path: '/docs/team' },
+      { label: '赞助支持', path: '/docs/sponsor' },
     ],
   },
   {
