@@ -76,6 +76,12 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'doc' })
 
+useDocSeo({
+  title: '赞助支持 - Nacr Design',
+  description: '赞助 Nacr Design 开源项目，帮助团队持续维护和改进。支持微信、支付宝赞助。',
+  keywords: ['赞助', '捐赠', '开源赞助'],
+})
+
 interface Sponsor {
   name: string
   logo?: string

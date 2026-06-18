@@ -35,6 +35,12 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'doc' })
 
+useDocSeo({
+  title: '更新记录 - Nacr Design',
+  description: 'Nacr Design 版本发布历史，查看每个版本的新功能、Bug 修复和破坏性变更。',
+  keywords: ['更新记录', 'Changelog', '版本历史', '发布公告'],
+})
+
 interface ChangelogSection {
   title: string
   items: string[]

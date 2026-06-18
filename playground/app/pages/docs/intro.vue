@@ -66,12 +66,18 @@
     </div>
 
     <h2>开源协议</h2>
-    <p>NacrDesign 基于 <b>MIT</b> 协议开源，你可以自由地在个人或商业项目中使用、修改和分发。</p>
+    <p>NacrDesign 基于 <b>Apache 2.0 + Commons Clause</b> 协议开源，允许商用，但禁止二次封装销售。你可以自由地在商业项目中作为依赖使用，但不得将本库重新打包、更名后作为独立组件库销售。</p>
   </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({ layout: 'doc' })
+
+useDocSeo({
+  title: '关于 Nacr Design - 介绍',
+  description: 'Nacr Design 是面向企业级场景的 Nuxt 3/4 Vue 组件库，开箱即用、类型完备、灵活定制、SSR 优先。',
+  keywords: ['介绍', '设计理念', '技术栈', '联系方式'],
+})
 </script>
 
 <style scoped>

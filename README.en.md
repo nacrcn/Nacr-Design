@@ -19,7 +19,7 @@
     <img src="https://img.shields.io/badge/GitHub-nacrcn%2FNacr--Design-181717?logo=github" alt="GitHub" />
   </a>
   <a href="https://github.com/nacrcn/Nacr-Design/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license" />
+    <img src="https://img.shields.io/badge/license-Apache--2.0%20%2B%20Commons%20Clause-blue.svg" alt="license" />
   </a>
 </p>
 
@@ -171,4 +171,6 @@ Issues and Pull Requests are welcome!
 
 ## License
 
-[MIT](./LICENSE)
+[Apache 2.0 + Commons Clause](./LICENSE)
+
+This project is licensed under the Apache 2.0 License with the Commons Clause restriction: **Commercial use is allowed, but re-packaging and re-selling is prohibited**. You are free to use this library as a dependency in commercial projects, but you may not re-package, re-brand, or distribute this library or its derivative works as a standalone UI component library or design system for sale or commercial distribution.

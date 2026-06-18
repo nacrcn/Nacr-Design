@@ -19,7 +19,7 @@
     <img src="https://img.shields.io/badge/GitHub-nacrcn%2FNacr--Design-181717?logo=github" alt="GitHub" />
   </a>
   <a href="https://github.com/nacrcn/Nacr-Design/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license" />
+    <img src="https://img.shields.io/badge/license-Apache--2.0%20%2B%20Commons%20Clause-blue.svg" alt="license" />
   </a>
 </p>
 
@@ -289,4 +289,6 @@ pnpm typecheck
 
 ## 许可
 
-[MIT](./LICENSE)
+[Apache 2.0 + Commons Clause](./LICENSE)
+
+本项目基于 Apache 2.0 协议开源，并附加 Commons Clause 限制条款：**允许商用，但禁止二次封装销售**。你可以自由地在商业项目中作为依赖使用，但不得将本库或其衍生作品重新打包、更名后作为独立的 UI 组件库或设计系统进行销售或商业分发。

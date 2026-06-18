@@ -58,6 +58,12 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'doc' })
 
+useDocSeo({
+  title: '开发团队 - Nacr Design',
+  description: 'Nacr Design 开发团队与贡献者，欢迎参与开源贡献。',
+  keywords: ['开发团队', '贡献者', '开源贡献'],
+})
+
 interface Member {
   name: string
   role: string

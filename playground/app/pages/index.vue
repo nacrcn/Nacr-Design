@@ -149,6 +149,35 @@ async function submit() {
 import { ref } from 'vue'
 definePageMeta({ layout: 'doc' })
 
+useSeoMeta({
+  title: 'Nacr Design - 基于 Nuxt 3/4 的企业级 Vue 3 组件库',
+  ogTitle: 'Nacr Design - 基于 Nuxt 3/4 的企业级 Vue 3 组件库',
+  description: 'Nacr Design 提供 80+ 高质量组件、ECharts 图表、TypeScript 完整支持、主题定制，一行配置集成 Nuxt 项目，开箱即用。',
+  ogDescription: 'Nacr Design 提供 80+ 高质量组件、ECharts 图表、TypeScript 完整支持、主题定制，一行配置集成 Nuxt 项目，开箱即用。',
+  ogUrl: 'https://design.nacr.cn',
+  ogImage: 'https://design.nacr.cn/og-image.png',
+  twitterCard: 'summary_large_image',
+})
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareSourceCode',
+        name: 'Nacr Design',
+        description: '基于 Nuxt 3/4 的企业级 Vue 3 组件库',
+        url: 'https://design.nacr.cn',
+        codeRepository: ['https://gitee.com/wuaxcn/nacr-design', 'https://github.com/nacrcn/Nacr-Design'],
+        programmingLanguage: 'TypeScript',
+        license: 'https://opensource.org/licenses/MIT',
+        runtimePlatform: 'Nuxt',
+      }),
+    },
+  ],
+})
+
 const { data: versionData } = await useFetch('/api/npm-version')
 const version = computed(() => versionData.value?.version || '0.1.0')
 const inputVal = ref('')

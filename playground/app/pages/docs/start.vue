@@ -96,6 +96,12 @@ import { codeToHtml } from 'shiki'
 
 definePageMeta({ layout: 'doc' })
 
+useDocSeo({
+  title: '快速开始 - Nacr Design',
+  description: '一分钟集成 Nacr Design 到 Nuxt 项目，支持 npm/pnpm/yarn 安装，组件和 Composables 自动导入。',
+  keywords: ['安装', '快速开始', '配置', '使用指南'],
+})
+
 /* ---- 代码片段 ---- */
 const installCode = `# npm
 npm install nacr-design
