@@ -31,8 +31,6 @@
           <div class="home__stat"><span class="home__stat-num">10+</span><span class="home__stat-label">组合式函数</span></div>
           <div class="home__stat-divider" />
           <div class="home__stat"><span class="home__stat-num">TS</span><span class="home__stat-label">类型完整</span></div>
-          <div class="home__stat-divider" />
-          <div class="home__stat"><span class="home__stat-num">MIT</span><span class="home__stat-label">开源许可</span></div>
         </div>
       </div>
     </section>
