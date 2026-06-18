@@ -1,0 +1,4 @@
+<template>
+    <NuxtPage />
+  <NMessageContainer />
+</template>

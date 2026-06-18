@@ -4,4 +4,4 @@ dist
 .output
 playground/.nuxt
 playground/.output
-playground
+playground/node_modules
