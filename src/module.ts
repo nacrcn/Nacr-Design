@@ -1,7 +1,7 @@
 import {
   defineNuxtModule,
   addComponentsDir,
-  addImportsDir,
+  addImports,
   addPlugin,
   createResolver,
 } from '@nuxt/kit'
@@ -47,8 +47,11 @@ export default defineNuxtModule<ModuleOptions>({
       global: options.global,
     })
 
-    // 2. 自动注册 composables
-    addImportsDir(resolve('./runtime/composables'))
+    // 2. 自动注册 composables（逐个注册，避免 index.ts 桶文件重复）
+    const composables = ['useToggle', 'useLoading', 'useMessage', 'useNotification', 'useChart', 'useIconNames']
+    for (const name of composables) {
+      addImports({ name, from: resolve(`./runtime/composables/${name}`) })
+    }
 
     // 3. 注册 iconfont 插件
     addPlugin(resolve('./runtime/plugins/iconfont'))
