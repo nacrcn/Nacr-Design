@@ -4,7 +4,7 @@
       <div v-if="modelValue" class="n-drawer__mask" @click="handleMaskClick" />
     </transition>
     <transition :name="`n-drawer__slide-${placement}`">
-      <div v-if="modelValue" :class="['n-drawer', `n-drawer--${placement}`]" :style="drawerStyle">
+      <div v-if="modelValue" :class="['n-drawer', `n-drawer--${placement}`, { 'n-drawer--rounded': rounded }]" :style="drawerStyle">
         <div class="n-drawer__header">
           <span class="n-drawer__title">{{ title }}</span>
           <span class="n-drawer__close" @click="close">×</span>
@@ -29,19 +29,46 @@ const props = withDefaults(defineProps<{
   width?: number | string
   height?: number | string
   maskClosable?: boolean
+  rounded?: boolean
+  margin?: number | string
+  radius?: number | string
 }>(), {
   placement: 'right',
   width: 360,
   maskClosable: true,
+  rounded: false,
+  margin: 10,
+  radius: '',
 })
 
 const emit = defineEmits<{ 'update:modelValue': [val: boolean]; close: [] }>()
 
+const marginValue = computed(() => typeof props.margin === 'number' ? `${props.margin}px` : props.margin)
+const radiusValue = computed(() => {
+  if (!props.radius) return 'var(--n-radius-xl, 12px)'
+  return typeof props.radius === 'number' ? `${props.radius}px` : props.radius
+})
+
 const drawerStyle = computed(() => {
+  const style: Record<string, string> = {}
   if (props.placement === 'left' || props.placement === 'right') {
-    return { width: typeof props.width === 'number' ? `${props.width}px` : props.width }
+    style.width = typeof props.width === 'number' ? `${props.width}px` : props.width
+    if (props.rounded) {
+      style.height = `calc(100% - ${marginValue.value} * 2)`
+      if (props.placement === 'right') { style.right = marginValue.value; style.top = marginValue.value }
+      else { style.left = marginValue.value; style.top = marginValue.value }
+      style.borderRadius = radiusValue.value
+    }
+  } else {
+    style.height = typeof props.height === 'number' ? `${props.height}px` : props.height || '360px'
+    if (props.rounded) {
+      style.width = `calc(100% - ${marginValue.value} * 2)`
+      if (props.placement === 'top') { style.top = marginValue.value; style.left = marginValue.value }
+      else { style.bottom = marginValue.value; style.left = marginValue.value }
+      style.borderRadius = radiusValue.value
+    }
   }
-  return { height: typeof props.height === 'number' ? `${props.height}px` : props.height || '360px' }
+  return style
 })
 
 function close() { emit('update:modelValue', false); emit('close') }
@@ -55,6 +82,7 @@ function handleMaskClick() { if (props.maskClosable) close() }
 .n-drawer--left { top: 0; left: 0; bottom: 0; }
 .n-drawer--top { top: 0; left: 0; right: 0; }
 .n-drawer--bottom { bottom: 0; left: 0; right: 0; }
+.n-drawer--rounded { overflow: hidden; }
 .n-drawer__header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--n-color-border); }
 .n-drawer__title { font-size: var(--n-font-size-lg); font-weight: 600; color: var(--n-color-text); }
 .n-drawer__close { cursor: pointer; font-size: 20px; color: var(--n-color-text-secondary); }

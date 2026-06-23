@@ -27,6 +27,25 @@
       <NDrawer v-model="showBottom" title="底部抽屉" placement="bottom" height="200" />
     </DemoBlock>
 
+    <DemoBlock title="圆角抽屉" description="设置 rounded 开启圆角模式，通过 margin 自定义边距（默认 10px），通过 radius 自定义圆角大小（默认 12px）。" :code="roundedCode">
+      <NSpace>
+        <NButton @click="showRounded = true">圆角抽屉（默认）</NButton>
+        <NButton @click="showRoundedLarge = true">大边距 + 自定义圆角</NButton>
+      </NSpace>
+      <NDrawer v-model="showRounded" title="圆角抽屉" rounded>
+        <p style="color:var(--n-color-text-secondary)">圆角模式默认边距为 10px。</p>
+        <template #footer>
+          <NSpace>
+            <NButton size="sm" variant="secondary" @click="showRounded = false">取消</NButton>
+            <NButton size="sm" @click="showRounded = false">确定</NButton>
+          </NSpace>
+        </template>
+      </NDrawer>
+      <NDrawer v-model="showRoundedLarge" title="大边距圆角抽屉" rounded :margin="24" :radius="20" placement="left">
+        <p style="color:var(--n-color-text-secondary)">自定义 margin 为 24px，圆角为 20px。</p>
+      </NDrawer>
+    </DemoBlock>
+
     <DemoBlock title="禁止遮罩关闭" description="设置 mask-closable 为 false 后点击遮罩层不会关闭。" :code="maskCode">
       <NButton @click="showNoMask = true">禁止遮罩关闭</NButton>
       <NDrawer v-model="showNoMask" title="禁止遮罩关闭" :mask-closable="false">
@@ -48,6 +67,8 @@ const showLeft = ref(false)
 const showTop = ref(false)
 const showBottom = ref(false)
 const showNoMask = ref(false)
+const showRounded = ref(false)
+const showRoundedLarge = ref(false)
 
 const rightCode = `<NDrawer v-model="show" title="右侧抽屉">
   <p>内容区域</p>
@@ -61,6 +82,14 @@ const dirCode = `<NDrawer v-model="show" placement="left" />
 <NDrawer v-model="show" placement="bottom" height="200" />`
 
 const maskCode = `<NDrawer v-model="show" :mask-closable="false" />`
+
+const roundedCode = `<NDrawer v-model="show" title="圆角抽屉" rounded>
+  <p>圆角模式默认边距 10px，默认圆角 12px</p>
+</NDrawer>
+
+<NDrawer v-model="show" title="大边距" rounded :margin="24" :radius="20" placement="left">
+  <p>自定义 margin 为 24px，圆角为 20px</p>
+</NDrawer>`
 
 const propColumns = [
   { key: 'name', title: '参数', code: true },
@@ -87,6 +116,9 @@ const propData = [
   { name: 'width', type: 'number | string', default: '360', desc: '宽度（左右方向生效）' },
   { name: 'height', type: 'number | string', default: '—', desc: '高度（上下方向生效）' },
   { name: 'maskClosable', type: 'boolean', default: 'true', desc: '点击遮罩层是否关闭' },
+  { name: 'rounded', type: 'boolean', default: 'false', desc: '是否开启圆角模式' },
+  { name: 'margin', type: 'number | string', default: '10', desc: '圆角模式下抽屉距离视口边缘的边距' },
+  { name: 'radius', type: 'number | string', default: '12', desc: '圆角模式下抽屉的圆角大小，默认 12px' },
 ]
 
 const eventData = [

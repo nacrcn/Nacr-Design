@@ -56,7 +56,7 @@ interface Changelog {
 
 const changelogs: Changelog[] = [
   {
-    version: 'v0.1.6',
+    version: 'v0.1.7',
     date: '2026-06-23',
     tag: '最新',
     tagType: 'primary',
@@ -68,6 +68,9 @@ const changelogs: Changelog[] = [
           'Menu 菜单：菜单项新增 to（路由跳转）、query（路由查询参数）、href（外部链接）、target（链接目标）、onClick（自定义点击回调）属性',
           'Menu 菜单：新增 #footer 底部插槽，支持折叠状态参数',
           'Menu 菜单：文档页新增底部插槽、折叠切换等演示示例',
+          'Drawer 抽屉：新增 rounded 圆角模式，开启后抽屉带圆角并与视口边缘保持间距',
+          'Drawer 抽屉：新增 margin 属性，自定义圆角模式边距，默认 10',
+          'Drawer 抽屉：新增 radius 属性，自定义圆角模式下圆角大小，默认 12',
         ],
       },
       {
