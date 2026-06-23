@@ -1,12 +1,12 @@
 <template>
   <div class="doc-page">
     <h1>Menu 菜单</h1>
-    <p class="doc-page__desc">为页面和功能提供导航的菜单列表，支持子菜单、分组、折叠、暗色主题、手风琴模式、徽标、Logo 插槽等。</p>
+    <p class="doc-page__desc">为页面和功能提供导航的菜单列表，支持子菜单、分组、暗色主题、手风琴模式、徽标、Logo 插槽等。组件根据宽度自动检测折叠状态：宽度 ≤ collapsedWidth（默认 64px）时仅显示图标，悬停自动弹出 tooltip 或子菜单面板。</p>
 
-    <DemoBlock title="综合示例" description="包含 Logo、徽标、子菜单、分组、折叠切换的完整侧边栏演示。" :code="fullCode">
+    <DemoBlock title="综合示例" description="包含 Logo、徽标、子菜单、分组、折叠切换的完整侧边栏演示。切换 width 宽度，组件自动感知折叠。" :code="fullCode">
       <div style="display:flex;gap:24px;">
         <!-- 亮色完整侧边栏 -->
-        <NMenu v-model="active16" :items="fullItems" :collapsed="fullCollapsed" accordion :style="{ width: fullCollapsed ? '56px' : '240px', height: '520px' }">
+        <NMenu v-model="active16" :items="fullItems" :width="fullCollapsed ? 56 : 240" accordion style="height:520px;">
           <template #logo="{ collapsed }">
             <div style="display:flex;align-items:center;gap:8px;">
               <span style="font-size:22px;background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;">N</span>
@@ -34,7 +34,7 @@
         </NMenu>
         <!-- 暗色完整侧边栏 -->
         <div style="border-radius:8px;overflow:hidden;">
-          <NMenu v-model="active16b" :items="fullItems" :collapsed="fullCollapsedDark" accordion theme="dark" :style="{ width: fullCollapsedDark ? '56px' : '240px', height: '520px' }">
+          <NMenu v-model="active16b" :items="fullItems" :width="fullCollapsedDark ? 56 : 240" accordion theme="dark" style="height: 520px;">
             <template #logo="{ collapsed }">
               <div style="display:flex;align-items:center;gap:8px;">
                 <span style="font-size:22px;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;">N</span>
@@ -79,7 +79,7 @@
             </div>
           </template>
         </NMenu>
-        <NMenu v-model="active1b" :items="basicItems" collapsed style="width: 56px;">
+        <NMenu v-model="active1b" :items="basicItems" :width="56">
           <template #logo="{ collapsed }">
             <div style="display:flex;align-items:center;gap:8px;">
               <span style="font-size:20px;">🚀</span>
@@ -146,14 +146,14 @@
       <NMenu v-model="active5" :items="subItems" accordion style="width: 224px;" />
     </DemoBlock>
 
-    <DemoBlock title="折叠模式" description="设置 collapsed 让菜单仅显示图标，hover 时弹出 tooltip。" :code="collapsedCode">
+    <DemoBlock title="折叠模式" description="将 width 设置为 56（≤ 64px 即 collapsedWidth 默认值）即可触发折叠，菜单仅显示图标。悬停普通菜单项会显示 tooltip 文字提示，悬停含子菜单的项会在右侧弹出子菜单面板。" :code="collapsedCode">
       <div style="display:flex;gap:16px;">
-        <NMenu v-model="active6" :items="subItems" collapsed style="width: 56px;">
+        <NMenu v-model="active6" :items="subItems" :width="56" style="height: 400px;">
           <template #logo>
             <span style="font-size:20px;">🚀</span>
           </template>
         </NMenu>
-        <NMenu v-model="active6" :items="subItems" style="width: 224px;">
+        <NMenu v-model="active6" :items="subItems" :width="224" style="height: 400px;">
           <template #logo>
             <span style="font-size:20px;">🚀</span>
           </template>
@@ -228,7 +228,7 @@
     </DemoBlock>
 
     <DemoBlock title="折叠切换" description="通过 #footer 插槽放置折叠按钮，点击即可展开/收起侧边栏。" :code="toggleCode">
-      <NMenu v-model="active15" :items="subItems" :collapsed="isCollapsed" :style="{ width: isCollapsed ? '56px' : '224px' }">
+      <NMenu v-model="active15" :items="subItems" :width="isCollapsed ? 56 : 224" style="height: 420px;">
         <template #logo="{ collapsed }">
           <div style="display:flex;align-items:center;gap:8px;">
             <span style="font-size:20px;">🚀</span>
@@ -571,8 +571,8 @@ const items = [
 
 const collapsedCode = `<template>
   <div style="display: flex; gap: 16px;">
-    <NMenu v-model="active" :items="items" collapsed style="width: 56px;" />
-    <NMenu v-model="active" :items="items" style="width: 224px;" />
+    <NMenu v-model="active" :items="items" :width="56" style="height: 400px;" />
+    <NMenu v-model="active" :items="items" :width="224" style="height: 400px;" />
   </div>
 </template>
 <script setup lang="ts">
@@ -582,8 +582,14 @@ const items = [
   { key: 'shouye', label: '首页', icon: 'shouye' },
   { key: 'components', label: '组件', icon: 'chuangzuo', children: [
     { key: 'form', label: '表单', icon: 'bianji' },
+    { key: 'data', label: '数据展示', icon: 'shuju' },
+    { key: 'nav', label: '导航', icon: 'dingwei' },
   ]},
-  { key: 'shezhi', label: '设置', icon: 'shezhi' },
+  { key: 'system', label: '系统', icon: 'shezhi', children: [
+    { key: 'user', label: '用户管理', icon: 'huiyuan' },
+    { key: 'role', label: '角色管理', icon: 'anquan' },
+  ]},
+  { key: 'wode', label: '我的', icon: 'wode' },
 ]
 <\/script>`
 
@@ -755,7 +761,7 @@ const items = [
 <\/script>`
 
 const toggleCode = `<template>
-  <NMenu v-model="active" :items="items" :collapsed="collapsed" :style="{ width: collapsed ? '56px' : '224px' }">
+  <NMenu v-model="active" :items="items" :width="collapsed ? 56 : 224" style="height: 420px;">
     <template #logo="{ collapsed }">
       <div style="display:flex;align-items:center;gap:8px;">
         <span style="font-size:20px;">🚀</span>
@@ -790,7 +796,7 @@ const items = [
 <\/script>`
 
 const fullCode = `<template>
-  <NMenu v-model="active" :items="items" :collapsed="collapsed" accordion :style="{ width: collapsed ? '56px' : '240px', height: '520px' }">
+  <NMenu v-model="active" :items="items" :width="collapsed ? 56 : 240" accordion style="height: 520px;">
     <template #logo="{ collapsed }">
       <div style="display:flex;align-items:center;gap:8px;">
         <span style="font-size:22px;font-weight:800;">N</span>
@@ -865,13 +871,13 @@ const propData = [
   { name: 'items', type: 'MenuItem[]', default: '—', desc: '菜单项数据（必填）' },
   { name: 'mode', type: "'vertical' | 'horizontal'", default: "'vertical'", desc: '菜单模式' },
   { name: 'theme', type: "'light' | 'dark'", default: "'light'", desc: '主题风格' },
-  { name: 'collapsed', type: 'boolean', default: 'false', desc: '是否折叠（仅垂直模式）' },
+  { name: 'width', type: 'string | number', default: '224', desc: '菜单宽度（px 或 string），宽度 ≤ collapsedWidth 时自动折叠' },
+  { name: 'collapsedWidth', type: 'number', default: '64', desc: '折叠宽度阈值（px），组件宽度 ≤ 此值时自动进入折叠模式' },
   { name: 'accordion', type: 'boolean', default: 'false', desc: '手风琴模式' },
   { name: 'defaultOpenKeys', type: '(string | number)[]', default: '[]', desc: '默认展开子菜单（非受控）' },
   { name: 'openKeys', type: '(string | number)[]', default: '—', desc: '受控展开子菜单（v-model:open-keys）' },
   { name: 'inlineIndent', type: 'number', default: '16', desc: '菜单项缩进（px）' },
   { name: 'popupClassName', type: 'string', default: "''", desc: '水平模式下弹出菜单自定义类名' },
-  { name: 'width', type: 'string | number', default: '—', desc: '菜单宽度' },
 ]
 const typeData = [
   { name: 'key', type: 'string | number', desc: '唯一标识' },
@@ -889,6 +895,7 @@ const eventData = [
   { name: 'select', type: '(key: string | number, item: MenuItem) => void', desc: '选择菜单项' },
   { name: 'update:openKeys', type: '(keys: (string|number)[]) => void', desc: '展开变化' },
   { name: 'openChange', type: '(keys: (string|number)[]) => void', desc: '展开变化' },
+  { name: 'update:collapsed', type: '(collapsed: boolean) => void', desc: '折叠状态变化（宽度自动检测触发）' },
 ]
 const slotData = [
   { name: 'logo', desc: '顶部品牌/Logo 区域，参数 { collapsed }' },

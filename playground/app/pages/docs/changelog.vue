@@ -56,10 +56,40 @@ interface Changelog {
 
 const changelogs: Changelog[] = [
   {
-    version: 'v0.1.3',
-    date: '2026-06-18',
+    version: 'v0.1.4',
+    date: '2026-06-23',
     tag: '最新',
     tagType: 'primary',
+    sections: [
+      {
+        title: '🚀 新特性',
+        items: [
+          'Menu 菜单：移除 collapsed prop，改为根据 width 自动检测折叠状态；新增 collapsedWidth 折叠宽度阈值（默认 64px）；折叠后自动启用悬浮 tooltip / 子菜单弹窗；水平模式宽度自适应为 100%',
+          'Watermark 水印：新增 density 密度预设（sparse / default / dense），快速调整水印疏密；新增 density-change 事件',
+          'Grid 栅格：gap 支持数组 [rowGap, colGap] 分别控制行列间距；GridItem 新增 push / pull 属性；使用 minmax(0, 1fr) 防止内容溢出',
+        ],
+      },
+      {
+        title: '🐛 修复',
+        items: [
+          'Menu 菜单：修复折叠后 hover 无 tooltip / 子菜单弹窗的问题（使用 Teleport 到 body，避免 overflow:hidden 裁剪）',
+          'Menu 菜单：修复水平模式（horizontal）宽度只有 224px 的问题，现自动设为 100%',
+          'Watermark 水印：修复全屏水印在页面滚动时仅覆盖首屏的问题，现覆盖整个文档并可随滚动始终可见',
+          'Affix 固钉：修复容器内固钉（设置 target 属性）滚动后定在页面上而非容器内的问题，容器内改用 position: absolute 定位',
+          'Grid 栅格：修复所有列等宽但不按预期比例分配的问题',
+        ],
+      },
+      {
+        title: '💣 破坏性变更',
+        items: [
+          'Menu 移除 collapsed prop，改用 width + collapsedWidth 自动检测折叠；原先 :collapsed="isCollapsed" :style="{ width: isCollapsed ? \'56px\' : \'240px\' }" 写法需替换为 :width="isCollapsed ? 56 : 240"',
+        ],
+      },
+    ],
+  },
+  {
+    version: 'v0.1.3',
+    date: '2026-06-18',
     sections: [
       {
         title: '🚀 新特性',

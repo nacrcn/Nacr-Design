@@ -1,6 +1,6 @@
 <template>
-  <div ref="affixRef" :style="affixStyle">
-    <div :class="fixedClass" :style="fixedStyle">
+  <div ref="affixRef" :style="wrapperStyle">
+    <div :class="innerClass" :style="innerStyle">
       <slot />
     </div>
   </div>
@@ -30,50 +30,48 @@ const emit = defineEmits<{
 
 const affixRef = ref<HTMLElement | null>(null)
 const fixed = ref(false)
-const affixStyle = ref<Record<string, string>>({})
-const fixedStyle = ref<Record<string, string>>({})
+const wrapperStyle = ref<Record<string, string>>({})
+const innerStyle = ref<Record<string, string>>({})
 
-const fixedClass = computed(() => ({
-  'n-affix__fixed': fixed.value,
+const hasTarget = computed(() => !!props.target)
+
+const innerClass = computed(() => ({
+  'n-affix__fixed': fixed.value && !hasTarget.value,
+  'n-affix__sticky': fixed.value && hasTarget.value,
 }))
-
-function getTargetEl(): HTMLElement | Window {
-  if (props.disabled) return window
-  return props.target?.() ?? window
-}
-
-function getTargetRect(): { top: number; bottom: number; height: number } {
-  const el = props.target?.()
-  if (el) {
-    const rect = el.getBoundingClientRect()
-    return { top: rect.top, bottom: rect.bottom, height: rect.height }
-  }
-  return { top: 0, bottom: window.innerHeight, height: window.innerHeight }
-}
 
 function onScroll() {
   if (!affixRef.value || props.disabled) {
     if (fixed.value) {
       fixed.value = false
-      affixStyle.value = {}
-      fixedStyle.value = {}
+      wrapperStyle.value = {}
+      innerStyle.value = {}
       emit('change', false)
     }
     return
   }
 
-  const rect = affixRef.value.getBoundingClientRect()
-  const targetRect = getTargetRect()
-  const scrollTop = props.target?.()?.scrollTop ?? window.scrollY
-
+  const affixRect = affixRef.value.getBoundingClientRect()
+  const targetEl = props.target?.()
   let isFixed = false
+  let scrollTop = 0
 
-  if (props.offsetBottom !== undefined) {
-    // 底部固钉：元素底部超出容器可视底部
-    isFixed = rect.bottom > targetRect.bottom - props.offsetBottom
+  if (targetEl) {
+    scrollTop = targetEl.scrollTop
+
+    if (props.offsetBottom !== undefined) {
+      isFixed = (targetEl.getBoundingClientRect().bottom - props.offsetBottom) < affixRect.bottom
+    } else {
+      isFixed = (targetEl.getBoundingClientRect().top + props.offsetTop) > affixRect.top
+    }
   } else {
-    // 顶部固钉：元素顶部超出容器可视顶部
-    isFixed = rect.top < targetRect.top + props.offsetTop
+    scrollTop = window.scrollY
+
+    if (props.offsetBottom !== undefined) {
+      isFixed = (window.innerHeight - props.offsetBottom) < affixRect.bottom
+    } else {
+      isFixed = props.offsetTop > affixRect.top
+    }
   }
 
   if (isFixed !== fixed.value) {
@@ -81,60 +79,77 @@ function onScroll() {
     emit('change', isFixed)
   }
 
-  emit('scroll', {
-    fixed: isFixed,
-    scrollTop,
-    affixTop: rect.top,
-  })
+  emit('scroll', { fixed: isFixed, scrollTop, affixTop: affixRect.top })
 
   if (isFixed) {
-    affixStyle.value = { height: `${rect.height}px` }
+    if (targetEl) {
+      /* ─── 容器内固钉：用 absolute 定位在容器滚动坐标系中 ─── */
+      wrapperStyle.value = { height: `${affixRect.height}px` }
 
-    if (props.offsetBottom !== undefined) {
-      fixedStyle.value = {
-        position: 'fixed',
-        bottom: `${props.offsetBottom}px`,
-        left: `${rect.left}px`,
-        width: `${rect.width}px`,
-        zIndex: `${props.zIndex}`,
+      if (props.offsetBottom !== undefined) {
+        innerStyle.value = {
+          position: 'absolute',
+          bottom: `${props.offsetBottom}px`,
+          left: '0',
+          width: '100%',
+          zIndex: `${props.zIndex}`,
+        }
+      } else {
+        innerStyle.value = {
+          position: 'absolute',
+          top: `${targetEl.scrollTop + props.offsetTop}px`,
+          left: '0',
+          width: '100%',
+          zIndex: `${props.zIndex}`,
+        }
       }
     } else {
-      fixedStyle.value = {
-        position: 'fixed',
-        top: `${(props.target?.()?.getBoundingClientRect().top ?? 0) + props.offsetTop}px`,
-        left: `${rect.left}px`,
-        width: `${rect.width}px`,
-        zIndex: `${props.zIndex}`,
+      /* ─── 视口固钉：用 fixed 定位相对视口 ─── */
+      wrapperStyle.value = { height: `${affixRect.height}px` }
+
+      if (props.offsetBottom !== undefined) {
+        innerStyle.value = {
+          position: 'fixed',
+          bottom: `${props.offsetBottom}px`,
+          left: `${affixRect.left}px`,
+          width: `${affixRect.width}px`,
+          zIndex: `${props.zIndex}`,
+        }
+      } else {
+        innerStyle.value = {
+          position: 'fixed',
+          top: `${props.offsetTop}px`,
+          left: `${affixRect.left}px`,
+          width: `${affixRect.width}px`,
+          zIndex: `${props.zIndex}`,
+        }
       }
     }
   } else {
-    affixStyle.value = {}
-    fixedStyle.value = {}
+    wrapperStyle.value = {}
+    innerStyle.value = {}
   }
 }
 
 function onResize() {
-  // 强制重新计算位置（不触发 change 事件）
   if (!affixRef.value || props.disabled) return
   const prevFixed = fixed.value
   fixed.value = false
-  affixStyle.value = {}
-  fixedStyle.value = {}
+  wrapperStyle.value = {}
+  innerStyle.value = {}
   nextTick(() => {
     onScroll()
-    if (fixed.value !== prevFixed) {
-      emit('change', fixed.value)
-    }
+    if (fixed.value !== prevFixed) emit('change', fixed.value)
   })
 }
 
 let targetEl: HTMLElement | Window = window
 
 onMounted(() => {
-  targetEl = getTargetEl()
+  targetEl = props.target?.() ?? window
   targetEl.addEventListener('scroll', onScroll, { passive: true })
   window.addEventListener('resize', onResize, { passive: true })
-  onScroll()
+  nextTick(onScroll)
 })
 
 onBeforeUnmount(() => {
@@ -145,8 +160,8 @@ onBeforeUnmount(() => {
 watch(() => props.disabled, (val) => {
   if (val) {
     fixed.value = false
-    affixStyle.value = {}
-    fixedStyle.value = {}
+    wrapperStyle.value = {}
+    innerStyle.value = {}
     emit('change', false)
   } else {
     nextTick(onScroll)
@@ -155,7 +170,7 @@ watch(() => props.disabled, (val) => {
 
 watch(() => props.target, () => {
   targetEl.removeEventListener('scroll', onScroll)
-  targetEl = getTargetEl()
+  targetEl = props.target?.() ?? window
   targetEl.addEventListener('scroll', onScroll, { passive: true })
   nextTick(onScroll)
 })
@@ -166,7 +181,8 @@ watch([() => props.offsetTop, () => props.offsetBottom, () => props.zIndex], () 
 </script>
 
 <style scoped>
-.n-affix__fixed {
+.n-affix__fixed,
+.n-affix__sticky {
   transition: none;
 }
 </style>

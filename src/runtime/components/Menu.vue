@@ -1,8 +1,8 @@
 <template>
-  <div :class="menuClass" :style="menuStyle">
+  <div :class="menuClass" :style="menuStyle" ref="menuRef">
     <!-- Logo slot -->
     <div v-if="$slots.logo" class="n-menu__logo">
-      <slot name="logo" :collapsed="collapsed" />
+      <slot name="logo" :collapsed="isCollapsed" />
     </div>
 
     <!-- Menu body (scrollable) -->
@@ -22,16 +22,19 @@
               <!-- Sub menu inside group -->
               <div
                 v-if="child.children?.length"
-                :class="['n-menu__sub-menu', { 'n-menu__sub-menu--open': isOpen(child.key), 'n-menu__sub-menu--horizontal': mode === 'horizontal' }]"
-                @mouseenter="mode === 'horizontal' && !collapsed && (hoverKey = child.key)"
-                @mouseleave="mode === 'horizontal' && !collapsed && (hoverKey = '')"
+                :class="['n-menu__sub-menu', { 'n-menu__sub-menu--open': isOpen(child.key) }]"
+                @mouseenter="(e) => onMouseEnter(e, child)"
+                @mouseleave="onMouseLeave"
               >
                 <div class="n-menu__sub-title" :style="subTitleStyle(2)" @click="toggleSubMenu(child)">
-                  <NIcon v-if="child.icon" :name="child.icon" class="n-menu__icon" size="16" />
+                  <span v-if="child.icon" class="n-menu__icon-wrapper">
+                    <NIcon :name="child.icon" class="n-menu__icon" size="16" />
+                  </span>
                   <span class="n-menu__label">{{ child.label }}</span>
                   <svg class="n-menu__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9" /></svg>
                 </div>
-                <transition v-if="mode === 'vertical'" name="n-menu__expand">
+                <!-- Vertical expand (not collapsed) -->
+                <transition v-if="!isCollapsed" name="n-menu__expand">
                   <div v-show="isOpen(child.key)" class="n-menu__sub-list">
                     <div
                       v-for="(sub, sidx) in child.children"
@@ -46,19 +49,6 @@
                     </div>
                   </div>
                 </transition>
-                <transition v-else name="n-menu__dropdown">
-                  <div v-show="hoverKey === child.key" class="n-menu__dropdown" :class="popupClassName">
-                    <div
-                      v-for="(sub, sidx) in child.children"
-                      :key="sidx"
-                      :class="dropdownItemClasses(sub)"
-                      @click="handleSelect(sub); hoverKey = ''"
-                    >
-                      <NIcon v-if="sub.icon" :name="sub.icon" class="n-menu__icon" size="16" />
-                      <span>{{ sub.label }}</span>
-                    </div>
-                  </div>
-                </transition>
               </div>
               <!-- Item inside group -->
               <div
@@ -66,15 +56,14 @@
                 :class="itemClasses(child)"
                 :style="itemStyle(2)"
                 @click="handleSelect(child)"
+                @mouseenter="(e) => onMouseEnter(e, child)"
+                @mouseleave="onMouseLeave"
               >
                 <span v-if="child.icon" class="n-menu__icon-wrapper">
                   <NIcon :name="child.icon" class="n-menu__icon" size="16" />
                 </span>
                 <span class="n-menu__label">{{ child.label }}</span>
                 <span v-if="child.badge" class="n-menu__badge">{{ child.badge }}</span>
-                <template v-if="collapsed && child.icon">
-                  <div class="n-menu__tooltip">{{ child.label }}</div>
-                </template>
               </div>
             </template>
           </div>
@@ -84,17 +73,19 @@
         <div
           v-else-if="item.children?.length"
           :class="['n-menu__sub-menu', { 'n-menu__sub-menu--open': isOpen(item.key), 'n-menu__sub-menu--horizontal': mode === 'horizontal' }]"
-          @mouseenter="mode === 'horizontal' && !collapsed && (hoverKey = item.key)"
-          @mouseleave="mode === 'horizontal' && !collapsed && (hoverKey = '')"
+          @mouseenter="(e) => onMouseEnter(e, item)"
+          @mouseleave="onMouseLeave"
         >
           <div class="n-menu__sub-title" :style="subTitleStyle(1)" @click="toggleSubMenu(item)">
-            <NIcon v-if="item.icon" :name="item.icon" class="n-menu__icon" size="16" />
+            <span v-if="item.icon" class="n-menu__icon-wrapper">
+              <NIcon :name="item.icon" class="n-menu__icon" size="16" />
+            </span>
             <span class="n-menu__label">{{ item.label }}</span>
             <svg class="n-menu__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9" /></svg>
           </div>
 
-          <!-- Vertical expand -->
-          <transition v-if="mode === 'vertical'" name="n-menu__expand">
+          <!-- Vertical expand (not collapsed) -->
+          <transition v-if="mode === 'vertical' && !isCollapsed" name="n-menu__expand">
             <div v-show="isOpen(item.key)" class="n-menu__sub-list">
               <div
                 v-for="(child, cidx) in item.children"
@@ -109,25 +100,6 @@
               </div>
             </div>
           </transition>
-
-          <!-- Horizontal dropdown -->
-          <transition v-else name="n-menu__dropdown">
-            <div
-              v-show="hoverKey === item.key"
-              class="n-menu__dropdown"
-              :class="popupClassName"
-            >
-              <div
-                v-for="(child, cidx) in item.children"
-                :key="cidx"
-                :class="dropdownItemClasses(child)"
-                @click="handleSelect(child); hoverKey = ''"
-              >
-                <NIcon v-if="child.icon" :name="child.icon" class="n-menu__icon" size="16" />
-                <span>{{ child.label }}</span>
-              </div>
-            </div>
-          </transition>
         </div>
 
         <!-- Menu item -->
@@ -136,29 +108,56 @@
           :class="itemClasses(item)"
           :style="itemStyle(1)"
           @click="handleSelect(item)"
+          @mouseenter="(e) => onMouseEnter(e, item)"
+          @mouseleave="onMouseLeave"
         >
           <span v-if="item.icon" class="n-menu__icon-wrapper">
             <NIcon :name="item.icon" class="n-menu__icon" size="16" />
           </span>
           <span class="n-menu__label">{{ item.label }}</span>
           <span v-if="item.badge" class="n-menu__badge">{{ item.badge }}</span>
-          <!-- Collapsed tooltip -->
-          <template v-if="collapsed && item.icon">
-            <div class="n-menu__tooltip">{{ item.label }}</div>
-          </template>
         </div>
       </template>
     </div>
 
     <!-- Footer slot -->
     <div v-if="$slots.footer" class="n-menu__footer">
-      <slot name="footer" :collapsed="collapsed" />
+      <slot name="footer" :collapsed="isCollapsed" />
     </div>
   </div>
+
+  <!-- Floating popup / tooltip (teleported to body) -->
+  <Teleport to="body">
+    <transition name="n-menu__float">
+      <div
+        v-if="floatVisible"
+        :class="floatClass"
+        :style="floatStyle"
+        @mouseenter="onFloatEnter"
+        @mouseleave="onFloatLeave"
+      >
+        <template v-if="floatItem?.children?.length">
+          <div class="n-menu__float-title">{{ floatItem.label }}</div>
+          <div
+            v-for="(child, cidx) in floatItem.children"
+            :key="cidx"
+            :class="popupItemClasses(child)"
+            @click="handleFloatSelect(child)"
+          >
+            <NIcon v-if="child.icon" :name="child.icon" class="n-menu__icon" size="16" />
+            <span>{{ child.label }}</span>
+          </div>
+        </template>
+        <template v-else-if="floatItem">
+          <div class="n-menu__float-tooltip-text">{{ floatItem.label }}</div>
+        </template>
+      </div>
+    </transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 
 export interface MenuItem {
   key?: string | number
@@ -177,22 +176,24 @@ const props = withDefaults(defineProps<{
   items: MenuItem[]
   mode?: 'vertical' | 'horizontal'
   theme?: 'light' | 'dark'
-  collapsed?: boolean
+  /** 折叠宽度阈值（px），组件实际宽度 <= 此值时自动折叠。默认 64 */
+  collapsedWidth?: number
+  /** 展开状态的默认宽度（px 或 string）。默认 224 */
+  width?: string | number
   accordion?: boolean
   defaultOpenKeys?: (string | number)[]
   openKeys?: (string | number)[]
   inlineIndent?: number
   popupClassName?: string
-  width?: string | number
 }>(), {
   mode: 'vertical',
   theme: 'light',
-  collapsed: false,
+  collapsedWidth: 64,
+  width: 224,
   accordion: false,
   defaultOpenKeys: () => [],
   inlineIndent: 16,
   popupClassName: '',
-  width: undefined,
 })
 
 const emit = defineEmits<{
@@ -200,11 +201,45 @@ const emit = defineEmits<{
   'update:openKeys': [keys: (string | number)[]]
   select: [key: string | number, item: MenuItem]
   openChange: [keys: (string | number)[]]
+  'update:collapsed': [collapsed: boolean]
 }>()
 
-const hoverKey = ref<string | number | undefined>('')
+// ---- Auto-detect collapsed from actual width ----
+const menuRef = ref<HTMLElement | null>(null)
+const isCollapsed = ref(false)
+let resizeObserver: ResizeObserver | null = null
 
-// Internal open keys management
+onMounted(() => {
+  if (menuRef.value) {
+    checkCollapsed(menuRef.value)
+    resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        checkCollapsed(entry.target as HTMLElement)
+      }
+    })
+    resizeObserver.observe(menuRef.value)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (resizeObserver) {
+    resizeObserver.disconnect()
+    resizeObserver = null
+  }
+  if (hoverTimer) clearTimeout(hoverTimer)
+  floatVisible.value = false
+})
+
+function checkCollapsed(el: HTMLElement) {
+  const w = el.offsetWidth
+  const newCollapsed = props.mode === 'vertical' && w <= props.collapsedWidth
+  if (newCollapsed !== isCollapsed.value) {
+    isCollapsed.value = newCollapsed
+    emit('update:collapsed', newCollapsed)
+  }
+}
+
+// ---- Open keys ----
 const innerOpenKeys = ref<(string | number)[]>([...props.defaultOpenKeys])
 
 const currentOpenKeys = computed(() => {
@@ -217,6 +252,7 @@ function isOpen(key: string | number | undefined) {
 
 function toggleSubMenu(item: MenuItem) {
   if (props.mode === 'horizontal') return
+  if (isCollapsed.value) return
   const key = item.key!
   let newKeys: (string | number)[]
   if (currentOpenKeys.value.includes(key)) {
@@ -242,18 +278,104 @@ function handleSelect(item: MenuItem) {
   emit('select', item.key, item)
 }
 
-// Style helpers
+// ---- Floating popup / tooltip ----
+const floatVisible = ref(false)
+const floatItem = ref<MenuItem | null>(null)
+const floatStyle = ref<Record<string, string>>({})
+let hoverTimer: ReturnType<typeof setTimeout> | null = null
+let isFloatingHovered = false
+
+const needsFloat = computed(() => isCollapsed.value || props.mode === 'horizontal')
+
+const floatClass = computed(() => [
+  'n-menu__float',
+  `n-menu__float--${props.theme}`,
+  {
+    'n-menu__float--popup': !!(floatItem.value?.children?.length),
+    'n-menu__float--tooltip': !(floatItem.value?.children?.length),
+    'n-menu__float--collapsed': isCollapsed.value,
+    'n-menu__float--horizontal': props.mode === 'horizontal',
+  },
+])
+
+function onMouseEnter(e: MouseEvent, item: MenuItem) {
+  if (!needsFloat.value) return
+  if (!item.key) return
+
+  if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null }
+
+  floatItem.value = item
+  floatVisible.value = true
+
+  nextTick(() => {
+    const trigger = e.currentTarget as HTMLElement
+    if (!trigger) return
+    const rect = trigger.getBoundingClientRect()
+    const style: Record<string, string> = { position: 'fixed' }
+
+    if (isCollapsed.value && props.mode === 'vertical') {
+      style.left = `${rect.right + 8}px`
+      style.top = `${rect.top + rect.height / 2}px`
+      style.transform = 'translateY(-50%)'
+    } else if (props.mode === 'horizontal') {
+      style.left = `${rect.left}px`
+      style.top = `${rect.bottom + 4}px`
+    }
+    floatStyle.value = style
+  })
+}
+
+function onMouseLeave() {
+  if (!needsFloat.value) return
+  hoverTimer = setTimeout(() => {
+    if (!isFloatingHovered) {
+      floatVisible.value = false
+      floatItem.value = null
+    }
+  }, 150)
+}
+
+function onFloatEnter() {
+  isFloatingHovered = true
+  if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null }
+}
+
+function onFloatLeave() {
+  isFloatingHovered = false
+  hoverTimer = setTimeout(() => {
+    floatVisible.value = false
+    floatItem.value = null
+  }, 100)
+}
+
+function handleFloatSelect(child: MenuItem) {
+  handleSelect(child)
+  floatVisible.value = false
+  floatItem.value = null
+}
+
+function popupItemClasses(item: MenuItem) {
+  return [
+    'n-menu__float-item',
+    {
+      'n-menu__float-item--active': props.modelValue === item.key && item.selectable !== false,
+      'n-menu__float-item--disabled': item.disabled,
+    },
+  ]
+}
+
+// ---- Style helpers ----
 function indentLevel(level: number) {
   return props.inlineIndent * level
 }
 
 function subTitleStyle(level: number) {
-  if (props.mode === 'horizontal' || props.collapsed) return {}
+  if (props.mode === 'horizontal' || isCollapsed.value) return {}
   return { paddingLeft: `${indentLevel(level)}px` }
 }
 
 function itemStyle(level: number) {
-  if (props.mode === 'horizontal' || props.collapsed) return {}
+  if (props.mode === 'horizontal' || isCollapsed.value) return {}
   return { paddingLeft: `${indentLevel(level)}px` }
 }
 
@@ -272,29 +394,20 @@ function itemClasses(item: MenuItem) {
   ]
 }
 
-function dropdownItemClasses(item: MenuItem) {
-  return [
-    'n-menu__dropdown-item',
-    {
-      'n-menu__dropdown-item--active': props.modelValue === item.key && item.selectable !== false,
-      'n-menu__dropdown-item--disabled': item.disabled,
-    },
-  ]
-}
-
 const menuClass = computed(() => [
   'n-menu',
   `n-menu--${props.mode}`,
   `n-menu--${props.theme}`,
-  {
-    'n-menu--collapsed': props.collapsed,
-  },
+  { 'n-menu--collapsed': isCollapsed.value },
 ])
 
 const menuStyle = computed(() => {
   const style: Record<string, string> = {}
-  if (props.width !== undefined) {
-    style.width = typeof props.width === 'number' ? `${props.width}px` : props.width
+  if (props.mode === 'horizontal') {
+    style.width = '100%'
+  } else {
+    const w = props.width
+    style.width = typeof w === 'number' ? `${w}px` : w
   }
   return style
 })
@@ -303,6 +416,11 @@ watch(() => props.defaultOpenKeys, (v) => {
   if (props.openKeys === undefined) {
     innerOpenKeys.value = [...v]
   }
+})
+
+// When mode changes to horizontal, reset collapsed
+watch(() => props.mode, () => {
+  if (menuRef.value) checkCollapsed(menuRef.value)
 })
 </script>
 
@@ -390,77 +508,23 @@ watch(() => props.defaultOpenKeys, (v) => {
   --n-menu-item-hover-color: #ffffff;
   --n-menu-divider-bg: rgba(255, 255, 255, 0.08);
 }
-.n-menu--dark .n-menu__logo {
-  color: rgba(255, 255, 255, 0.95);
-}
-.n-menu--dark .n-menu__divider {
-  background: var(--n-menu-divider-bg);
-}
-.n-menu--dark .n-menu__group-title {
-  color: rgba(255, 255, 255, 0.4);
-}
-.n-menu--dark .n-menu__item {
-  color: var(--n-menu-item-color);
-}
-.n-menu--dark .n-menu__item:hover {
-  background: var(--n-menu-hover-bg);
-  color: var(--n-menu-item-hover-color);
-}
-.n-menu--dark .n-menu__item--active {
-  color: var(--n-menu-active-color);
-  background: var(--n-menu-active-bg);
-}
-.n-menu--dark.n-menu--horizontal .n-menu__item--active {
-  background: var(--n-menu-active-bg);
-}
-.n-menu--dark .n-menu__item--active::before {
-  background: var(--n-menu-active-color);
-}
+.n-menu--dark .n-menu__logo { color: rgba(255, 255, 255, 0.95); }
+.n-menu--dark .n-menu__divider { background: var(--n-menu-divider-bg); }
+.n-menu--dark .n-menu__group-title { color: rgba(255, 255, 255, 0.4); }
+.n-menu--dark .n-menu__item { color: var(--n-menu-item-color); }
+.n-menu--dark .n-menu__item:hover { background: var(--n-menu-hover-bg); color: var(--n-menu-item-hover-color); }
+.n-menu--dark .n-menu__item--active { color: var(--n-menu-active-color); background: var(--n-menu-active-bg); }
+.n-menu--dark.n-menu--horizontal .n-menu__item--active { background: var(--n-menu-active-bg); }
+.n-menu--dark .n-menu__item--active::before { background: var(--n-menu-active-color); }
 .n-menu--dark .n-menu__item--disabled,
-.n-menu--dark .n-menu__item--disabled:hover {
-  color: rgba(255, 255, 255, 0.25);
-  background: transparent;
-}
-.n-menu--dark .n-menu__sub-title {
-  color: var(--n-menu-item-color);
-}
-.n-menu--dark .n-menu__sub-title:hover {
-  background: var(--n-menu-hover-bg);
-  color: #ffffff;
-}
-.n-menu--dark .n-menu__arrow {
-  color: rgba(255, 255, 255, 0.5);
-}
-.n-menu--dark .n-menu__badge {
-  background: rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.75);
-}
-.n-menu--dark .n-menu__dropdown {
-  background: #27272a;
-  border-color: var(--n-menu-border);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  z-index: 1060;
-}
-.n-menu--dark .n-menu__dropdown-item {
-  color: rgba(255, 255, 255, 0.85);
-}
-.n-menu--dark .n-menu__dropdown-item:hover {
-  background: var(--n-menu-hover-bg);
-  color: #ffffff;
-}
-.n-menu--dark .n-menu__dropdown-item--active {
-  color: var(--n-menu-active-color);
-}
-.n-menu--dark .n-menu__dropdown-item--disabled,
-.n-menu--dark .n-menu__dropdown-item--disabled:hover {
-  color: rgba(255, 255, 255, 0.25);
-  background: transparent;
-}
-.n-menu--dark .n-menu__footer {
-  border-top-color: var(--n-menu-border);
-}
+.n-menu--dark .n-menu__item--disabled:hover { color: rgba(255, 255, 255, 0.25); background: transparent; }
+.n-menu--dark .n-menu__sub-title { color: var(--n-menu-item-color); }
+.n-menu--dark .n-menu__sub-title:hover { background: var(--n-menu-hover-bg); color: #ffffff; }
+.n-menu--dark .n-menu__arrow { color: rgba(255, 255, 255, 0.5); }
+.n-menu--dark .n-menu__badge { background: rgba(255, 255, 255, 0.15); color: rgba(255, 255, 255, 0.75); }
+.n-menu--dark .n-menu__footer { border-top-color: var(--n-menu-border); }
 
-/* ---- Item with left indicator bar ---- */
+/* ---- Item ---- */
 .n-menu__item {
   display: flex;
   align-items: center;
@@ -476,7 +540,6 @@ watch(() => props.defaultOpenKeys, (v) => {
   font-size: 14px;
   line-height: 22px;
 }
-/* Active left bar indicator */
 .n-menu__item--active::before {
   content: '';
   position: absolute;
@@ -490,21 +553,14 @@ watch(() => props.defaultOpenKeys, (v) => {
   background: var(--n-color-primary, #1677ff);
   transition: height 0.2s, opacity 0.2s;
 }
-.n-menu__item:hover {
-  background: var(--n-color-fill-hover, rgba(0, 0, 0, 0.04));
-}
+.n-menu__item:hover { background: var(--n-color-fill-hover, rgba(0, 0, 0, 0.04)); }
 .n-menu__item--active {
   color: var(--n-color-primary, #1677ff);
   background: var(--n-color-primary-light, rgba(22, 119, 255, 0.06));
   font-weight: 500;
 }
-.n-menu__item--disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-.n-menu__item--disabled:hover {
-  background: transparent;
-}
+.n-menu__item--disabled { opacity: 0.4; cursor: not-allowed; }
+.n-menu__item--disabled:hover { background: transparent; }
 
 /* ---- Icon ---- */
 .n-menu__icon-wrapper {
@@ -521,17 +577,10 @@ watch(() => props.defaultOpenKeys, (v) => {
   transition: opacity 0.15s;
 }
 .n-menu__item:hover .n-menu__icon,
-.n-menu__item--active .n-menu__icon {
-  opacity: 1;
-}
+.n-menu__item--active .n-menu__icon { opacity: 1; }
 
 /* ---- Label ---- */
-.n-menu__label {
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+.n-menu__label { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* ---- Badge ---- */
 .n-menu__badge {
@@ -563,28 +612,13 @@ watch(() => props.defaultOpenKeys, (v) => {
   line-height: 22px;
   user-select: none;
 }
-.n-menu__sub-title:hover {
-  background: var(--n-color-fill-hover, rgba(0, 0, 0, 0.04));
-}
-.n-menu__arrow {
-  margin-left: auto;
-  transition: transform 0.2s;
-  flex-shrink: 0;
-  opacity: 0.5;
-}
-.n-menu__sub-menu--open > .n-menu__sub-title .n-menu__arrow {
-  transform: rotate(180deg);
-  opacity: 0.8;
-}
-.n-menu__sub-list {
-  padding-left: 16px;
-  overflow: hidden;
-}
+.n-menu__sub-title:hover { background: var(--n-color-fill-hover, rgba(0, 0, 0, 0.04)); }
+.n-menu__arrow { margin-left: auto; transition: transform 0.2s; flex-shrink: 0; opacity: 0.5; }
+.n-menu__sub-menu--open > .n-menu__sub-title .n-menu__arrow { transform: rotate(180deg); opacity: 0.8; }
+.n-menu__sub-list { padding-left: 16px; overflow: hidden; }
 
 /* ---- Menu Group ---- */
-.n-menu__group {
-  margin: 4px 0;
-}
+.n-menu__group { margin: 4px 0; }
 .n-menu__group-title {
   padding: 10px 12px 4px;
   font-size: 11px;
@@ -597,18 +631,12 @@ watch(() => props.defaultOpenKeys, (v) => {
   gap: 6px;
   white-space: nowrap;
 }
-.n-menu__group-list {
-  overflow: hidden;
-}
+.n-menu__group-list { overflow: hidden; }
 
 /* ---- Divider ---- */
-.n-menu__divider {
-  height: 1px;
-  background: var(--n-color-border, rgba(0, 0, 0, 0.06));
-  margin: 6px 12px;
-}
+.n-menu__divider { height: 1px; background: var(--n-color-border, rgba(0, 0, 0, 0.06)); margin: 6px 12px; }
 
-/* ---- Collapsed ---- */
+/* ---- Collapsed (auto-detected) ---- */
 .n-menu--collapsed .n-menu__label { display: none; }
 .n-menu--collapsed .n-menu__arrow { display: none; }
 .n-menu--collapsed .n-menu__badge { display: none; }
@@ -622,32 +650,13 @@ watch(() => props.defaultOpenKeys, (v) => {
 .n-menu--collapsed .n-menu__icon-wrapper { width: auto; height: auto; }
 .n-menu--collapsed .n-menu__item::before { display: none; }
 .n-menu--collapsed .n-menu__sub-list { display: none; }
-.n-menu--collapsed .n-menu__group-title { display: none; }
-.n-menu--collapsed .n-menu__group-list { display: none; }
+.n-menu--collapsed .n-menu__group-title span { display: none; }
+.n-menu--collapsed .n-menu__group-list { overflow: visible; }
 .n-menu--collapsed .n-menu__logo { justify-content: center; padding: 12px 0; }
+.n-menu--collapsed .n-menu__body { overflow: visible; }
+.n-menu--collapsed .n-menu__sub-menu { position: relative; }
 
-/* ---- Tooltip on collapsed ---- */
-.n-menu__tooltip {
-  display: none;
-  position: absolute;
-  left: calc(100% + 10px);
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 4px 10px;
-  background: rgba(0, 0, 0, 0.78);
-  color: #fff;
-  font-size: 12px;
-  border-radius: 4px;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 1050;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-.n-menu--collapsed .n-menu__item:hover .n-menu__tooltip {
-  display: block;
-}
-
-/* ---- Horizontal mode items ---- */
+/* ---- Horizontal mode ---- */
 .n-menu--horizontal .n-menu__item {
   padding: 6px 14px;
   margin: 0;
@@ -655,9 +664,7 @@ watch(() => props.defaultOpenKeys, (v) => {
   border-bottom: none;
   transition: all 0.2s;
 }
-.n-menu--horizontal .n-menu__item::before {
-  display: none;
-}
+.n-menu--horizontal .n-menu__item::before { display: none; }
 .n-menu--horizontal .n-menu__item--active {
   background: var(--n-color-primary-light, rgba(22, 119, 255, 0.08));
   border-radius: 6px;
@@ -666,24 +673,16 @@ watch(() => props.defaultOpenKeys, (v) => {
 .n-menu--horizontal .n-menu__item:hover:not(.n-menu__item--active) {
   background: var(--n-color-fill-hover, rgba(0, 0, 0, 0.04));
 }
-
-.n-menu--horizontal .n-menu__sub-menu {
-  position: relative;
-}
+.n-menu--horizontal .n-menu__sub-menu { position: relative; }
 .n-menu--horizontal .n-menu__sub-title {
   padding: 6px 14px;
   margin: 0;
   border-bottom: none;
   border-radius: 6px;
 }
-.n-menu--horizontal .n-menu__sub-title:hover {
-  border-radius: 6px;
-}
-.n-menu--horizontal .n-menu__arrow {
-  margin-left: 4px;
-}
+.n-menu--horizontal .n-menu__sub-title:hover { border-radius: 6px; }
+.n-menu--horizontal .n-menu__arrow { margin-left: 4px; }
 
-/* Horizontal bottom highlight bar */
 .n-menu--horizontal::after {
   content: '';
   position: absolute;
@@ -694,66 +693,126 @@ watch(() => props.defaultOpenKeys, (v) => {
   background: var(--n-color-border);
 }
 
-/* ---- Dropdown ---- */
-.n-menu__dropdown {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
+/* ---- Expand animation ---- */
+.n-menu__expand-enter-active, .n-menu__expand-leave-active {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+.n-menu__expand-enter-from, .n-menu__expand-leave-to { opacity: 0; max-height: 0; }
+.n-menu__expand-enter-to, .n-menu__expand-leave-from { max-height: 500px; }
+</style>
+
+<style>
+/* ---- Floating popup / tooltip (NOT scoped, teleported to body) ---- */
+.n-menu__float {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: auto;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.n-menu__float--tooltip {
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.n-menu__float--tooltip.n-menu__float--light {
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
+}
+.n-menu__float--tooltip.n-menu__float--dark {
+  background: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.95);
+}
+.n-menu__float-tooltip-text {
+  padding: 2px 0;
+}
+
+.n-menu__float--popup {
   min-width: 180px;
   padding: 4px;
-  background: var(--n-color-bg);
-  border: 1px solid var(--n-color-border);
   border-radius: 8px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
-  z-index: 1060;
 }
-.n-menu__dropdown-item {
+.n-menu__float--popup.n-menu__float--light {
+  background: var(--n-color-bg, #fff);
+  border: 1px solid var(--n-color-border, rgba(0, 0, 0, 0.06));
+}
+.n-menu__float--popup.n-menu__float--dark {
+  background: #27272a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.n-menu__float-title {
+  padding: 8px 12px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.n-menu__float--light .n-menu__float-title {
+  color: var(--n-color-text-secondary, #999);
+}
+.n-menu__float--dark .n-menu__float-title {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.n-menu__float-item {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 7px 12px;
   cursor: pointer;
-  color: var(--n-color-text);
   transition: background 0.15s, color 0.15s;
   white-space: nowrap;
   border-radius: 6px;
   font-size: 14px;
   margin: 1px 0;
 }
-.n-menu__dropdown-item:hover {
+.n-menu__float--light .n-menu__float-item {
+  color: var(--n-color-text, rgba(0, 0, 0, 0.88));
+}
+.n-menu__float--light .n-menu__float-item:hover {
   background: var(--n-color-fill-hover, rgba(0, 0, 0, 0.04));
 }
-.n-menu__dropdown-item--active {
+.n-menu__float--light .n-menu__float-item--active {
   color: var(--n-color-primary, #1677ff);
   font-weight: 500;
 }
-.n-menu__dropdown-item--disabled {
+.n-menu__float--dark .n-menu__float-item {
+  color: rgba(255, 255, 255, 0.85);
+}
+.n-menu__float--dark .n-menu__float-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+.n-menu__float--dark .n-menu__float-item--active {
+  color: #60a5fa;
+}
+.n-menu__float-item--disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
-.n-menu__dropdown-item--disabled:hover {
+.n-menu__float-item--disabled:hover {
   background: transparent;
 }
 
-/* ---- Expand animation ---- */
-.n-menu__expand-enter-active, .n-menu__expand-leave-active {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+.n-menu__float-enter-active {
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out;
 }
-.n-menu__expand-enter-from, .n-menu__expand-leave-to {
-  opacity: 0;
-  max-height: 0;
+.n-menu__float-leave-active {
+  transition: opacity 0.1s ease-in, transform 0.1s ease-in;
 }
-.n-menu__expand-enter-to, .n-menu__expand-leave-from {
-  max-height: 500px;
-}
+.n-menu__float-enter-from { opacity: 0; }
+.n-menu__float-leave-to { opacity: 0; }
 
-/* ---- Dropdown animation ---- */
-.n-menu__dropdown-enter-active, .n-menu__dropdown-leave-active {
-  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.n-menu__dropdown-enter-from, .n-menu__dropdown-leave-to {
-  opacity: 0;
-  transform: translateY(-4px);
-}
+.n-menu__float--collapsed.n-menu__float-enter-from { transform: translateX(-6px) translateY(-50%); }
+.n-menu__float--collapsed.n-menu__float-leave-to { transform: translateX(-6px) translateY(-50%); }
+.n-menu__float--horizontal.n-menu__float-enter-from { transform: translateY(-6px); }
+.n-menu__float--horizontal.n-menu__float-leave-to { transform: translateY(-6px); }
+
+.n-menu__float-item .n-menu__icon { flex-shrink: 0; opacity: 0.75; }
+.n-menu__float-item:hover .n-menu__icon { opacity: 1; }
 </style>
