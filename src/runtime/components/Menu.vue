@@ -157,7 +157,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount, getCurrentInstance } from 'vue'
 
 export interface MenuItem {
   key?: string | number
@@ -169,6 +169,16 @@ export interface MenuItem {
   type?: 'group'
   badge?: string | number
   children?: MenuItem[]
+  /** 路由跳转路径，如 '/docs/button'，点击后自动调用 router.push */
+  to?: string
+  /** 路由参数对象，与 to 搭配使用 */
+  query?: Record<string, string>
+  /** 外部链接，点击后 window.open 打开 */
+  href?: string
+  /** href 的 target 属性，默认 '_blank' */
+  target?: string
+  /** 自定义点击回调函数，优先级高于 to/href */
+  onClick?: (item: MenuItem) => void
 }
 
 const props = withDefaults(defineProps<{
@@ -203,6 +213,9 @@ const emit = defineEmits<{
   openChange: [keys: (string | number)[]]
   'update:collapsed': [collapsed: boolean]
 }>()
+
+// 在 setup 顶层缓存 router，避免事件回调中 getCurrentInstance() 为 null
+const _cachedRouter = getCurrentInstance()?.appContext.config.globalProperties.$router
 
 // ---- Auto-detect collapsed from actual width ----
 const menuRef = ref<HTMLElement | null>(null)
@@ -273,6 +286,24 @@ function toggleSubMenu(item: MenuItem) {
 
 function handleSelect(item: MenuItem) {
   if (item.disabled) return
+
+  // 自定义点击回调（优先级最高）
+  if (item.onClick) {
+    item.onClick(item)
+  }
+
+  // 路由跳转
+  else if (item.to) {
+    if (_cachedRouter) {
+      _cachedRouter.push({ path: item.to, query: item.query })
+    }
+  }
+
+  // 外部链接
+  else if (item.href) {
+    window.open(item.href, item.target || '_blank')
+  }
+
   if (item.selectable === false || item.key === undefined) return
   emit('update:modelValue', item.key)
   emit('select', item.key, item)

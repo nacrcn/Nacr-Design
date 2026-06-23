@@ -1,9 +1,9 @@
 <template>
   <div class="doc-page">
     <h1>Menu 菜单</h1>
-    <p class="doc-page__desc">为页面和功能提供导航的菜单列表，支持子菜单、分组、暗色主题、手风琴模式、徽标、Logo 插槽等。组件根据宽度自动检测折叠状态：宽度 ≤ collapsedWidth（默认 64px）时仅显示图标，悬停自动弹出 tooltip 或子菜单面板。</p>
+    <p class="doc-page__desc">为页面和功能提供导航的菜单列表，支持子菜单、分组、暗色主题、手风琴模式、徽标、Logo 插槽、路由跳转（to）、查询参数（query）、外部链接（href）、自定义点击回调（onClick）等。组件根据宽度自动检测折叠状态：宽度 ≤ collapsedWidth（默认 64px）时仅显示图标，悬停自动弹出 tooltip 或子菜单面板。</p>
 
-    <DemoBlock title="综合示例" description="包含 Logo、徽标、子菜单、分组、折叠切换的完整侧边栏演示。切换 width 宽度，组件自动感知折叠。" :code="fullCode">
+    <DemoBlock title="综合示例" description="包含 Logo、徽标、子菜单、分组、路由跳转、自定义回调、外部链接、折叠切换的完整侧边栏演示。切换 width 宽度，组件自动感知折叠。" :code="fullCode">
       <div style="display:flex;gap:24px;">
         <!-- 亮色完整侧边栏 -->
         <NMenu v-model="active16" :items="fullItems" :width="fullCollapsed ? 56 : 240" accordion style="height:520px;">
@@ -250,10 +250,26 @@
       </NMenu>
     </DemoBlock>
 
+    <DemoBlock title="路由跳转" description="通过 to 字段指定路由路径，点击菜单项自动跳转；query 字段可传递查询参数；href 字段可打开外部链接。" :code="routerCode">
+      <NMenu v-model="activeRouter" :items="routerItems" style="width: 224px;">
+        <template #logo>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:20px;">🚀</span>
+            <span style="font-weight:700;font-size:16px;">NacrDesign</span>
+          </div>
+        </template>
+      </NMenu>
+      <div style="margin-top:8px;font-size:var(--n-font-size-sm);color:var(--n-color-text-secondary);">点击菜单项将自动跳转到对应页面</div>
+    </DemoBlock>
+
     <ApiTable title="Props" :columns="propColumns" :data="propData" />
     <ApiTable title="MenuItem 类型" :columns="typeColumns" :data="typeData" />
     <ApiTable title="Events" :columns="eventColumns" :data="eventData" />
     <ApiTable title="Slots" :columns="slotColumns" :data="slotData" />
+
+    <NModal v-model="modalVisible" title="菜单回调" preset="confirm" width="360px">
+      {{ modalContent }}
+    </NModal>
   </div>
 </template>
 
@@ -380,19 +396,41 @@ const dividerItems = [
 function onSelect(key: string | number) { selectMsg.value = `选中 ${key}` }
 function onOpenChange(keys: (string | number)[]) { openMsg.value = `展开项 [${keys.join(', ')}]` }
 
-const fullItems = [
-  { key: 'shouye', label: '首页', icon: 'shouye', badge: 'New' },
-  { key: 'dashboard', label: '仪表盘', icon: 'shuju' },
+const modalVisible = ref(false)
+const modalContent = ref('')
+function showModal(msg: string) {
+  modalContent.value = msg
+  modalVisible.value = true
+}
+
+const activeRouter = ref('/')
+const routerItems = [
+  { key: 'home', label: '首页', icon: 'shouye', to: '/' },
+  { key: 'button-doc', label: '按钮文档', icon: 'dianzan', to: '/docs/button' },
+  { key: 'menu-doc', label: '菜单文档', icon: 'dingwei', to: '/docs/menu', query: { tab: 'api' } },
   { key: 'components', label: '组件', icon: 'chuangzuo', children: [
-    { key: 'form', label: '表单', icon: 'bianji' },
-    { key: 'data', label: '数据展示', icon: 'shuju' },
+    { key: 'form-doc', label: '表单', icon: 'bianji', to: '/docs/form' },
+    { key: 'table-doc', label: '表格', icon: 'shuju', to: '/docs/table' },
+  ]},
+  { key: 'github', label: 'GitHub', icon: 'sousuo', href: 'https://github.com/nacrcn/Nacr-Design' },
+  { key: 'custom', label: '自定义操作', icon: 'shezhi', onClick: () => showModal('触发了onClick回调') },
+]
+
+const fullItems = [
+  { key: 'shouye', label: '首页', icon: 'shouye', badge: 'New', to: '/' },
+  { key: 'dashboard', label: '仪表盘', icon: 'shuju', to: '/docs/menu' },
+  { key: 'components', label: '组件', icon: 'chuangzuo', children: [
+    { key: 'form', label: '表单', icon: 'bianji', to: '/docs/form' },
+    { key: 'data', label: '数据展示', icon: 'shuju', to: '/docs/table', query: { tab: 'basic' } },
     { key: 'nav', label: '导航', icon: 'dingwei', badge: 3 },
   ]},
   { divider: true },
   { key: 'g1', label: '系统管理', type: 'group' as const, children: [
-    { key: 'user', label: '用户管理', icon: 'huiyuan' },
+    { key: 'user', label: '用户管理', icon: 'huiyuan', onClick: () => showModal('点击了用户管理') },
     { key: 'role', label: '角色管理', icon: 'anquan' },
   ]},
+  { key: 'github', label: 'GitHub', icon: 'sousuo', href: 'https://github.com/nacrcn/Nacr-Design' },
+  { key: 'custom', label: '自定义操作', icon: 'shezhi', onClick: () => showModal('触发了onClick回调') },
   { key: 'shezhi', label: '设置', icon: 'shezhi' },
   { key: 'wode', label: '我的', icon: 'wode', badge: 5 },
 ]
@@ -795,6 +833,37 @@ const items = [
 ]
 <\/script>`
 
+const routerCode = `<template>
+  <NMenu v-model="active" :items="items" style="width: 224px;">
+    <template #logo>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="font-size:20px;">🚀</span>
+        <span style="font-weight:700;font-size:16px;">NacrDesign</span>
+      </div>
+    </template>
+  </NMenu>
+  <NModal v-model="modalVisible" title="菜单回调" preset="confirm" width="360">
+    {{ modalContent }}
+  </NModal>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue'
+const active = ref('home')
+const modalVisible = ref(false)
+const modalContent = ref('')
+const items = [
+  { key: 'home', label: '首页', icon: 'shouye', to: '/' },
+  { key: 'button-doc', label: '按钮文档', icon: 'dianzan', to: '/docs/button' },
+  { key: 'menu-doc', label: '菜单文档', icon: 'dingwei', to: '/docs/menu', query: { tab: 'api' } },
+  { key: 'components', label: '组件', icon: 'chuangzuo', children: [
+    { key: 'form-doc', label: '表单', icon: 'bianji', to: '/docs/form' },
+    { key: 'table-doc', label: '表格', icon: 'shuju', to: '/docs/table' },
+  ]},
+  { key: 'github', label: 'GitHub', icon: 'sousuo', href: 'https://github.com/nacrcn/Nacr-Design' },
+  { key: 'custom', label: '自定义操作', icon: 'shezhi', onClick: () => { modalVisible = true; modalContent = '触发了onClick回调' } },
+]
+<\/script>`
+
 const fullCode = `<template>
   <NMenu v-model="active" :items="items" :width="collapsed ? 56 : 240" accordion style="height: 520px;">
     <template #logo="{ collapsed }">
@@ -822,24 +891,30 @@ const fullCode = `<template>
       </div>
     </template>
   </NMenu>
+  <NModal v-model="modalVisible" title="菜单回调" preset="confirm" width="360">
+    {{ modalContent }}
+  </NModal>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
 const active = ref('shouye')
 const collapsed = ref(false)
+const modalVisible = ref(false)
+const modalContent = ref('')
 const items = [
-  { key: 'shouye', label: '首页', icon: 'shouye', badge: 'New' },
-  { key: 'dashboard', label: '仪表盘', icon: 'shuju' },
+  { key: 'shouye', label: '首页', icon: 'shouye', badge: 'New', to: '/' },
+  { key: 'dashboard', label: '仪表盘', icon: 'shuju', to: '/docs/menu' },
   { key: 'components', label: '组件', icon: 'chuangzuo', children: [
-    { key: 'form', label: '表单', icon: 'bianji' },
-    { key: 'data', label: '数据展示', icon: 'shuju' },
+    { key: 'form', label: '表单', icon: 'bianji', to: '/docs/form' },
+    { key: 'data', label: '数据展示', icon: 'shuju', to: '/docs/table', query: { tab: 'basic' } },
     { key: 'nav', label: '导航', icon: 'dingwei', badge: 3 },
   ]},
   { divider: true },
   { key: 'g1', label: '系统管理', type: 'group', children: [
-    { key: 'user', label: '用户管理', icon: 'huiyuan' },
+    { key: 'user', label: '用户管理', icon: 'huiyuan', onClick: () => { modalVisible = true; modalContent = '点击了用户管理' } },
     { key: 'role', label: '角色管理', icon: 'anquan' },
   ]},
+  { key: 'github', label: 'GitHub', icon: 'sousuo', href: 'https://github.com/nacrcn/Nacr-Design' },
   { key: 'shezhi', label: '设置', icon: 'shezhi' },
   { key: 'wode', label: '我的', icon: 'wode', badge: 5 },
 ]
@@ -889,6 +964,11 @@ const typeData = [
   { name: 'type', type: "'group'", desc: '设为 "group" 创建分组' },
   { name: 'badge', type: 'string | number', desc: '徽标内容' },
   { name: 'children', type: 'MenuItem[]', desc: '子菜单或分组子项' },
+  { name: 'to', type: 'string', desc: '路由跳转路径，如 \'/docs/button\'' },
+  { name: 'query', type: 'Record<string, string>', desc: '路由查询参数，与 to 搭配使用' },
+  { name: 'href', type: 'string', desc: '外部链接，点击后 window.open 打开' },
+  { name: 'target', type: 'string', desc: 'href 的 target 属性，默认 \'_blank\'' },
+  { name: 'onClick', type: '(item: MenuItem) => void', desc: '自定义点击回调函数，优先级高于 to/href' },
 ]
 const eventData = [
   { name: 'update:modelValue', type: '(key: string | number) => void', desc: '选中项变化' },

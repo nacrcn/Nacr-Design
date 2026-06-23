@@ -1,129 +1,129 @@
 <template>
   <div class="doc-page">
     <h1>Table 表格</h1>
-    <p class="doc-page__desc">用于展示多条结构类似的数据，可对数据进行排序、筛选、对比或其他自定义操作。</p>
+    <p class="doc-page__desc">用于展示多条结构类似的数据，支持排序、选择、展开、固定表头、固定列、分页、文字省略等功能。</p>
 
-    <DemoBlock title="基础用法" description="通过 columns 和 data 定义列和数据：" :code="basicCode">
-      <NTable :columns="basicColumns" :data="basicData" />
+    <!-- ========== 综合演示 ========== -->
+    <DemoBlock title="综合演示" description="集成固定列、固定表头、排序、选择、自定义渲染、文字省略、工具栏、分页等功能。" :code="fullCode">
+      <NTable
+        ref="fullTableRef"
+        :columns="fullColumns"
+        :data="fullPagedData"
+        :scroll="{ x: 1200, y: 400 }"
+        :row-selection="{ type: 'checkbox', selectedRowKeys: fullSelectedKeys, onChange: onFullSelectChange }"
+        :pagination="{ current: fullPage, pageSize: 8, total: fullData.length }"
+        :show-total="true"
+        :show-page-size="true"
+        bordered
+        @page-change="onFullPageChange"
+        @page-size-change="onFullPageSizeChange"
+      >
+        <template #toolbar>
+          <span style="font-size:15px;font-weight:600;">员工管理</span>
+          <div style="display:flex;gap:8px;">
+            <NButton size="sm" variant="ghost" @click="fullTableRef?.clearSelection?.()">清空选择</NButton>
+            <NButton size="sm" type="primary">新增员工</NButton>
+          </div>
+        </template>
+        <template #nameCell="{ record }">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:30px;height:30px;border-radius:50%;background:var(--n-color-primary-light);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--n-color-primary);">{{ record.name.charAt(0) }}</div>
+            <div>
+              <div style="font-weight:500;">{{ record.name }}</div>
+              <div style="font-size:11px;color:var(--n-color-text-disabled);">{{ record.email }}</div>
+            </div>
+          </div>
+        </template>
+        <template #deptCell="{ record }">
+          <span :style="{ display:'inline-block', padding:'2px 10px', borderRadius:'12px', fontSize:'12px', background: deptColor(record.dept).bg, color: deptColor(record.dept).text }">{{ record.dept }}</span>
+        </template>
+        <template #statusCell="{ record }">
+          <span :style="{ display:'inline-flex', alignItems:'center', gap:'4px', fontSize:'13px', color: record.status==='在职'?'var(--n-color-success)':'var(--n-color-text-disabled)' }">
+            <span :style="{ width:'6px', height:'6px', borderRadius:'50%', background: record.status==='在职'?'var(--n-color-success)':'var(--n-color-text-disabled)' }" />
+            {{ record.status }}
+          </span>
+        </template>
+        <template #actionCell>
+          <NButton size="sm" variant="ghost">编辑</NButton>
+          <NButton size="sm" variant="danger" style="margin-left:4px;">删除</NButton>
+        </template>
+      </NTable>
+      <div style="margin-top:10px;font-size:13px;color:var(--n-color-text-secondary);">已选中 {{ fullSelectedKeys.length }} 项</div>
     </DemoBlock>
 
-    <DemoBlock title="带边框和斑马纹" description="bordered 显示边框，stripe 显示斑马纹，可组合使用。" :code="borderedCode">
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <NTable :columns="basicColumns" :data="basicData" bordered />
-        <NTable :columns="basicColumns" :data="basicData" stripe />
-        <NTable :columns="basicColumns" :data="basicData" bordered stripe />
-      </div>
+    <!-- ========== 基础用法 ========== -->
+    <DemoBlock title="基础用法" description="通过 columns 和 data 定义列与数据。" :code="basicCode">
+      <NTable :columns="basicColumns" :data="basicData" bordered />
     </DemoBlock>
 
-    <DemoBlock title="表格尺寸" description="size 支持 xs / sm / md / lg 四种尺寸。" :code="sizeCode">
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <NTable :columns="basicColumns" :data="basicData" size="xs" bordered />
-        <NTable :columns="basicColumns" :data="basicData" size="sm" bordered />
-        <NTable :columns="basicColumns" :data="basicData" size="md" bordered />
-        <NTable :columns="basicColumns" :data="basicData" size="lg" bordered />
-      </div>
+
+    <!-- ========== 斑马纹 ========== -->
+    <DemoBlock title="斑马纹" description="stripe 显示斑马纹。" :code="stripeCode">
+      <NTable :columns="basicColumns" :data="basicData" stripe bordered />
     </DemoBlock>
 
-    <DemoBlock title="可排序" description="设置列的 sortable 属性启用排序，支持升序/降序切换。" :code="sortableCode">
+    <!-- ========== 排序 ========== -->
+    <DemoBlock title="可排序" description="设置列的 sortable 属性启用排序。" :code="sortableCode">
       <NTable :columns="sortableColumns" :data="sortableData" bordered />
     </DemoBlock>
 
-    <DemoBlock title="多选" description="rowSelection 配置 checkbox 多选，onChange 回调获取选中行。" :code="checkboxCode">
-      <p style="margin-bottom:8px;font-size:14px;color:#6b7280;">已选中：{{ selectedKeys.length }} 项</p>
-      <NTable :columns="basicColumns" :data="basicData" :row-selection="{ type: 'checkbox', selectedRowKeys: selectedKeys, onChange: onSelectionChange }" bordered />
+    <!-- ========== 选择 ========== -->
+    <DemoBlock title="行选择" description="rowSelection 配置 checkbox 多选或 radio 单选。" :code="selectionCode">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div>
+          <p style="margin:0 0 6px;font-size:13px;color:var(--n-color-text-secondary);">多选 — 已选中 {{ selectedKeys.length }} 项</p>
+          <NTable :columns="basicColumns" :data="basicData" :row-selection="{ type: 'checkbox', selectedRowKeys: selectedKeys, onChange: onSelectionChange }" bordered />
+        </div>
+        <div>
+          <p style="margin:0 0 6px;font-size:13px;color:var(--n-color-text-secondary);">单选 — 已选中 {{ radioKey || '无' }}</p>
+          <NTable :columns="basicColumns" :data="basicData" :row-selection="{ type: 'radio', selectedRowKeys: radioKey ? [radioKey] : [], onChange: onRadioChange }" bordered />
+        </div>
+      </div>
     </DemoBlock>
 
-    <DemoBlock title="单选" description="rowSelection 配置 radio 单选。" :code="radioCode">
-      <p style="margin-bottom:8px;font-size:14px;color:#6b7280;">已选中：{{ radioKey || '无' }}</p>
-      <NTable :columns="basicColumns" :data="basicData" :row-selection="{ type: 'radio', selectedRowKeys: radioKey ? [radioKey] : [], onChange: onRadioChange }" bordered />
-    </DemoBlock>
-
+    <!-- ========== 展开 ========== -->
     <DemoBlock title="可展开行" description="通过 #expand-row 插槽自定义展开内容。" :code="expandCode">
       <NTable :columns="basicColumns" :data="basicData" bordered>
         <template #expand-row="{ record }">
-          <div style="padding:8px 0;line-height:1.8;">
-            <p><strong>姓名：</strong>{{ record.name }}</p>
-            <p><strong>年龄：</strong>{{ record.age }}</p>
-            <p><strong>地址：</strong>{{ record.address }}</p>
+          <div style="padding:10px 0;line-height:1.8;">
+            <p style="margin:0;"><strong>姓名：</strong>{{ record.name }}</p>
+            <p style="margin:0;"><strong>年龄：</strong>{{ record.age }}</p>
+            <p style="margin:0;"><strong>地址：</strong>{{ record.address }}</p>
           </div>
         </template>
       </NTable>
     </DemoBlock>
 
-    <DemoBlock title="自定义列渲染" description="通过 slotName 指定列插槽名，实现标签、按钮等自定义渲染。" :code="slotCode">
-      <NTable :columns="customSlotColumns" :data="basicData" bordered>
-        <template #nameCell="{ record }">
-          <span style="color:var(--n-color-primary);font-weight:500;">{{ record.name }}</span>
-        </template>
-        <template #statusCell="{ record }">
-          <span :style="{ color: record.status === 'active' ? 'var(--n-color-success)' : 'var(--n-color-text-disabled)' }">
-            {{ record.status === 'active' ? '在线' : '离线' }}
-          </span>
-        </template>
-        <template #actionCell="{ record }">
-          <NButton size="sm" variant="ghost" @click="handleEdit(record)">编辑</NButton>
-          <NButton size="sm" variant="danger" style="margin-left:4px;" @click="handleDelete(record)">删除</NButton>
-        </template>
-      </NTable>
-    </DemoBlock>
-
-    <DemoBlock title="文字省略" description="设置列的 ellipsis 属性启用文字省略，需配合 width 使用。" :code="ellipsisCode">
-      <NTable :columns="ellipsisColumns" :data="ellipsisData" bordered />
-    </DemoBlock>
-
+    <!-- ========== 固定表头 ========== -->
     <DemoBlock title="固定表头" description="通过 scroll.y 设置纵向滚动高度，固定表头。" :code="scrollCode">
       <NTable :columns="basicColumns" :data="scrollData" :scroll="{ y: 240 }" bordered />
     </DemoBlock>
 
-    <DemoBlock title="分页" description="pagination 配置分页参数，showTotal 显示总数，showPageSize 切换每页条数。" :code="paginationCode">
-      <NTable :columns="basicColumns" :data="pageData" :pagination="{ current: page, pageSize: 5, total: 50 }" :show-total="true" :show-page-size="true" bordered @page-change="onPageChange" @page-size-change="onPageSizeChange" />
+    <!-- ========== 固定列 ========== -->
+    <DemoBlock title="固定列" description="设置列的 fixed 为 'left' 或 'right'，配合 scroll.x 实现横向滚动。" :code="fixedCode">
+      <NTable :columns="fixedColumns" :data="fixedData" :scroll="{ x: 1000 }" bordered />
     </DemoBlock>
 
-    <DemoBlock title="加载状态" description="loading 控制加载状态，loadingText 自定义提示文字。" :code="loadingCode">
-      <NButton size="sm" @click="isLoading = !isLoading">{{ isLoading ? '取消加载' : '开始加载' }}</NButton>
-      <div style="margin-top:12px;">
-        <NTable :columns="basicColumns" :data="basicData" :loading="isLoading" loading-text="数据加载中..." bordered />
-      </div>
+    <!-- ========== 加载 ========== -->
+    <DemoBlock title="加载状态" description="loading 控制加载状态。" :code="loadingCode">
+      <NButton size="sm" @click="isLoading = !isLoading" style="margin-bottom:12px;">{{ isLoading ? '取消加载' : '开始加载' }}</NButton>
+      <NTable :columns="basicColumns" :data="basicData" :loading="isLoading" loading-text="数据加载中..." bordered />
     </DemoBlock>
 
-    <DemoBlock title="工具栏" description="通过 #toolbar 插槽在表格顶部添加搜索、新增等操作。" :code="toolbarCode">
-      <NTable :columns="basicColumns" :data="basicData" bordered>
-        <template #toolbar>
-          <span style="font-size:16px;font-weight:600;">用户列表</span>
-          <div style="display:flex;gap:8px;">
-            <NButton size="sm">导出</NButton>
-            <NButton size="sm" type="primary">新增</NButton>
-          </div>
-        </template>
-      </NTable>
+    <!-- ========== 文字省略 ========== -->
+    <DemoBlock title="文字省略" description="设置列的 ellipsis 属性，需配合 width。" :code="ellipsisCode">
+      <NTable :columns="ellipsisColumns" :data="ellipsisData" bordered />
     </DemoBlock>
 
-    <DemoBlock title="行样式与自定义空状态" description="rowClassName / rowStyle 自定义行样式；#empty 插槽自定义空状态。" :code="rowStyleCode">
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <NTable :columns="basicColumns" :data="basicData" :row-class-name="(r: any) => r.age > 30 ? 'row-warn' : ''" bordered />
-        <NTable :columns="basicColumns" :data="[]" bordered>
-          <template #empty>
-            <div style="padding:24px;text-align:center;">
-              <p style="font-size:16px;margin:0 0 8px;">🎉 暂无数据</p>
-              <NButton size="sm">添加数据</NButton>
-            </div>
-          </template>
-        </NTable>
-      </div>
-    </DemoBlock>
-
-    <DemoBlock title="表头分组" description="通过 column.children 配置多级表头。" :code="groupHeaderCode">
-      <NTable :columns="groupHeaderColumns" :data="basicData" bordered />
-    </DemoBlock>
-
-    <DemoBlock title="方法调用" description="通过 ref 调用 getSelectedRows / clearSelection / expandAll 等方法。" :code="methodCode">
+    <!-- ========== 方法调用 ========== -->
+    <DemoBlock title="方法调用" description="通过 ref 调用表格方法。" :code="methodCode">
       <NTable ref="methodTableRef" :columns="basicColumns" :data="basicData" :row-selection="{ type: 'checkbox', selectedRowKeys: methodKeys, onChange: (k: any) => methodKeys = k }" bordered>
         <template #expand-row="{ record }">
-          <p>展开详情：{{ record.name }}，{{ record.age }}岁</p>
+          <p style="margin:0;padding:6px 0;">详情：{{ record.name }}，{{ record.age }}岁</p>
         </template>
       </NTable>
       <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
-        <NButton size="sm" @click="methodTableRef?.getSelectedRows?.()">获取选中项</NButton>
+        <NButton size="sm" @click="handleGetMethod">获取选中项</NButton>
         <NButton size="sm" @click="methodTableRef?.selectAll?.(true)">全选</NButton>
         <NButton size="sm" @click="methodTableRef?.clearSelection?.()">清除选择</NButton>
         <NButton size="sm" @click="methodTableRef?.expandAll?.(true)">展开全部</NButton>
@@ -131,12 +131,13 @@
       </div>
     </DemoBlock>
 
+    <!-- ========== API ========== -->
     <ApiTable title="Table Props" :columns="propColumns" :data="propData" />
     <ApiTable title="Column 配置" :columns="propColumns" :data="columnData" />
     <ApiTable title="rowSelection" :columns="propColumns" :data="selectionData" />
     <ApiTable title="Events" :columns="eventColumns" :data="eventData" />
     <ApiTable title="Slots" :columns="slotColumns" :data="slotData" />
-    <ApiTable title="Methods" :columns="methodColumns" :data="methodData" />
+    <ApiTable title="Methods" :columns="methodColumnsApi" :data="methodData" />
   </div>
 </template>
 
@@ -144,7 +145,124 @@
 import { ref, computed } from 'vue'
 definePageMeta({ layout: 'doc' })
 
-// ======================== 数据 ========================
+// ======================== 综合演示 ========================
+const fullTableRef = ref<any>(null)
+const fullSelectedKeys = ref<(string | number)[]>([])
+const fullPage = ref(1)
+const fullPageSize = ref(8)
+
+function onFullSelectChange(keys: (string | number)[]) { fullSelectedKeys.value = keys }
+function onFullPageChange(p: number) { fullPage.value = p }
+function onFullPageSizeChange(size: number) { fullPageSize.value = size; fullPage.value = 1 }
+
+const fullColumns = [
+  { title: '姓名', dataIndex: 'name', width: 200, fixed: 'left' as const, slotName: 'nameCell' },
+  { title: '部门', dataIndex: 'dept', width: 120, slotName: 'deptCell' },
+  { title: '职位', dataIndex: 'title', width: 140, ellipsis: true },
+  { title: '状态', dataIndex: 'status', width: 100, align: 'center' as const, slotName: 'statusCell' },
+  { title: '薪资', dataIndex: 'salary', width: 120, align: 'right' as const, sortable: true },
+  { title: '入职日期', dataIndex: 'joinDate', width: 120, align: 'center' as const },
+  { title: '电话', dataIndex: 'phone', width: 140 },
+  { title: '操作', dataIndex: 'action', width: 130, fixed: 'right' as const, align: 'center' as const, slotName: 'actionCell' },
+]
+
+const deptList = ['技术部', '产品部', '设计部', '运营部', '市场部']
+const titleList = ['前端工程师', '后端工程师', '产品经理', 'UI设计师', '运营专员', '数据分析师']
+const nameList = ['张伟', '李娜', '王芳', '刘洋', '陈磊', '杨帆', '赵倩', '黄涛', '周敏', '吴强', '徐静', '孙鹏']
+
+const fullData = Array.from({ length: 46 }, (_, i) => ({
+  key: String(i + 1),
+  name: nameList[i % 12],
+  email: `emp${i + 1}@company.com`,
+  dept: deptList[i % 5],
+  title: titleList[i % 6],
+  status: i % 7 === 0 ? '离职' : '在职',
+  salary: 8000 + (((i * 137) % 22) * 1000),
+  joinDate: `2022-${String((i % 12) + 1).padStart(2, '0')}-${String((i % 28) + 1).padStart(2, '0')}`,
+  phone: `1${[3, 5, 7, 8, 9][i % 5]}${String(10000000 + i * 137).slice(1)}`,
+}))
+
+const fullPagedData = computed(() => {
+  const start = (fullPage.value - 1) * fullPageSize.value
+  return fullData.slice(start, start + fullPageSize.value)
+})
+
+function deptColor(dept: string) {
+  const m: Record<string, { bg: string; text: string }> = {
+    '技术部': { bg: 'rgba(59,130,246,0.1)', text: '#3b82f6' },
+    '产品部': { bg: 'rgba(168,85,247,0.1)', text: '#a855f7' },
+    '设计部': { bg: 'rgba(236,72,153,0.1)', text: '#ec4899' },
+    '运营部': { bg: 'rgba(245,158,11,0.1)', text: '#f59e0b' },
+    '市场部': { bg: 'rgba(16,185,129,0.1)', text: '#10b981' },
+  }
+  return m[dept] || { bg: 'rgba(0,0,0,0.04)', text: '#666' }
+}
+
+const fullCode = `<template>
+  <NTable
+    ref="tableRef"
+    :columns="columns"
+    :data="pagedData"
+    :scroll="{ x: 1200, y: 400 }"
+    :row-selection="{ type: 'checkbox', selectedRowKeys, onChange: (k) => selectedRowKeys = k }"
+    :pagination="{ current: page, pageSize: 8, total: data.length }"
+    :show-total="true"
+    :show-page-size="true"
+    bordered
+    @page-change="(p) => page = p"
+  >
+    <template #toolbar>
+      <span style="font-weight:600;">员工管理</span>
+      <NButton size="sm" type="primary">新增员工</NButton>
+    </template>
+    <template #nameCell="{ record }">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:30px;height:30px;border-radius:50%;background:rgba(59,130,246,0.1);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#3b82f6;">{{ record.name.charAt(0) }}</div>
+        <div>
+          <div style="font-weight:500;">{{ record.name }}</div>
+          <div style="font-size:11px;color:#999;">{{ record.email }}</div>
+        </div>
+      </div>
+    </template>
+    <template #deptCell="{ record }">
+      <span :style="{ padding:'2px 10px', borderRadius:'12px', fontSize:'12px', background: deptBg(record.dept), color: deptColor(record.dept) }">{{ record.dept }}</span>
+    </template>
+    <template #statusCell="{ record }">
+      <span :style="{ color: record.status === '在职' ? '#10b981' : '#999' }">{{ record.status }}</span>
+    </template>
+    <template #actionCell>
+      <NButton size="xs" variant="ghost">编辑</NButton>
+      <NButton size="xs" variant="danger">删除</NButton>
+    </template>
+  </NTable>
+</template>
+
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+const selectedRowKeys = ref<(string|number)[]>([])
+const page = ref(1)
+const columns = [
+  { title: '姓名', dataIndex: 'name', width: 200, fixed: 'left', slotName: 'nameCell' },
+  { title: '部门', dataIndex: 'dept', width: 120, slotName: 'deptCell' },
+  { title: '职位', dataIndex: 'title', width: 140, ellipsis: true },
+  { title: '状态', dataIndex: 'status', width: 100, align: 'center', slotName: 'statusCell' },
+  { title: '薪资', dataIndex: 'salary', width: 120, align: 'right', sortable: true },
+  { title: '入职日期', dataIndex: 'joinDate', width: 120, align: 'center' },
+  { title: '电话', dataIndex: 'phone', width: 140 },
+  { title: '操作', dataIndex: 'action', width: 130, fixed: 'right', align: 'center', slotName: 'actionCell' },
+]
+const data = Array.from({ length: 46 }, (_, i) => ({
+  key: String(i+1), name: ['张伟','李娜','王芳','刘洋','陈磊','杨帆','赵倩','黄涛','周敏','吴强','徐静','孙鹏'][i%12],
+  email: \`emp\${i+1}@company.com\`, dept: ['技术部','产品部','设计部','运营部','市场部'][i%5],
+  title: ['前端工程师','后端工程师','产品经理','UI设计师','运营专员','数据分析师'][i%6],
+  status: i%7===0?'离职':'在职', salary: 8000+((i*137)%22)*1000,
+  joinDate: \`2022-\${String((i%12)+1).padStart(2,'0')}-\${String((i%28)+1).padStart(2,'0')}\`,
+  phone: \`1\${[3,5,7,8,9][i%5]}\${String(10000000+i*137).slice(1)}\`,
+}))
+const pagedData = computed(() => data.slice((page.value-1)*8, page.value*8))
+<\/script>`
+
+// ======================== 基础 ========================
 const basicColumns = [
   { title: '姓名', dataIndex: 'name' },
   { title: '年龄', dataIndex: 'age', align: 'center' as const },
@@ -156,10 +274,8 @@ const basicData = [
   { key: '3', name: '王五', age: 25, address: '广州市天河区体育西路103号' },
   { key: '4', name: '赵六', age: 36, address: '深圳市南山区科技园路8号' },
 ]
-
-// ======================== 代码字符串 ========================
 const basicCode = `<template>
-  <NTable :columns="columns" :data="data" />
+  <NTable :columns="columns" :data="data" bordered />
 </template>
 
 <script setup lang="ts">
@@ -175,17 +291,8 @@ const data = [
 ]
 <\/script>`
 
-const borderedCode = `<template>
-  <NTable :columns="columns" :data="data" bordered />
-  <NTable :columns="columns" :data="data" stripe />
-  <NTable :columns="columns" :data="data" bordered stripe />
-</template>`
-
-const sizeCode = `<template>
-  <NTable :columns="columns" :data="data" size="xs" bordered />
-  <NTable :columns="columns" :data="data" size="sm" bordered />
-  <NTable :columns="columns" :data="data" size="md" bordered />
-  <NTable :columns="columns" :data="data" size="lg" bordered />
+const stripeCode = `<template>
+  <NTable :columns="columns" :data="data" stripe bordered />
 </template>`
 
 // ======================== 排序 ========================
@@ -213,48 +320,25 @@ const columns = [
   { title: '薪资', dataIndex: 'salary', align: 'right', sortable: true },
   { title: '地址', dataIndex: 'address' },
 ]
-const data = [
-  { key: '1', name: '张三', age: 28, salary: 15000, address: '北京市朝阳区' },
-  { key: '2', name: '李四', age: 32, salary: 22000, address: '上海市浦东新区' },
-]
 <\/script>`
 
-// ======================== 多选 ========================
+// ======================== 选择 ========================
 const selectedKeys = ref<(string | number)[]>([])
 function onSelectionChange(keys: (string | number)[]) { selectedKeys.value = keys }
-const checkboxCode = `<template>
-  <p>已选中：{{ selectedKeys.length }} 项</p>
-  <NTable
-    :columns="columns"
-    :data="data"
-    :row-selection="{
-      type: 'checkbox',
-      selectedRowKeys,
-      onChange: (keys) => selectedKeys = keys,
-    }"
-    bordered
-  />
-</template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const selectedKeys = ref<(string | number)[]>([])
-<\/script>`
-
-// ======================== 单选 ========================
 const radioKey = ref<string | number>('')
 function onRadioChange(keys: (string | number)[]) { radioKey.value = keys[0] || '' }
-const radioCode = `<template>
-  <p>已选中：{{ radioKey || '无' }}</p>
+
+const selectionCode = `<template>
+  <!-- 多选 -->
   <NTable
-    :columns="columns"
-    :data="data"
-    :row-selection="{
-      type: 'radio',
-      selectedRowKeys: radioKey ? [radioKey] : [],
-      onChange: (keys) => radioKey = keys[0] || '',
-    }"
-    bordered
+    :columns="columns" :data="data" bordered
+    :row-selection="{ type: 'checkbox', selectedRowKeys, onChange: (k) => selectedRowKeys = k }"
+  />
+  <!-- 单选 -->
+  <NTable
+    :columns="columns" :data="data" bordered
+    :row-selection="{ type: 'radio', selectedRowKeys, onChange: (k) => selectedRowKeys = k }"
   />
 </template>`
 
@@ -262,7 +346,7 @@ const radioCode = `<template>
 const expandCode = `<template>
   <NTable :columns="columns" :data="data" bordered>
     <template #expand-row="{ record }">
-      <div style="padding:8px 0;line-height:1.8;">
+      <div style="padding:10px 0;line-height:1.8;">
         <p><strong>姓名：</strong>{{ record.name }}</p>
         <p><strong>年龄：</strong>{{ record.age }}</p>
         <p><strong>地址：</strong>{{ record.address }}</p>
@@ -271,34 +355,57 @@ const expandCode = `<template>
   </NTable>
 </template>`
 
-// ======================== 自定义列 ========================
-const customSlotColumns = [
-  { title: '姓名', dataIndex: 'name', slotName: 'nameCell' },
-  { title: '年龄', dataIndex: 'age', align: 'center' as const },
-  { title: '状态', dataIndex: 'status', slotName: 'statusCell', align: 'center' as const },
-  { title: '地址', dataIndex: 'address' },
-  { title: '操作', dataIndex: 'action', slotName: 'actionCell', align: 'center' as const },
-]
-function handleEdit(r: any) { alert('编辑: ' + r.name) }
-function handleDelete(r: any) { alert('删除: ' + r.name) }
-const slotCode = `<template>
-  <NTable :columns="columns" :data="data" bordered>
-    <template #nameCell="{ record }">
-      <span style="color: var(--n-color-primary); font-weight: 500;">
-        {{ record.name }}
-      </span>
-    </template>
-    <template #statusCell="{ record }">
-      <span :style="{ color: record.status === 'active' ? 'var(--n-color-success)' : '#999' }">
-        {{ record.status === 'active' ? '在线' : '离线' }}
-      </span>
-    </template>
-    <template #actionCell="{ record }">
-      <NButton size="sm" variant="ghost" @click="handleEdit(record)">编辑</NButton>
-      <NButton size="sm" variant="danger" @click="handleDelete(record)">删除</NButton>
-    </template>
-  </NTable>
+// ======================== 固定表头 ========================
+const scrollData = Array.from({ length: 20 }, (_, i) => ({
+  key: String(i + 1), name: `用户${i + 1}`, age: 20 + (i % 20), address: `城市${i + 1}号街道${i + 1}号`,
+}))
+const scrollCode = `<template>
+  <NTable :columns="columns" :data="data" :scroll="{ y: 240 }" bordered />
 </template>`
+
+// ======================== 固定列 ========================
+const fixedColumns = [
+  { title: '姓名', dataIndex: 'name', width: 120, fixed: 'left' as const },
+  { title: '年龄', dataIndex: 'age', width: 80, align: 'center' as const },
+  { title: '部门', dataIndex: 'dept', width: 120 },
+  { title: '邮箱', dataIndex: 'email', width: 200 },
+  { title: '手机', dataIndex: 'phone', width: 140 },
+  { title: '城市', dataIndex: 'city', width: 120 },
+  { title: '入职日期', dataIndex: 'joinDate', width: 120 },
+  { title: '操作', dataIndex: 'action', width: 140, fixed: 'right' as const, align: 'center' as const },
+]
+const fixedData = Array.from({ length: 8 }, (_, i) => ({
+  key: String(i + 1), name: `员工${i + 1}`, age: 25 + (i % 15),
+  dept: ['技术部', '产品部', '设计部', '运营部'][i % 4], email: `user${i+1}@example.com`,
+  phone: `138${String(10000000 + i).slice(1)}`, city: ['北京','上海','广州','深圳','杭州'][i%5],
+  joinDate: `2023-${String((i%12)+1).padStart(2,'0')}-${String((i%28)+1).padStart(2,'0')}`,
+}))
+const fixedCode = `<template>
+  <NTable :columns="columns" :data="data" :scroll="{ x: 1000 }" bordered />
+</template>
+
+<script setup lang="ts">
+const columns = [
+  { title: '姓名', dataIndex: 'name', width: 120, fixed: 'left' },
+  { title: '年龄', dataIndex: 'age', width: 80, align: 'center' },
+  { title: '部门', dataIndex: 'dept', width: 120 },
+  { title: '邮箱', dataIndex: 'email', width: 200 },
+  { title: '手机', dataIndex: 'phone', width: 140 },
+  { title: '操作', dataIndex: 'action', width: 140, fixed: 'right', align: 'center' },
+]
+<\/script>`
+
+// ======================== 加载 ========================
+const isLoading = ref(false)
+const loadingCode = `<template>
+  <NButton @click="loading = !loading">切换加载</NButton>
+  <NTable :columns="columns" :data="data" :loading="loading" loading-text="加载中..." bordered />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const loading = ref(false)
+<\/script>`
 
 // ======================== 省略 ========================
 const ellipsisColumns = [
@@ -320,115 +427,14 @@ const ellipsisCode = `<template>
   />
 </template>`
 
-// ======================== 固定表头 ========================
-const scrollData = Array.from({ length: 20 }, (_, i) => ({
-  key: String(i + 1), name: `用户${i + 1}`, age: 20 + (i % 20), address: `城市${i + 1}号街道${i + 1}号`,
-}))
-const scrollCode = `<template>
-  <!-- 固定表头 -->
-  <NTable :columns="columns" :data="data" :scroll="{ y: 240 }" bordered />
-  <!-- 横向滚动 -->
-  <NTable :columns="columns" :data="data" :scroll="{ x: 1200 }" bordered />
-</template>`
-
-// ======================== 分页 ========================
-const page = ref(1)
-const pageData = computed(() => Array.from({ length: 50 }, (_, i) => ({
-  key: String(i + 1), name: `用户${i + 1}`, age: 20 + (i % 15), address: `城市${i + 1}号街道${i + 1}号`,
-})))
-function onPageChange(p: number) { page.value = p }
-function onPageSizeChange() { page.value = 1 }
-const paginationCode = `<template>
-  <NTable
-    :columns="columns"
-    :data="data"
-    :pagination="{ current: 1, pageSize: 10, total: 50 }"
-    :show-total="true"
-    :show-page-size="true"
-    bordered
-    @page-change="onPageChange"
-    @page-size-change="onPageSizeChange"
-  />
-</template>
-
-<script setup lang="ts">
-function onPageChange(page) { console.log('跳转第', page, '页') }
-function onPageSizeChange(size) { console.log('每页', size, '条') }
-<\/script>`
-
-// ======================== 加载 ========================
-const isLoading = ref(false)
-const loadingCode = `<template>
-  <NButton @click="loading = !loading">切换加载</NButton>
-  <NTable :columns="columns" :data="data" :loading="loading" loading-text="数据加载中..." bordered />
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-const loading = ref(false)
-<\/script>`
-
-// ======================== 工具栏 ========================
-const toolbarCode = `<template>
-  <NTable :columns="columns" :data="data" bordered>
-    <template #toolbar>
-      <span style="font-size:16px;font-weight:600;">用户列表</span>
-      <div style="display:flex;gap:8px;">
-        <NButton size="sm">导出</NButton>
-        <NButton size="sm" type="primary">新增</NButton>
-      </div>
-    </template>
-  </NTable>
-</template>`
-
-// ======================== 行样式 ========================
-const rowStyleCode = `<template>
-  <!-- rowClassName 函数：年龄 > 30 的行添加警告样式 -->
-  <NTable
-    :columns="columns"
-    :data="data"
-    :row-class-name="(record) => record.age > 30 ? 'row-warn' : ''"
-    bordered
-  />
-
-  <!-- 自定义空状态 -->
-  <NTable :columns="columns" :data="[]" bordered>
-    <template #empty>
-      <div style="padding:24px;text-align:center;">
-        <p style="font-size:16px;">🎉 暂无数据</p>
-        <NButton size="sm" style="margin-top:8px;">添加数据</NButton>
-      </div>
-    </template>
-  </NTable>
-</template>`
-
-// ======================== 表头分组 ========================
-const groupHeaderColumns: any[] = [
-  { title: '姓名', dataIndex: 'name' },
-  { title: '联系方式', children: [
-    { title: '手机', dataIndex: 'phone', align: 'center' },
-    { title: '邮箱', dataIndex: 'email' },
-  ]},
-  { title: '地址', dataIndex: 'address' },
-]
-const groupHeaderCode = `<template>
-  <NTable :columns="columns" :data="data" bordered />
-</template>
-
-<script setup lang="ts">
-const columns = [
-  { title: '姓名', dataIndex: 'name' },
-  { title: '联系方式', children: [
-    { title: '手机', dataIndex: 'phone', align: 'center' },
-    { title: '邮箱', dataIndex: 'email' },
-  ]},
-  { title: '地址', dataIndex: 'address' },
-]
-<\/script>`
-
 // ======================== 方法 ========================
 const methodTableRef = ref<any>(null)
 const methodKeys = ref<(string | number)[]>([])
+function handleGetMethod() {
+  const rows = methodTableRef.value?.getSelectedRows?.()
+  if (rows?.length) alert(`选中 ${rows.length} 项：${rows.map((r: any) => r.name).join(', ')}`)
+  else alert('未选中任何项')
+}
 const methodCode = `<template>
   <NTable
     ref="tableRef"
@@ -441,7 +447,6 @@ const methodCode = `<template>
       <p>详情：{{ record.name }}，{{ record.age }}岁</p>
     </template>
   </NTable>
-
   <div style="margin-top:12px;display:flex;gap:8px;">
     <NButton size="sm" @click="tableRef?.getSelectedRows?.()">获取选中项</NButton>
     <NButton size="sm" @click="tableRef?.selectAll?.(true)">全选</NButton>
@@ -449,9 +454,15 @@ const methodCode = `<template>
     <NButton size="sm" @click="tableRef?.expandAll?.(true)">展开全部</NButton>
     <NButton size="sm" @click="tableRef?.expandAll?.(false)">折叠全部</NButton>
   </div>
-</template>`
+</template>
 
-// ======================== API 表格 ========================
+<script setup lang="ts">
+import { ref } from 'vue'
+const tableRef = ref(null)
+const selectedRowKeys = ref<(string|number)[]>([])
+<\/script>`
+
+// ======================== API ========================
 const propColumns = [
   { key: 'name', title: '参数', code: true },
   { key: 'type', title: '类型', code: true },
@@ -469,17 +480,13 @@ const propData = [
   { name: 'loadingText', type: 'string', default: "'加载中...'", desc: '加载提示文字' },
   { name: 'rowSelection', type: 'TableSelection', default: '-', desc: '行选择配置' },
   { name: 'pagination', type: 'object | false', default: 'false', desc: '分页配置，false 不显示' },
-  { name: 'scroll', type: '{ x?; y? }', default: '-', desc: '滚动配置' },
+  { name: 'scroll', type: '{ x?: number | string; y?: number | string }', default: '-', desc: '滚动配置，x 横向滚动宽，y 固定表头高度' },
   { name: 'showTotal', type: 'boolean', default: 'true', desc: '显示总数' },
   { name: 'showPageSize', type: 'boolean', default: 'false', desc: '显示每页条数切换' },
-  { name: 'pageSizeOptions', type: 'number[]', default: '[10,20,50,100]', desc: '每页条数选项' },
   { name: 'emptyText', type: 'string', default: "'暂无数据'", desc: '空数据提示文字' },
   { name: 'rowClassName', type: 'string | ((record, index) => string)', default: '-', desc: '行自定义类名' },
   { name: 'rowStyle', type: 'object | ((record, index) => object)', default: '-', desc: '行自定义样式' },
-  { name: 'tableLayoutFixed', type: 'boolean', default: 'false', desc: '固定表格布局' },
-  { name: 'expandedRowRender', type: '(record) => VNodeChild', default: '-', desc: '展开行渲染函数' },
 ]
-
 const columnData = [
   { name: 'title', type: 'string', default: '-', desc: '列标题' },
   { name: 'dataIndex', type: 'string', default: '-', desc: '数据字段名' },
@@ -488,20 +495,16 @@ const columnData = [
   { name: 'align', type: "'left' | 'center' | 'right'", default: "'left'", desc: '对齐方式' },
   { name: 'fixed', type: "'left' | 'right'", default: '-', desc: '固定列' },
   { name: 'sortable', type: 'boolean | { sortDirections }', default: '-', desc: '排序' },
-  { name: 'filterable', type: 'boolean', default: 'false', desc: '启用筛选' },
-  { name: 'filters', type: '{ label; value }[]', default: '-', desc: '筛选选项' },
-  { name: 'ellipsis', type: 'boolean', default: 'false', desc: '省略号' },
+  { name: 'ellipsis', type: 'boolean', default: 'false', desc: '文字省略' },
   { name: 'slotName', type: 'string', default: '-', desc: '内容插槽名' },
   { name: 'titleSlotName', type: 'string', default: '-', desc: '标题插槽名' },
   { name: 'children', type: 'TableColumnData[]', default: '-', desc: '表头分组子列' },
 ]
-
 const selectionData = [
   { name: 'type', type: "'checkbox' | 'radio'", default: "'checkbox'", desc: '选择类型' },
   { name: 'selectedRowKeys', type: '(string | number)[]', default: '[]', desc: '已选中 key 列表' },
   { name: 'onChange', type: '(keys, rows) => void', default: '-', desc: '选中变化回调' },
 ]
-
 const eventColumns = [
   { key: 'name', title: '事件名', code: true },
   { key: 'type', title: '参数', code: true },
@@ -516,10 +519,8 @@ const eventData = [
   { name: 'page-size-change', type: '(pageSize)', desc: '每页条数变化' },
   { name: 'expand', type: '(rowKey, expanded)', desc: '展开/收起' },
   { name: 'row-click', type: '(record, event)', desc: '点击行' },
-  { name: 'row-dblclick', type: '(record, event)', desc: '双击行' },
   { name: 'cell-click', type: '(record, column, event)', desc: '点击单元格' },
 ]
-
 const slotColumns = [
   { key: 'name', title: '插槽名', code: true },
   { key: 'type', title: '参数', code: true },
@@ -529,14 +530,10 @@ const slotData = [
   { name: 'toolbar', type: '-', desc: '表格顶部工具栏区域' },
   { name: 'empty', type: '-', desc: '空数据自定义内容' },
   { name: 'expand-row', type: '{ record }', desc: '展开行内容' },
-  { name: 'tfoot', type: '-', desc: '表尾内容' },
-  { name: 'pagination-left', type: '-', desc: '分页左侧区域' },
-  { name: 'pagination-right', type: '-', desc: '分页右侧区域' },
   { name: '[slotName]', type: '{ record, column, rowIndex }', desc: '列自定义内容' },
   { name: '[titleSlotName]', type: '{ column }', desc: '列标题自定义内容' },
 ]
-
-const methodColumns = [
+const methodColumnsApi = [
   { key: 'name', title: '方法名', code: true },
   { key: 'type', title: '参数', code: true },
   { key: 'desc', title: '说明' },
@@ -546,8 +543,8 @@ const methodData = [
   { name: 'select', type: '(rowKey, checked)', desc: '选中/取消指定行' },
   { name: 'expandAll', type: '(expanded: boolean)', desc: '全部展开/收起' },
   { name: 'expand', type: '(rowKey, expanded)', desc: '展开/收起指定行' },
-  { name: 'getSelectedRowKeys', type: '() => (string|number)[]', desc: '获取所有选中行的 key' },
-  { name: 'getSelectedRows', type: '() => any[]', desc: '获取所有选中行的数据' },
+  { name: 'getSelectedRowKeys', type: '() => (string|number)[]', desc: '获取选中行 key' },
+  { name: 'getSelectedRows', type: '() => any[]', desc: '获取选中行数据' },
   { name: 'clearSelection', type: '() => void', desc: '清除所有选中' },
 ]
 </script>

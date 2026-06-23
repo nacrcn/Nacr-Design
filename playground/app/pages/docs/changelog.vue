@@ -56,10 +56,33 @@ interface Changelog {
 
 const changelogs: Changelog[] = [
   {
-    version: 'v0.1.4',
+    version: 'v0.1.6',
     date: '2026-06-23',
     tag: '最新',
     tagType: 'primary',
+    sections: [
+      {
+        title: '🚀 新特性',
+        items: [
+          'Table 表格：文档页新增综合演示，集成固定列、固定表头、自定义标签、文字省略、行选择、分页、工具栏等功能',
+          'Menu 菜单：菜单项新增 to（路由跳转）、query（路由查询参数）、href（外部链接）、target（链接目标）、onClick（自定义点击回调）属性',
+          'Menu 菜单：新增 #footer 底部插槽，支持折叠状态参数',
+          'Menu 菜单：文档页新增底部插槽、折叠切换等演示示例',
+        ],
+      },
+      {
+        title: '🐛 修复',
+        items: [
+          'Table 表格：修复选择列（全选 checkbox）表头在固定表头（scroll.y）模式下未随表头固定的问题，选择列现正确应用 sticky 定位',
+          'Table 表格：修复展开列表头在固定表头模式下未随表头固定的问题',
+          'Table 表格：修复选择列与展开列在水平滚动时未固定在左侧的问题',
+        ],
+      },
+    ],
+  },
+  {
+    version: 'v0.1.4',
+    date: '2026-06-23',
     sections: [
       {
         title: '🚀 新特性',

@@ -11,8 +11,11 @@
       <span class="n-table__loading-text">{{ loadingText }}</span>
     </div>
 
-    <div :class="['n-table-scroll', { 'n-table-scroll--x': scroll?.x }]" :style="scrollStyle">
-      <table :class="['n-table', `n-table--${size}`, { 'n-table--stripe': stripe, 'n-table--bordered': bordered, 'n-table--fixed': tableLayoutFixed }]">
+    <div :class="['n-table-scroll', { 'n-table-scroll--x': scroll?.x, 'n-table-scroll--y': scroll?.y }]" :style="scrollStyle">
+      <table
+        :class="['n-table', `n-table--${size}`, { 'n-table--stripe': stripe, 'n-table--bordered': bordered, 'n-table--fixed': tableLayoutFixed || scroll?.x }]"
+        :style="tableStyle"
+      >
         <!-- Colgroup for width -->
         <colgroup>
           <col v-if="expandedRowRender || $slots['expand-row']" style="width: 48px;" />
@@ -23,8 +26,8 @@
         <!-- Header -->
         <thead>
           <tr v-if="hasGroupHeader">
-            <th v-if="expandedRowRender || $slots['expand-row']" class="n-table__th n-table__th--expand" rowspan="2" />
-            <th v-if="rowSelection" class="n-table__th n-table__th--selection" rowspan="2">
+            <th v-if="expandedRowRender || $slots['expand-row']" class="n-table__th n-table__th--expand n-table__th--fixed-left" rowspan="2" :style="[expandFixedStyle, getFixedHeaderStyle()]"></th>
+            <th v-if="rowSelection" class="n-table__th n-table__th--selection n-table__th--fixed-left" rowspan="2" :style="[selectionFixedStyle, getFixedHeaderStyle()]">
               <label v-if="rowSelection.type === 'checkbox'" class="n-table__checkbox">
                 <input
                   type="checkbox"
@@ -51,8 +54,8 @@
             </template>
           </tr>
           <tr v-else>
-            <th v-if="expandedRowRender || $slots['expand-row']" class="n-table__th n-table__th--expand" />
-            <th v-if="rowSelection" class="n-table__th n-table__th--selection">
+            <th v-if="expandedRowRender || $slots['expand-row']" class="n-table__th n-table__th--expand n-table__th--fixed-left" :style="[expandFixedStyle, getFixedHeaderStyle()]"></th>
+            <th v-if="rowSelection" class="n-table__th n-table__th--selection n-table__th--fixed-left" :style="[selectionFixedStyle, getFixedHeaderStyle()]">
               <label v-if="rowSelection.type === 'checkbox'" class="n-table__checkbox">
                 <input
                   type="checkbox"
@@ -66,7 +69,8 @@
             <th
               v-for="col in flatColumns"
               :key="col.dataIndex"
-              :class="['n-table__th', `n-table__th--${col.align || 'left'}`, { 'n-table__th--sortable': col.sortable }]"
+              :class="['n-table__th', `n-table__th--${col.align || 'left'}`, { 'n-table__th--sortable': col.sortable, 'n-table__th--fixed-left': col.fixed === 'left', 'n-table__th--fixed-right': col.fixed === 'right' }]"
+              :style="[getFixedStyle(col), getFixedHeaderStyle()]"
             >
               <div class="n-table__th-inner">
                 <slot :name="col.titleSlotName" :column="col">{{ col.title }}</slot>
@@ -90,7 +94,7 @@
                 @dblclick="handleRowDblClick(record, $event)"
               >
                 <!-- Expand toggle -->
-                <td v-if="expandedRowRender || $slots['expand-row']" class="n-table__td n-table__td--expand">
+                <td v-if="expandedRowRender || $slots['expand-row']" class="n-table__td n-table__td--expand n-table__td--fixed-left" :style="expandFixedStyle">
                   <button
                     v-if="!hideExpandButtonOnEmpty || hasExpandedContent(record)"
                     class="n-table__expand-btn"
@@ -101,7 +105,7 @@
                   </button>
                 </td>
                 <!-- Selection -->
-                <td v-if="rowSelection" class="n-table__td n-table__td--selection">
+                <td v-if="rowSelection" class="n-table__td n-table__td--selection n-table__td--fixed-left" :style="selectionFixedStyle">
                   <label v-if="rowSelection.type === 'checkbox'" class="n-table__checkbox">
                     <input
                       type="checkbox"
@@ -123,7 +127,8 @@
                 <td
                   v-for="col in flatColumns"
                   :key="col.dataIndex"
-                  :class="['n-table__td', `n-table__td--${col.align || 'left'}`, { 'n-table__td--ellipsis': col.ellipsis }]"
+                  :class="['n-table__td', `n-table__td--${col.align || 'left'}`, { 'n-table__td--ellipsis': col.ellipsis, 'n-table__td--fixed-left': col.fixed === 'left', 'n-table__td--fixed-right': col.fixed === 'right' }]"
+                  :style="getFixedStyle(col)"
                   @click="handleCellClick(record, col, $event)"
                 >
                   <slot v-if="col.slotName" :name="col.slotName" :record="record" :column="col" :rowIndex="ri">
@@ -347,9 +352,84 @@ function hasExpandedContent(record: any) {
 // Scroll style
 const scrollStyle = computed(() => {
   const s: Record<string, string> = {}
-  if (props.scroll?.y) s.maxHeight = typeof props.scroll.y === 'number' ? `${props.scroll.y}px` : props.scroll.y
+  if (props.scroll?.y) {
+    s.maxHeight = typeof props.scroll.y === 'number' ? `${props.scroll.y}px` : props.scroll.y
+    s.overflowY = 'auto'
+  }
   if (props.scroll?.x) s.overflowX = 'auto'
   return s
+})
+
+// Table style for scroll.x
+const tableStyle = computed(() => {
+  if (!props.scroll?.x) return {}
+  return { width: typeof props.scroll.x === 'number' ? `${props.scroll.x}px` : props.scroll.x, minWidth: '100%' }
+})
+
+// Fixed header style when scroll.y is set
+function getFixedHeaderStyle(): Record<string, string> {
+  if (!props.scroll?.y) return {}
+  return { position: 'sticky', top: '0', zIndex: '3' }
+}
+
+// Fixed column offsets
+const leftFixedOffsets = computed(() => {
+  const offsets = new Map<string, number>()
+  let offset = 0
+  if (props.expandedRowRender || useSlots()['expand-row']) offset += 48
+  if (props.rowSelection) offset += 48
+  for (const col of flatColumns.value) {
+    if (col.fixed === 'left') {
+      offsets.set(col.dataIndex, offset)
+      const w = col.width ? (typeof col.width === 'number' ? col.width : parseInt(String(col.width), 10) || 150) : 150
+      offset += w
+    } else {
+      break
+    }
+  }
+  return offsets
+})
+
+const rightFixedOffsets = computed(() => {
+  const offsets = new Map<string, number>()
+  let offset = 0
+  for (let i = flatColumns.value.length - 1; i >= 0; i--) {
+    const col = flatColumns.value[i]
+    if (col.fixed === 'right') {
+      offsets.set(col.dataIndex, offset)
+      const w = col.width ? (typeof col.width === 'number' ? col.width : parseInt(String(col.width), 10) || 150) : 150
+      offset += w
+    } else {
+      break
+    }
+  }
+  return offsets
+})
+
+function getFixedStyle(col: TableColumnData): Record<string, string> {
+  if (!col.fixed) return {}
+  let offset = 0
+  if (col.fixed === 'left') {
+    offset = leftFixedOffsets.value.get(col.dataIndex) || 0
+    return { position: 'sticky', left: `${offset}px`, zIndex: col.fixed ? '2' : 'auto' }
+  }
+  if (col.fixed === 'right') {
+    offset = rightFixedOffsets.value.get(col.dataIndex) || 0
+    return { position: 'sticky', right: `${offset}px`, zIndex: col.fixed ? '2' : 'auto' }
+  }
+  return {}
+}
+
+// Selection column sticky style (left:0, acts as first fixed-left column)
+const selectionFixedStyle = computed(() => {
+  let left = 0
+  if (props.expandedRowRender || useSlots()['expand-row']) left += 48
+  return { position: 'sticky' as const, left: `${left}px`, zIndex: '2' }
+})
+
+// Expand column sticky style (always left:0)
+const expandFixedStyle = computed(() => {
+  return { position: 'sticky' as const, left: '0px', zIndex: '2' }
 })
 
 // Sort state
@@ -583,8 +663,10 @@ defineExpose({
 <style scoped>
 .n-table-wrapper {
   position: relative;
-  border-radius: 8px;
+  border-radius: var(--n-radius-lg, 8px);
   overflow: hidden;
+  background: var(--n-color-bg, #fff);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 .n-table-wrapper--bordered {
@@ -613,11 +695,11 @@ defineExpose({
 /* Table base */
 .n-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
   border-spacing: 0;
   table-layout: auto;
   font-size: 14px;
-  color: var(--n-color-text-secondary);
+  color: var(--n-color-text);
   background: var(--n-color-bg);
 }
 
@@ -643,10 +725,15 @@ defineExpose({
 .n-table--lg .n-table__th,
 .n-table--lg .n-table__td { padding: 16px 20px; }
 
-/* Bordered */
+/* Bordered — thin inner borders */
 .n-table--bordered .n-table__th,
 .n-table--bordered .n-table__td {
-  border: 1px solid var(--n-color-border);
+  border-right: 1px solid var(--n-color-border);
+}
+
+.n-table--bordered .n-table__th:last-child,
+.n-table--bordered .n-table__td:last-child {
+  border-right: none;
 }
 
 /* Stripe */
@@ -658,20 +745,33 @@ defineExpose({
   background: var(--n-color-fill-hover);
 }
 
-/* Header */
+/* Header — minimalist */
 .n-table__th {
   text-align: left;
   font-weight: 600;
+  font-size: 0.92em;
+  letter-spacing: 0.01em;
   color: var(--n-color-text-secondary);
-  background: var(--n-color-fill);
-  border-bottom: 2px solid var(--n-color-border);
+  background: var(--n-color-bg);
+  border-bottom: 1px solid var(--n-color-border);
   white-space: nowrap;
   user-select: none;
-  position: relative;
+  transition: background 0.2s;
+}
+
+/* Fixed header needs bg when scrolling */
+.n-table-scroll--y .n-table__th {
+  background: var(--n-color-fill);
 }
 
 .n-table__th--center { text-align: center; }
 .n-table__th--right { text-align: right; }
+
+/* Fixed column th needs higher z-index than sticky header */
+.n-table__th--fixed-left,
+.n-table__th--fixed-right {
+  z-index: 4 !important;
+}
 
 .n-table__th-inner {
   display: inline-flex;
@@ -713,21 +813,38 @@ defineExpose({
 /* Body */
 .n-table__td {
   border-bottom: 1px solid var(--n-color-border);
-  transition: background 0.2s;
+  transition: background 0.15s;
+  color: var(--n-color-text);
 }
 
 .n-table__td--center { text-align: center; }
 .n-table__td--right { text-align: right; }
 
-tbody tr:hover td {
+/* Fixed column cells need background */
+.n-table__td--fixed-left,
+.n-table__td--fixed-right,
+.n-table__th--fixed-left,
+.n-table__th--fixed-right {
+  background: var(--n-color-bg);
+}
+
+/* Hover — subtle */
+tbody tr:hover .n-table__td {
   background: var(--n-color-primary-light);
 }
 
-.n-table__tr--selected td {
+/* Fixed column hover */
+tbody tr:hover .n-table__td--fixed-left,
+tbody tr:hover .n-table__td--fixed-right {
+  background: var(--n-color-primary-light);
+  z-index: 2;
+}
+
+.n-table__tr--selected .n-table__td {
   background: var(--n-color-primary-light) !important;
 }
 
-.n-table__tr--expanded td {
+.n-table__tr--expanded .n-table__td {
   background: var(--n-color-fill);
 }
 
@@ -928,7 +1045,7 @@ tbody tr:hover td {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 10px 16px;
   border-top: 1px solid var(--n-color-border);
   gap: 12px;
 }
@@ -947,21 +1064,22 @@ tbody tr:hover td {
 }
 
 .n-table__pagination-total {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--n-color-text-secondary);
   margin-right: 8px;
 }
 
 .n-table__pagination-size {
   padding: 4px 8px;
-  border: 1px solid var(--n-color-border-hover);
-  border-radius: 6px;
+  border: 1px solid var(--n-color-border);
+  border-radius: var(--n-radius-sm, 6px);
   font-size: 13px;
   color: var(--n-color-text-secondary);
   background: var(--n-color-bg);
   outline: none;
   cursor: pointer;
   margin-right: 8px;
+  transition: border-color 0.2s;
 }
 
 .n-table__pagination-size:focus {
@@ -972,33 +1090,33 @@ tbody tr:hover td {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  height: 32px;
-  padding: 0 8px;
-  border: 1px solid var(--n-color-border);
-  border-radius: 6px;
-  background: var(--n-color-bg);
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  border: none;
+  border-radius: var(--n-radius-sm, 6px);
+  background: transparent;
   color: var(--n-color-text-secondary);
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   transition: all 0.2s;
   user-select: none;
 }
 
 .n-table__pagination-btn:hover:not(:disabled) {
-  border-color: var(--n-color-primary);
+  background: var(--n-color-fill-hover);
   color: var(--n-color-primary);
 }
 
 .n-table__pagination-btn:disabled {
-  color: var(--n-color-border-hover);
+  color: var(--n-color-text-disabled);
   cursor: not-allowed;
 }
 
 .n-table__pagination-btn--active {
   background: var(--n-color-primary);
-  border-color: var(--n-color-primary);
   color: var(--n-color-text-inverse);
+  font-weight: 600;
 }
 
 .n-table__pagination-btn--active:hover {
@@ -1010,10 +1128,11 @@ tbody tr:hover td {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  height: 32px;
+  min-width: 30px;
+  height: 30px;
   padding: 0 4px;
   font-size: 14px;
   color: var(--n-color-text-disabled);
+  letter-spacing: 2px;
 }
 </style>
