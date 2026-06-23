@@ -1,6 +1,6 @@
 {
   "name": "nacr-design",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "NacrDesign - A Nuxt 3/4 UI Component Library",
   "type": "module",
   "license": "Apache-2.0 WITH Commons-Clause",
@@ -60,6 +60,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/wuaxcn/nacr-design"
+    "url": "https://github.com/nacrcn/Nacr-Design"
   }
 }
