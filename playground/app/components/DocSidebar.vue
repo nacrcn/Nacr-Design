@@ -100,6 +100,7 @@ const menu = [
       { label: 'Spin 加载中', path: '/docs/spin' },
       { label: 'Skeleton 骨架屏', path: '/docs/skeleton' },
       { label: 'Tooltip 文字提示', path: '/docs/tooltip' },
+      { label: 'Tour 漫游式引导', path: '/docs/tour' },
     ],
   },
   {

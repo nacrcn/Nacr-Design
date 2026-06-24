@@ -29,7 +29,7 @@
 import { ref,watch,nextTick,onBeforeUnmount} from 'vue'
 
 interface DropdownItem {
-  label: string
+  label?: string
   key?: string | number
   icon?: string
   disabled?: boolean

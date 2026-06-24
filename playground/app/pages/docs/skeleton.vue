@@ -5,6 +5,70 @@
       在内容加载前展示页面的大致结构，降低用户的等待焦虑。支持文本段落、圆形头像、按钮/图片等多种骨架形态以及带头像的段落组合。
     </p>
 
+    <!-- ────── 综合演示 ────── -->
+    <DemoBlock
+      title="综合演示"
+      description="模拟一个包含导航栏、用户信息卡片、列表和侧边栏的完整页面骨架屏，点击按钮切换加载与真实内容状态。"
+      :code="combinedCode"
+    >
+      <div class="combined-demo">
+        <div class="combined-demo__navbar">
+          <NSkeleton shape="circle" size="sm" :animated="combinedLoading" />
+          <NSkeleton shape="rect" :width="120" :height="20" :animated="combinedLoading" round />
+          <div style="flex:1" />
+          <NSpace :size="16" align="center">
+            <NSkeleton shape="circle" size="sm" :animated="combinedLoading" />
+            <NSkeleton shape="circle" size="sm" :animated="combinedLoading" />
+            <NSkeleton shape="circle" size="sm" :animated="combinedLoading" />
+          </NSpace>
+        </div>
+        <div class="combined-demo__body">
+          <div class="combined-demo__main">
+            <div class="combined-demo__card">
+              <NSkeleton shape="rect" width="100%" :height="180" :animated="combinedLoading" />
+              <div class="combined-demo__card-body">
+                <NSkeleton :rows="2" :width="['80%', '55%']" :height="14" :animated="combinedLoading" />
+                <div class="combined-demo__card-footer">
+                  <NSkeleton shape="rect" :width="64" :height="24" round :animated="combinedLoading" />
+                  <NSkeleton shape="rect" :width="64" :height="24" round :animated="combinedLoading" />
+                  <div style="flex:1" />
+                  <NSkeleton shape="circle" size="sm" :animated="combinedLoading" />
+                  <NSkeleton shape="rect" :width="36" :height="16" :animated="combinedLoading" />
+                </div>
+              </div>
+            </div>
+            <div class="combined-demo__list">
+              <div v-for="i in 3" :key="i" class="combined-demo__list-item">
+                <NSkeleton shape="circle" :size="36" :animated="combinedLoading" />
+                <div class="combined-demo__list-content">
+                  <NSkeleton :rows="2" :width="['60%', '90%']" :height="12" :animated="combinedLoading" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="combined-demo__sidebar">
+            <div class="combined-demo__profile">
+              <NSkeleton shape="circle" :size="56" :animated="combinedLoading" />
+              <NSkeleton shape="rect" :width="80" :height="14" :animated="combinedLoading" />
+              <NSkeleton shape="rect" :width="120" :height="12" :animated="combinedLoading" />
+              <div class="combined-demo__profile-stats">
+                <div v-for="j in 3" :key="j" class="combined-demo__profile-stat">
+                  <NSkeleton shape="rect" :width="28" :height="16" :animated="combinedLoading" />
+                  <NSkeleton shape="rect" :width="36" :height="10" :animated="combinedLoading" />
+                </div>
+              </div>
+            </div>
+            <div class="combined-demo__tags">
+              <NSkeleton v-for="k in 6" :key="k" shape="rect" :width="40 + (k % 3) * 20" :height="24" round :animated="combinedLoading" />
+            </div>
+          </div>
+        </div>
+        <NButton variant="secondary" @click="combinedLoading = !combinedLoading">
+          {{ combinedLoading ? '加载完成' : '重新加载' }}
+        </NButton>
+      </div>
+    </DemoBlock>
+
     <!-- ────── 基础用法 ────── -->
     <DemoBlock title="基础用法" description="默认显示 3 行文本段落骨架，自带渐变动画。" :code="basicCode">
       <NSkeleton />
@@ -88,6 +152,26 @@
 definePageMeta({ layout: 'doc' })
 
 const dataLoading = ref(true)
+const combinedLoading = ref(true)
+
+const combinedCode = `<!-- 导航栏骨架 -->
+<div class="navbar">
+  <NSkeleton shape="circle" size="sm" />
+  <NSkeleton shape="rect" :width="120" :height="20" round />
+  <NSkeleton shape="circle" size="sm" />
+</div>
+
+<!-- 内容卡片骨架 -->
+<NSkeleton shape="rect" width="100%" :height="180" />
+<NSkeleton :rows="2" :width="['80%', '55%']" :height="14" />
+
+<!-- 列表项骨架 -->
+<NSkeleton shape="circle" :size="36" />
+<NSkeleton :rows="2" :width="['60%', '90%']" :height="12" />
+
+<!-- 侧边栏头像 + 标签 -->
+<NSkeleton shape="circle" :size="56" />
+<NSkeleton shape="rect" :width="48" :height="24" round />`
 
 const basicCode = `<NSkeleton />`
 
@@ -172,5 +256,108 @@ const slotData = [
   border: 1px solid var(--n-color-border);
   border-radius: var(--n-radius-lg);
   padding: 16px;
+}
+
+/* ── 综合演示 ── */
+.combined-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid var(--n-color-border);
+  border-radius: var(--n-radius-lg);
+  padding: 16px;
+  max-width: 720px;
+}
+.combined-demo__navbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--n-color-border);
+}
+.combined-demo__body {
+  display: flex;
+  gap: 16px;
+}
+.combined-demo__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+.combined-demo__sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.combined-demo__card {
+  border: 1px solid var(--n-color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.combined-demo__card-body {
+  padding: 12px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.combined-demo__card-footer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.combined-demo__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.combined-demo__list-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.combined-demo__list-content {
+  flex: 1;
+  min-width: 0;
+}
+.combined-demo__profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--n-color-border);
+  border-radius: 8px;
+}
+.combined-demo__profile-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 4px;
+}
+.combined-demo__profile-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.combined-demo__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--n-color-border);
+  border-radius: 8px;
+}
+@media (max-width: 600px) {
+  .combined-demo__body {
+    flex-direction: column;
+  }
+  .combined-demo__sidebar {
+    width: 100%;
+  }
 }
 </style>
