@@ -30,6 +30,7 @@ const menu = [
       { label: '更新记录', path: '/docs/changelog' },
       { label: '开发团队', path: '/docs/team' },
       { label: '赞助支持', path: '/docs/sponsor' },
+      { label: 'llms.txt', path: '/docs/llms' },
     ],
   },
   {

@@ -1,0 +1,2765 @@
+# NacrDesign
+
+> NacrDesign v0.1.8 - A Nuxt 3/4 UI Component Library
+> https://github.com/nacrcn/Nacr-Design
+
+NacrDesign is a Vue 3 / Nuxt 3+ UI component library. All components are auto-imported when the module is installed.
+
+## Installation
+
+```bash
+npm install nacr-design
+```
+
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: ['nacr-design']
+})
+```
+
+## Components
+
+---
+
+### Affix
+
+Fixes content to the viewport or a target container when scrolling past a threshold.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| offsetTop | `number` | `0` | Top offset from viewport |
+| offsetBottom | `number` | `undefined` | Bottom offset from viewport |
+| target | `() => HTMLElement \| null \| undefined` | `undefined` | Scroll container; defaults to window |
+| zIndex | `number` | `100` | z-index when fixed |
+| disabled | `boolean` | `false` | Disable affix behavior |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| change | `(fixed: boolean)` | Fixed state changed |
+| scroll | `(info: { fixed: boolean; scrollTop: number; affixTop: number })` | On scroll |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Affixed content |
+
+---
+
+### Alert
+
+Displays brief messages for feedback.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| title | `string` | `undefined` | Alert title |
+| type | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Alert type |
+| closable | `boolean` | `false` | Show close button |
+| banner | `boolean` | `false` | Banner mode (no radius, no side borders) |
+| showIcon | `boolean` | `true` | Show type icon |
+| outlined | `boolean` | `false` | Outlined variant (transparent background) |
+| borderAccent | `boolean` | `false` | Thick left border accent |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| close | `()` | Alert closed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Alert content |
+| title | Custom title content |
+| icon | Custom icon |
+| close-icon | Custom close icon |
+
+---
+
+### Anchor
+
+Navigation for anchoring to headings with scroll tracking.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| items | `AnchorItem[]` | required | Array of `{ href: string; title: string; children?: AnchorItem[] }` |
+| offsetTop | `number` | `0` | Scroll offset for active detection |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | (none — renders from `items`) |
+
+---
+
+### Avatar
+
+Displays user avatars with image, text initials, or fallback.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| src | `string` | `undefined` | Image URL |
+| alt | `string` | `undefined` | Alt text; used for initials |
+| size | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| number` | `'md'` | Size preset or custom px |
+| shape | `'circle' \| 'square' \| 'rounded'` | `'circle'` | Shape |
+| round | `boolean` | `true` | (Legacy) circle shape |
+| fit | `'fill' \| 'contain' \| 'cover' \| 'none' \| 'scale-down'` | `'cover'` | Object-fit for image |
+| color | `string` | `undefined` | Background color override |
+| bordered | `boolean` | `false` | Show border ring |
+| fallback | `string` | `''` | Fallback image on error |
+| showIndicator | `boolean` | `false` | Show online status indicator |
+| indicatorStatus | `'online' \| 'offline' \| 'busy' \| 'away'` | `'online'` | Indicator status |
+| indicatorPosition | `'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left'` | `'bottom-right'` | Indicator position |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| load | `(e: Event)` | Image loaded |
+| error | `(e: Event)` | Image load error |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Custom content (replaces image/initials) |
+
+---
+
+### AvatarGroup
+
+Groups multiple Avatars with overlap and max display.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| size | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| number` | `'md'` | Override child Avatar sizes |
+| shape | `'circle' \| 'square' \| 'rounded'` | `'circle'` | Override child Avatar shapes |
+| color | `string` | `undefined` | Override child Avatar colors |
+| bordered | `boolean` | `true` | Override child Avatar borders |
+| max | `number` | `Infinity` | Max visible avatars |
+| direction | `'left' \| 'right'` | `'left'` | Overlap direction |
+| closable | `boolean` | `false` | Show close on child avatars |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| close | `(index: number)` | Avatar close clicked |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Avatar children |
+
+---
+
+### BackTop
+
+Scrolls to top button that appears after scrolling past a threshold.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| visibilityHeight | `number` | `400` | Scroll threshold to show button (px) |
+| right | `number` | `40` | Right offset (px) |
+| bottom | `number` | `40` | Bottom offset (px) |
+| target | `() => HTMLElement \| null \| undefined` | `undefined` | Scroll container; defaults to window |
+| duration | `number` | `500` | Scroll animation duration (ms) |
+| type | `'default' \| 'primary'` | `'default'` | Button style |
+| shape | `'circle' \| 'square'` | `'circle'` | Button shape |
+| size | `number` | `40` | Button size (px) |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| click | `()` | Button clicked |
+| show | `(visible: boolean)` | Visibility changed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Custom button content |
+
+---
+
+### Badge
+
+Displays a numeric or dot badge on an element.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| count | `number` | `0` | Badge count |
+| max | `number` | `99` | Max count before showing "n+" |
+| dot | `boolean` | `false` | Show as dot instead of count |
+| type | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` | `'danger'` | Badge color type |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Target element to badge |
+
+---
+
+### Breadcrumb
+
+Navigation breadcrumb trail.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| items | `BreadcrumbItem[]` | required | Array of `{ label: string; href?: string; icon?: string }` |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| select | `(index: number)` | Item clicked |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| separator | Custom separator content |
+
+---
+
+### Button
+
+Versatile button component with multiple variants and states.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | `'primary' \| 'secondary' \| 'danger' \| 'ghost' \| 'outline' \| 'link'` | `'primary'` | Visual variant |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
+| block | `boolean` | `false` | Full-width block button |
+| loading | `boolean` | `false` | Loading state |
+| disabled | `boolean` | `false` | Disabled state |
+| round | `boolean` | `false` | Pill-shaped (capsule) |
+| circle | `boolean` | `false` | Circle icon-only button |
+| active | `boolean` | `false` | Active/toggle state |
+| htmlType | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| click | `(event: MouseEvent)` | Button clicked (not emitted when disabled/loading) |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Button label |
+| icon | Prefix icon |
+| suffix-icon | Suffix icon |
+
+---
+
+### Calendar
+
+Date picker calendar with date/range selection, events, and year picker.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `Date` | `() => new Date()` | Selected date (v-model) |
+| mode | `'date' \| 'range'` | `'date'` | Selection mode |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Calendar size |
+| weekStart | `0 \| 1 \| 6` | `0` | First day of week (0=Sun) |
+| disabledDate | `(date: Date) => boolean` | `undefined` | Disable specific dates |
+| events | `CalendarEvent[]` | `[]` | Event markers `{ date: string (YYYY-MM-DD); color?: string; content?: string }` |
+| rangeStart | `Date` | `undefined` | Range start (v-model:rangeStart) |
+| rangeEnd | `Date` | `undefined` | Range end (v-model:rangeEnd) |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: Date)` | Date selected |
+| change | `(val: Date)` | Date changed |
+| update:rangeStart | `(val: Date \| null)` | Range start changed |
+| update:rangeEnd | `(val: Date \| null)` | Range end changed |
+| rangeChange | `(start: Date \| null, end: Date \| null)` | Range changed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| cell | Custom date cell content; scoped `{ date: Date; current: boolean }` |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| prevMonth | `() => void` | Go to previous month |
+| nextMonth | `() => void` | Go to next month |
+| prevYear | `() => void` | Go to previous year |
+| nextYear | `() => void` | Go to next year |
+
+---
+
+### Card
+
+Container for grouped content with header, body, footer, and optional cover.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| title | `string` | `''` | Card title |
+| variant | `'default' \| 'bordered' \| 'shadow'` | `'default'` | Visual variant |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Card size (affects padding/font) |
+| hoverable | `boolean` | `false` | Lift shadow on hover |
+| bordered | `boolean` | `false` | Show border |
+| segmented | `boolean` | `false` | Segmented section dividers |
+| closable | `boolean` | `false` | Show close button |
+| collapsible | `boolean` | `false` | Show collapse toggle |
+| headerExtra | `string` | `''` | Header extra text |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| close | `()` | Card closed |
+| update:collapsed | `(val: boolean)` | Collapse state changed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Card body |
+| header | Custom header |
+| header-extra | Custom header extra |
+| cover | Cover image area |
+| actions | Action bar |
+| footer | Card footer |
+
+---
+
+### Carousel
+
+Cycling content display with autoplay, arrows, and indicator dots.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| autoplay | `boolean` | `true` | Auto-advance slides |
+| interval | `number` | `3000` | Autoplay interval (ms) |
+| loop | `boolean` | `true` | Loop to first slide |
+| direction | `'horizontal' \| 'vertical'` | `'horizontal'` | Slide direction |
+| dotType | `'dot' \| 'line' \| 'number'` | `'dot'` | Indicator style |
+| dotPosition | `'bottom' \| 'top' \| 'left' \| 'right'` | `'bottom'` | Indicator position |
+| showDots | `boolean` | `true` | Show indicator dots |
+| showArrow | `boolean` | `true` | Show navigation arrows |
+| arrowTrigger | `'always' \| 'hover'` | `'always'` | When to show arrows |
+| pauseOnHover | `boolean` | `true` | Pause autoplay on hover |
+| duration | `number` | `400` | Slide transition duration (ms) |
+| height | `number \| string` | `undefined` | Carousel height |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| change | `(current: number, prev: number)` | Slide changed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Slide items |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| prev | `() => void` | Go to previous slide |
+| next | `() => void` | Go to next slide |
+| goTo | `(index: number) => void` | Go to specific slide |
+| current | `Ref<number>` | Current slide index |
+| total | `Ref<number>` | Total slide count |
+
+---
+
+### Cascader
+
+Multi-level dropdown selector with search and multiple selection support.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `any[]` | required | Selected value path(s); array of paths when `multiple` |
+| options | `CascaderOption[]` | required | Tree data `{ label: string; value: any; children?: CascaderOption[]; disabled?: boolean }` |
+| placeholder | `string` | `'请选择'` | Placeholder text |
+| disabled | `boolean` | `false` | Disabled state |
+| clearable | `boolean` | `false` | Show clear button |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Size |
+| separator | `string` | `' / '` | Path separator for display |
+| multiple | `boolean` | `false` | Allow multiple selections |
+| searchable | `boolean` | `false` | Enable search/filter |
+| checkStrategy | `'all' \| 'parent' \| 'child'` | `'child'` | Checkbox strategy for multiple mode |
+| borderless | `boolean` | `false` | No border style |
+| loading | `boolean` | `false` | Show loading state |
+| error | `boolean` | `false` | Error state (red border) |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: any[])` | Value changed |
+| change | `(val: any[])` | Value changed |
+| search | `(val: string)` | Search input changed |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| focus | `() => void` | Open dropdown |
+| blur | `() => void` | Close dropdown and clear search |
+
+---
+
+### Chart
+
+ECharts wrapper component with lazy option updates, auto-resize, and lifecycle events.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| option | `EChartsOption` | `undefined` | ECharts option object |
+| width | `string \| number` | `'100%'` | Chart width |
+| height | `string \| number` | `400` | Chart height |
+| loading | `boolean` | `false` | Show loading overlay |
+| loadingText | `string` | `'加载中...'` | Loading text |
+| theme | `string \| object` | `undefined` | ECharts theme |
+| autoresize | `boolean` | `true` | Auto-resize on container change |
+| manualUpdate | `boolean` | `false` | Disable auto option sync |
+| renderer | `'canvas' \| 'svg'` | `'canvas'` | Rendering backend |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| chart-init | `(chart: ECharts)` | Chart instance initialized |
+| chart-click | `(params: any)` | Chart clicked |
+| chart-dblclick | `(params: any)` | Chart double-clicked |
+| chart-mouseover | `(params: any)` | Mouse over chart element |
+| chart-mouseout | `(params: any)` | Mouse out of chart element |
+| chart-legendselectchanged | `(params: any)` | Legend selection changed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| empty | Custom empty state when no option |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| setOption | `(option: EChartsOption, notMerge?: boolean, lazyUpdate?: boolean) => void` | Set chart option |
+| resize | `(opts?) => void` | Resize chart |
+| getInstance | `() => ECharts \| null` | Get ECharts instance |
+
+---
+
+### Checkbox
+
+Single checkbox with indeterminate (partial) state and CheckboxGroup integration.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `boolean` | `undefined` | v-model binding (standalone) |
+| checked | `boolean` | `undefined` | Controlled checked state |
+| disabled | `boolean` | `false` | Disabled state |
+| indeterminate | `boolean` | `false` | Indeterminate (partial) state |
+| value | `any` | `undefined` | Value used inside CheckboxGroup |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: boolean)` | v-model update |
+| change | `(val: boolean, e: Event)` | Value changed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Checkbox label |
+
+---
+
+### CheckboxGroup
+
+Groups checkboxes for multi-select with v-model array binding.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `any[]` | required | Array of selected values (v-model) |
+| disabled | `boolean` | `false` | Disable all child checkboxes |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: any[])` | v-model update |
+| change | `(val: any[])` | Selection changed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Checkbox children |
+
+---
+
+### CodeEditor
+
+Code editor with syntax highlighting (Shiki), line numbers, auto-close brackets, and keyboard shortcuts.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `string` | `''` | Code content (v-model) |
+| language | `string` | `'javascript'` | Language for syntax highlighting |
+| placeholder | `string` | `'请输入代码...'` | Placeholder text |
+| disabled | `boolean` | `false` | Disabled state |
+| readonly | `boolean` | `false` | Read-only mode |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Editor size |
+| variant | `'default' \| 'bordered' \| 'filled'` | `'default'` | Visual variant |
+| showLineNumbers | `boolean` | `true` | Show line numbers |
+| showHeader | `boolean` | `true` | Show header bar |
+| showFooter | `boolean` | `false` | Show footer with cursor info |
+| showCount | `boolean` | `false` | Show character count |
+| collapsible | `boolean` | `false` | Allow collapse |
+| height | `string \| number` | `300` | Editor height |
+| maxlength | `number` | `undefined` | Max character limit |
+| autofocus | `boolean` | `false` | Auto-focus on mount |
+| tabSize | `number` | `2` | Tab indent size |
+| insertSpaces | `boolean` | `true` | Insert spaces instead of tab |
+| theme | `'dark' \| 'light'` | `'dark'` | Shiki theme |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(value: string)` | Code changed |
+| change | `(value: string)` | Code changed |
+| focus | `(event: FocusEvent)` | Editor focused |
+| blur | `(event: FocusEvent)` | Editor blurred |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| focus | `() => void` | Focus the editor |
+| blur | `() => void` | Blur the editor |
+| getEditor | `() => HTMLTextAreaElement` | Get raw textarea element |
+
+---
+
+### Collapse
+
+Accordion/collapse panels for toggling content visibility.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| items | `CollapseItem[]` | required | Array of `{ title: string; content: string }` |
+| accordion | `boolean` | `false` | Only one panel open at a time |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | (renders from `items`) |
+
+---
+
+### ColorPicker
+
+Color picker supporting preset swatches, full HSV picker, and gradient builder with PS-style angle dial.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `string` | `'#3b82f6'` | Color value (v-model); CSS gradient string for `gradient` type |
+| type | `'preset' \| 'color' \| 'gradient'` | `'color'` | Picker mode |
+| format | `'hex' \| 'rgb' \| 'hsl'` | `'hex'` | Output format |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Trigger size |
+| disabled | `boolean` | `false` | Disabled state |
+| clearable | `boolean` | `false` | Show clear button |
+| showAlpha | `boolean` | `false` | Show alpha channel slider |
+| presets | `string[]` | `undefined` | Custom preset colors (24 default presets used if omitted) |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(v: string \| undefined)` | Color changed |
+| change | `(v: string \| undefined)` | Color confirmed |
+
+---
+
+### Comment
+
+Comment display with avatar, author, datetime, and action slots.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| author | `string` | `undefined` | Author name |
+| avatar | `string` | `undefined` | Avatar image URL |
+| datetime | `string` | `undefined` | Timestamp text |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Comment content |
+| avatar | Custom avatar |
+| actions | Action buttons |
+
+---
+
+### ConfigProvider
+
+Global configuration provider injected to all child components.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| prefix | `string` | `'N'` | Component name prefix |
+| theme | `'light' \| 'dark'` | `undefined` | Theme override |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Child components |
+
+---
+
+### DatePicker
+
+Date/datetime/range picker with shortcuts, scroll-wheel time selection, and date/month/year views.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `string \| [string, string]` | `undefined` | Selected date or range (v-model) |
+| type | `'date' \| 'datetime' \| 'daterange' \| 'datetimerange' \| 'month' \| 'year'` | `'date'` | Picker type |
+| placeholder | `string` | `'请选择日期'` | Placeholder for single picker |
+| startPlaceholder | `string` | `'开始日期'` | Start placeholder for range |
+| endPlaceholder | `string` | `'结束日期'` | End placeholder for range |
+| disabled | `boolean` | `false` | Disabled state |
+| clearable | `boolean` | `false` | Show clear button |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Trigger size |
+| format | `string` | `undefined` | Display format (YYYY-MM-DD HH:mm:ss) |
+| disabledDate | `(date: string) => boolean` | `undefined` | Disable specific dates |
+| shortcuts | `Shortcut[]` | `undefined` | Quick selection shortcuts `{ label: string; value: string \| [string, string] }` |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: string \| [string, string] \| undefined)` | Value changed |
+| change | `(val: string \| [string, string] \| undefined)` | Value confirmed |
+
+---
+
+### DatePickerPanel
+
+Internal date grid panel used by DatePicker (not typically used directly).
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| viewYear | `number` | required | Display year |
+| viewMonth | `number` | required | Display month (0-11) |
+| modelValue | `string` | `undefined` | Selected date (YYYY-MM-DD) |
+| rangeStart | `string` | `undefined` | Range start date |
+| rangeEnd | `string` | `undefined` | Range end date |
+| hoveringDate | `string \| null` | `null` | Date being hovered during range selection |
+| selectingRange | `boolean` | `false` | Currently selecting a range |
+| disabledDate | `(date: string) => boolean` | `undefined` | Disable dates |
+| hideHeader | `boolean` | `false` | Hide the month navigation header |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| prevMonth | `()` | Navigate to previous month |
+| nextMonth | `()` | Navigate to next month |
+| selectDay | `(date: string)` | Day clicked |
+| hoverDay | `(date: string)` | Day hovered |
+| clickTitle | `()` | Title clicked (switch to month view) |
+
+---
+
+### Descriptions
+
+Key-value pair list display with grid layout.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| title | `string` | `undefined` | Section title |
+| column | `number` | `2` | Number of columns per row |
+| bordered | `boolean` | `false` | Show border style |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Size |
+| labelPlacement | `'left' \| 'top'` | `'left'` | Label position |
+| vertical | `boolean` | `false` | Stack label and value vertically |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | DescriptionsItem children |
+
+---
+
+### DescriptionsItem
+
+Single key-value row inside Descriptions.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| label | `string` | required | Field label |
+| span | `number` | `1` | Number of columns to span |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Field value content |
+
+---
+
+### Divider
+
+Horizontal or vertical divider line, optionally with centered text.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| direction | `'horizontal' \| 'vertical'` | `'horizontal'` | Divider direction |
+| dashed | `boolean` | `false` | Dash style |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Divider text (horizontal only) |
+
+---
+
+### Drawer
+
+Side panel overlay that slides in from any edge of the viewport.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `boolean` | required | Open/close state (v-model) |
+| title | `string` | `undefined` | Drawer title |
+| placement | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | Slide-in direction |
+| width | `number \| string` | `360` | Drawer width (left/right) |
+| height | `number \| string` | `undefined` | Drawer height (top/bottom); defaults to `'360px'` |
+| maskClosable | `boolean` | `true` | Close on mask click |
+| rounded | `boolean` | `false` | Rounded corners with margin |
+| margin | `number \| string` | `10` | Margin from viewport edge (when rounded) |
+| radius | `number \| string` | `''` | Border radius override (when rounded) |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: boolean)` | Open state changed |
+| close | `()` | Drawer closed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Drawer body content |
+| footer | Footer actions |
+
+---
+
+### Dropdown
+
+Contextual menu triggered by hover or click, with divider and danger item support.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| items | `DropdownItem[]` | required | Menu items `{ label?: string; key?: string \| number; icon?: string; disabled?: boolean; danger?: boolean; divider?: boolean }` |
+| trigger | `'hover' \| 'click'` | `'hover'` | Open trigger mode |
+| placement | `'bottom-start' \| 'bottom' \| 'bottom-end' \| 'top-start' \| 'top' \| 'top-end'` | `'bottom-start'` | Dropdown placement |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| select | `(key: string \| number \| undefined, item: DropdownItem)` | Item selected |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| trigger | Trigger element |
+
+---
+
+### Empty
+
+Empty state placeholder with built-in type icons, custom images, and size presets.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| description | `string` | `undefined` | Description text |
+| type | `'default' \| 'simple' \| 'search' \| 'error' \| 'network' \| 'cart' \| 'inbox'` | `'default'` | Built-in icon type |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Size preset |
+| image | `string` | `undefined` | Custom image URL or SVG component |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Footer action area (e.g. retry button) |
+
+---
+
+### Form
+
+Form container with validation, layout, and field management.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| model | `Record<string, any>` | required | Form data object |
+| rules | `Record<string, FormRule \| FormRule[]>` | `{}` | Validation rules |
+| layout | `'horizontal' \| 'vertical' \| 'inline'` | `'horizontal'` | Form layout |
+| labelPosition | `'left' \| 'right' \| 'top'` | `'right'` | Label text alignment |
+| labelWidth | `string \| number` | `undefined` | Fixed label width |
+| labelAlign | `'left' \| 'right'` | `undefined` | Label justification |
+| size | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'` | Component size for children |
+| disabled | `boolean` | `false` | Disable all child form items |
+| colon | `boolean` | `false` | Show colon after label |
+| showFeedback | `boolean` | `true` | Show validation feedback |
+| validateTrigger | `'change' \| 'blur' \| ('change' \| 'blur')[]` | `'change'` | Default validate trigger |
+
+**FormRule**
+
+| Name | Type | Description |
+|------|------|-------------|
+| type | `'string' \| 'number' \| 'boolean' \| 'url' \| 'email' \| 'array'` | Value type check |
+| required | `boolean` | Required field |
+| message | `string` | Error message |
+| min | `number` | Min length/value |
+| max | `number` | Max length/value |
+| len | `number` | Exact length |
+| pattern | `RegExp` | Pattern match |
+| validator | `(value: any, callback: (error?: string) => void) => void` | Custom validator |
+| trigger | `'change' \| 'blur' \| ('change' \| 'blur')[]` | Validate trigger |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| submit | `(e: Event)` | Form submitted |
+| submit-success | `(values: Record<string, any>)` | All validation passed |
+| submit-fail | `(errors: Record<string, string[]>)` | Validation failed |
+| validate | `(field: string, value: any, errors: string[] \| undefined)` | Field validated |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| validate | `(callback?) => Promise<Record<string, string[]> \| undefined>` | Validate all fields |
+| validateField | `(field: string \| string[], callback?) => Promise<string[]>` | Validate specific field(s) |
+| resetFields | `(field?) => void` | Reset field(s) to initial values |
+| clearValidate | `(field?) => void` | Clear validation errors |
+
+---
+
+### FormItem
+
+Single form field with label, validation, and help/extra text.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| field | `string` | `undefined` | Model key path (supports dot notation) |
+| label | `string` | `undefined` | Field label |
+| labelWidth | `string \| number` | `undefined` | Override label width |
+| labelAlign | `'left' \| 'right'` | `undefined` | Override label justification |
+| rules | `FormRule \| FormRule[]` | `undefined` | Field-specific rules |
+| required | `boolean` | `false` | Force required asterisk |
+| disabled | `boolean` | `false` | Disabled state |
+| help | `string` | `undefined` | Help text below control |
+| extra | `string` | `undefined` | Extra info below help |
+| colon | `boolean` | `undefined` | Show colon after label |
+| validateTrigger | `'change' \| 'blur' \| ('change' \| 'blur')[]` | `undefined` | Override validate trigger |
+| validateStatus | `'success' \| 'warning' \| 'error' \| 'validating'` | `undefined` | Manual validate status |
+| feedback | `boolean` | `true` | Show validation feedback |
+| showFeedback | `boolean` | `undefined` | Show/hide feedback area |
+| hideLabel | `boolean` | `false` | Hide label |
+| hideAsterisk | `boolean` | `false` | Hide required asterisk |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Form control |
+| label | Custom label |
+| error | Custom error display; scoped `{ errors: string[] }` |
+| help | Custom help text |
+| extra | Custom extra info |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| setErrors | `(errs: string[]) => void` | Set error messages |
+| clearValidate | `() => void` | Clear errors |
+| resetField | `() => void` | Reset to initial value |
+| validate | `(trigger?) => Promise<string[]>` | Validate field |
+
+---
+
+### Grid
+
+CSS Grid wrapper with configurable columns and gap.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| cols | `number` | `24` | Number of grid columns |
+| gap | `number \| [number, number]` | `0` | Row and column gap; single value applies to both, tuple is `[rowGap, colGap]` |
+| gutter | `boolean` | `false` | Add padding to grid container |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | GridItem children |
+
+---
+
+### GridItem
+
+Single cell inside Grid with span, offset, push, pull.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| span | `number` | `1` | Number of columns to span |
+| offset | `number` | `0` | Column offset (empty columns before) |
+| push | `number` | `0` | Move right by N/cols × 100% |
+| pull | `number` | `0` | Move left by N/cols × 100% |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Cell content |
+
+---
+
+### Icon
+
+Icon component supporting iconfont Symbol mode (`name`), Font Class mode (`fontClass`), and custom SVG slot.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| name | `string` | `undefined` | Symbol mode name (e.g. "search" → `#icon-search`) |
+| fontClass | `string` | `undefined` | Font class name (e.g. "icon-search") |
+| size | `number \| string` | `undefined` | Icon size; number → px, string like `'1em'` |
+| rotate | `number` | `0` | Rotation in degrees |
+| spin | `boolean` | `false` | Spin animation |
+| color | `string` | `undefined` | Icon color override |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| click | `(event: MouseEvent)` | Icon clicked |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Custom SVG content (when no `name` or `fontClass`) |
+
+---
+
+### Image
+
+Image display with lazy loading, fallback, preview overlay (zoom/rotate/multi-image), and shape presets.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| src | `string` | required | Image source URL |
+| alt | `string` | `undefined` | Alt text |
+| width | `number \| string` | `undefined` | Container width |
+| height | `number \| string` | `undefined` | Container height |
+| fit | `'contain' \| 'cover' \| 'fill' \| 'none' \| 'scale-down'` | `'cover'` | Object-fit |
+| shape | `'square' \| 'circle' \| 'rounded'` | `'square'` | Shape preset |
+| preview | `boolean` | `false` | Enable click-to-preview |
+| lazy | `boolean` | `true` | Native lazy loading |
+| fallback | `string` | `undefined` | Fallback image on error |
+| previewSrc | `string` | `undefined` | Preview image URL (defaults to `src`) |
+| objectPosition | `string` | `undefined` | CSS object-position |
+| borderRadius | `string` | `undefined` | Custom border-radius |
+| previewUrls | `string[]` | `[]` | URLs for multi-image preview navigation |
+| initialIndex | `number` | `0` | Starting index in `previewUrls` |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| load | `(e: Event)` | Image loaded |
+| error | `(e: Event)` | Image load error |
+| previewOpen | `()` | Preview overlay opened |
+| previewClose | `()` | Preview overlay closed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| placeholder | Loading state content |
+| error | Error state content |
+| previewMask | Custom preview hover mask |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| previewVisible | `Ref<boolean>` | Preview overlay visibility |
+| currentPreviewIndex | `Ref<number>` | Current preview image index |
+
+---
+
+### Input
+
+Text input with label, prefix/suffix, clear, password toggle, character count, and error display.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `string \| number` | `''` | Input value (v-model) |
+| type | `string` | `'text'` | Native input type (use `'password'` for toggle) |
+| variant | `'outline' \| 'filled' \| 'borderless'` | `'outline'` | Visual variant |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Input size |
+| placeholder | `string` | `''` | Placeholder text |
+| label | `string` | `''` | Floating label |
+| error | `string` | `''` | Error message |
+| disabled | `boolean` | `false` | Disabled state |
+| readonly | `boolean` | `false` | Read-only state |
+| clearable | `boolean` | `false` | Show clear button |
+| maxlength | `number` | `undefined` | Max character limit |
+| showCount | `boolean` | `false` | Show character count |
+| prefixText | `string` | `''` | Prefix text |
+| suffixText | `string` | `''` | Suffix text |
+| required | `boolean` | `false` | Show required asterisk |
+| autofocus | `boolean` | `false` | Auto-focus on mount |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(value: string)` | Value changed |
+| focus | `(event: FocusEvent)` | Input focused |
+| blur | `(event: FocusEvent)` | Input blurred |
+| change | `(event: Event)` | Value committed |
+| clear | `()` | Clear button clicked |
+| keydown | `(event: KeyboardEvent)` | Key down |
+| keyup | `(event: KeyboardEvent)` | Key up |
+| keypress | `(event: KeyboardEvent)` | Key press |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| prefix | Custom prefix |
+| suffix | Custom suffix |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| focus | `() => void` | Focus input |
+| blur | `() => void` | Blur input |
+| inputRef | `Ref<HTMLInputElement>` | Raw input element |
+
+---
+
+### InputNumber
+
+Numeric input with step controls, min/max clamping, precision, formatter/parser, and keyboard support.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `number` | `0` | Numeric value (v-model) |
+| min | `number` | `-Infinity` | Minimum value |
+| max | `number` | `Infinity` | Maximum value |
+| step | `number` | `1` | Step increment |
+| precision | `number` | `undefined` | Decimal precision |
+| disabled | `boolean` | `false` | Disabled state |
+| readonly | `boolean` | `false` | Read-only state |
+| placeholder | `string` | `''` | Placeholder text |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Input size |
+| controls | `boolean` | `true` | Show step buttons |
+| controlsPosition | `'right' \| 'side'` | `'side'` | Step button placement |
+| prefixText | `string` | `''` | Prefix text |
+| suffixText | `string` | `''` | Suffix text |
+| error | `string` | `''` | Error message |
+| formatter | `(value: number) => string` | `undefined` | Display format function |
+| parser | `(value: string) => number` | `undefined` | Parse formatted input |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: number)` | Value changed |
+| change | `(val: number)` | Value confirmed |
+| focus | `(e: FocusEvent)` | Input focused |
+| blur | `(e: FocusEvent)` | Input blurred |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| focus | `() => void` | Focus input |
+| blur | `() => void` | Blur input |
+| inputRef | `Ref<HTMLInputElement>` | Raw input element |
+
+---
+
+### InputTag
+
+Tag input for creating/removing tags with Enter, supporting separator, uniqueness, IME composition, and overflow collapse.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `string[]` | required | Tag array (v-model) |
+| placeholder | `string` | `'请输入后按回车'` | Input placeholder |
+| disabled | `boolean` | `false` | Disabled state |
+| readonly | `boolean` | `false` | Read-only state |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Input size |
+| max | `number` | `undefined` | Max visible tags before overflow |
+| tagClass | `string` | `undefined` | Custom class for tags |
+| tagStyle | `Record<string, string>` | `undefined` | Custom inline style for tags |
+| error | `string` | `''` | Error message |
+| unique | `boolean` | `true` | Prevent duplicate tags |
+| separator | `string \| RegExp` | `undefined` | Split input on this separator |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: string[])` | Tags changed |
+| change | `(val: string[])` | Tags changed |
+| add | `(val: string)` | Tag added |
+| remove | `(val: string)` | Tag removed |
+| focus | `(e: FocusEvent)` | Input focused |
+| blur | `(e: FocusEvent)` | Input blurred |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| focus | `() => void` | Focus input |
+| blur | `() => void` | Blur input |
+| inputRef | `Ref<HTMLInputElement>` | Raw input element |
+
+---
+
+### Layout
+
+Flex-based layout container for building page structure.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| direction | `'horizontal' \| 'vertical'` | `'vertical'` | Flex direction |
+| tag | `string` | `'div'` | HTML element tag |
+| gap | `number` | `0` | Gap between children (px) |
+| wrap | `boolean` | `true` | flex-wrap |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Layout children (Header, Sider, Content, Footer) |
+
+---
+
+### LayoutContent
+
+Main content area inside Layout.
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Page content |
+
+---
+
+### LayoutFooter
+
+Footer area inside Layout.
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Footer content |
+
+---
+
+### LayoutHeader
+
+Header area inside Layout.
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Header content |
+
+---
+
+### LayoutSider
+
+Collapsible sidebar inside Layout.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| width | `number` | `240` | Expanded width (px) |
+| collapsedWidth | `number` | `64` | Collapsed width (px) |
+| collapsed | `boolean` | `false` | Collapsed state (v-model) |
+| collapsible | `boolean` | `false` | Show collapse trigger |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:collapsed | `(val: boolean)` | Collapsed state changed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Sider content |
+
+---
+
+### MdEditor
+
+Markdown editor with toolbar, split preview, image upload (drag/paste/file), and keyboard shortcuts.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `string` | `''` | Markdown content (v-model) |
+| placeholder | `string` | `'请输入 Markdown 内容...'` | Placeholder text |
+| disabled | `boolean` | `false` | Disabled state |
+| readonly | `boolean` | `false` | Read-only mode |
+| hideToolbar | `boolean` | `false` | Hide toolbar |
+| viewModeProp | `'edit' \| 'preview' \| 'split'` | `'split'` | Initial view mode |
+| height | `string \| number` | `400` | Editor height |
+| maxlength | `number` | `undefined` | Max character limit |
+| showCount | `boolean` | `false` | Show character count |
+| autofocus | `boolean` | `false` | Auto-focus on mount |
+| accept | `string` | `'image/*'` | Accepted file types for upload |
+| uploadFn | `(file: File) => Promise<string>` | `undefined` | Custom upload function (returns URL) |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: string)` | Content changed |
+| focus | `(e: FocusEvent)` | Editor focused |
+| blur | `(e: FocusEvent)` | Editor blurred |
+| change | `(val: string)` | Content changed |
+| upload-success | `({ file: File; url: string })` | Image uploaded |
+| upload-error | `({ file: File; error: Error })` | Upload failed |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| focus | `() => void` | Focus editor |
+| blur | `() => void` | Blur editor |
+| textareaRef | `Ref<HTMLTextAreaElement>` | Raw textarea element |
+| getViewMode | `() => ViewMode` | Get current view mode |
+| setViewMode | `(mode: ViewMode) => void` | Set view mode |
+| triggerUpload | `() => void` | Open file picker |
+
+---
+
+### MdRender
+
+Read-only Markdown renderer using marked with GFM support.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| content | `string` | `''` | Markdown source string |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Font size preset |
+
+---
+
+### Mention
+
+Text area with @-mention dropdown, multi-prefix support, keyboard navigation, and custom filter.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `string` | required | Text content (v-model) |
+| options | `MentionOption[]` | `[]` | Mention options `{ label: string; value: string; avatar?: string; description?: string; disabled?: boolean; prefix?: string }` |
+| prefix | `string \| string[]` | `'@'` | Trigger character(s) |
+| placeholder | `string` | `'输入 @ 提及'` | Placeholder text |
+| disabled | `boolean` | `false` | Disabled state |
+| readonly | `boolean` | `false` | Read-only mode |
+| rows | `number` | `3` | Textarea rows |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Size |
+| loading | `boolean` | `false` | Show loading in dropdown |
+| filter | `(pattern: string, option: MentionOption) => boolean` | `undefined` | Custom filter function |
+| placement | `'bottom-start' \| 'bottom' \| 'top-start' \| 'top'` | `'bottom-start'` | Dropdown placement |
+| whole | `boolean` | `false` | Insert `value` instead of `label` on select |
+| clearable | `boolean` | `false` | Show clear button |
+| maxlength | `number` | `undefined` | Max character limit |
+| showCount | `boolean` | `false` | Show character count |
+| emptyText | `string` | `'无匹配结果'` | Empty dropdown text |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(v: string)` | Value changed |
+| select | `(option: MentionOption, prefix: string)` | Mention selected |
+| search | `(pattern: string, prefix: string)` | Search input changed |
+| focus | `(e: FocusEvent)` | Textarea focused |
+| blur | `(e: FocusEvent)` | Textarea blurred |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| option | Custom option rendering; scoped `{ option: MentionOption; index: number }` |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| focus | `() => void` | Focus textarea |
+| blur | `() => void` | Blur textarea |
+
+---
+
+### Menu
+
+Navigation menu supporting vertical/horizontal modes, groups, submenus, auto-collapse, floating popups, and router integration.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `string \| number` | `undefined` | Selected menu key (v-model) |
+| items | `MenuItem[]` | required | Menu tree `{ key?: string \| number; label?: string; icon?: string; disabled?: boolean; divider?: boolean; selectable?: boolean; type?: 'group'; badge?: string \| number; children?: MenuItem[]; to?: string; query?: Record<string, string>; href?: string; target?: string; onClick?: (item: MenuItem) => void }` |
+| mode | `'vertical' \| 'horizontal'` | `'vertical'` | Layout mode |
+| theme | `'light' \| 'dark'` | `'light'` | Color theme |
+| collapsedWidth | `number` | `64` | Width threshold for auto-collapse (px) |
+| width | `string \| number` | `224` | Expanded width |
+| accordion | `boolean` | `false` | Only one submenu open at a time |
+| defaultOpenKeys | `(string \| number)[]` | `[]` | Initially open submenu keys |
+| openKeys | `(string \| number)[]` | `undefined` | Controlled open keys (v-model) |
+| inlineIndent | `number` | `16` | Indent per nesting level (px) |
+| popupClassName | `string` | `''` | Class for floating popup |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(key: string \| number)` | Selected key changed |
+| update:openKeys | `(keys: (string \| number)[])` | Open keys changed |
+| update:collapsed | `(collapsed: boolean)` | Collapsed state changed |
+| select | `(key: string \| number, item: MenuItem)` | Item selected |
+| openChange | `(keys: (string \| number)[])` | Submenu opened/closed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| logo | Logo area; scoped `{ collapsed: boolean }` |
+| footer | Footer area; scoped `{ collapsed: boolean }` |
+
+---
+
+### MessageContainer
+
+Internal container for rendering toast messages (used by `useMessage()` composable). Not typically used directly.
+
+---
+
+### Modal
+
+Dialog overlay with preset modes (confirm/danger), header, body, and footer.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `boolean` | required | Open/close state (v-model) |
+| title | `string` | `undefined` | Modal title |
+| width | `number \| string` | `520` | Modal width |
+| closable | `boolean` | `true` | Show close button |
+| maskClosable | `boolean` | `true` | Close on mask click |
+| card | `boolean` | `true` | Show border (card style) |
+| center | `boolean` | `true` | Center the modal vertically/horizontally |
+| preset | `'default' \| 'confirm' \| 'danger'` | `'default'` | Preset mode (adds footer buttons & icons) |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: boolean)` | Open state changed |
+| close | `()` | Modal closed |
+| confirm | `()` | Confirm button clicked |
+| cancel | `()` | Cancel button clicked |
+| afterEnter | `()` | After open transition |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Modal body |
+| header | Custom header |
+| footer | Custom footer (auto-generated when preset is confirm/danger) |
+
+---
+
+### Notification
+
+Toast notification container positioned at top-right. Used via `useNotification()` composable rather than direct placement.
+
+**NotificationItem**
+
+| Name | Type | Description |
+|------|------|-------------|
+| type | `'info' \| 'success' \| 'warning' \| 'error'` | Notification type |
+| title | `string` | Notification title |
+| content | `string` | Notification body text |
+| duration | `number` | Auto-close delay in ms (default 4500); 0 = persistent |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| add | `(opts: Omit<NotificationItem, 'id'>) => void` | Add a notification |
+| remove | `(id: number) => void` | Remove by id |
+
+---
+
+### OrganizationChart
+
+Tree-style org chart with expand/collapse, selection, and horizontal/vertical layouts.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| data | `OrgNode` | required | Root node object |
+| labelKey | `string` | `'label'` | Node label field |
+| childrenKey | `string` | `'children'` | Children array field |
+| defaultExpandAll | `boolean` | `true` | Expand all nodes initially |
+| defaultExpandedKeys | `(string \| number)[]` | `[]` | Initially expanded keys |
+| collapsible | `boolean` | `true` | Allow expand/collapse |
+| direction | `'vertical' \| 'horizontal'` | `'vertical'` | Layout direction |
+| nodeKey | `string` | `'key'` | Unique key field |
+| selectedKey | `string \| number \| null` | `null` | Selected key (v-model) |
+| nodeClass | `string \| object \| Array` | `undefined` | Custom class for node cards |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:selectedKey | `(key: string \| number \| null)` | Selected key changed |
+| node-click | `(node: OrgNode)` | Node card clicked |
+| expand | `(keys: (string \| number)[])` | Node expanded |
+| collapse | `(node: OrgNode)` | Node collapsed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| node | Custom node rendering; scoped `{ data, expanded, selected }` |
+| label | Custom label rendering; scoped `{ data }` |
+| expand-icon | Custom expand/collapse icon; scoped `{ expanded }` |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| expandAll | `() => void` | Expand all nodes |
+| collapseAll | `() => void` | Collapse all nodes |
+| expandedKeys | `Ref<(string \| number)[]>` | Current expanded keys |
+
+---
+
+### OrgChartNode
+
+Internal recursive node used by OrganizationChart. Not intended for direct use.
+
+---
+
+### OverflowList
+
+Flex row that collapses overflow items into a "+N" counter using ResizeObserver.
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Child items to lay out |
+
+---
+
+### PageHeader
+
+Page-level header with breadcrumb, back arrow, title, subtitle, and extra actions.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| title | `string` | required | Page title |
+| subtitle | `string` | `undefined` | Subtitle text |
+| icon | `string` | `undefined` | Title icon name (NIcon) |
+| backArrow | `boolean` | `false` | Show back arrow |
+| breadcrumb | `BreadcrumbItem[]` | `undefined` | Breadcrumb items `{ label, href?, icon? }` |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| back | `()` | Back arrow clicked |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Page content area |
+| breadcrumb | Custom breadcrumb |
+| icon | Custom title icon |
+| extra | Right-side actions |
+| footer | Footer content |
+
+---
+
+### Pagination
+
+Pagination controls with page buttons, size changer, quick jumper, and simple mode.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `number` | required | Current page (v-model) |
+| total | `number` | required | Total item count |
+| pageSize | `number` | `10` | Items per page |
+| pageSizes | `number[]` | `[10,20,50,100]` | Available page sizes |
+| pagerCount | `number` | `7` | Visible pager buttons |
+| showSizeChanger | `boolean` | `false` | Show page size dropdown |
+| showQuickJumper | `boolean` | `false` | Show page jumper input |
+| showTotal | `boolean \| 'range'` | `false` | Show total text; `'range'` shows range |
+| disabled | `boolean` | `false` | Disabled state |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Size preset |
+| simple | `boolean` | `false` | Simple pager mode |
+| hideOnSinglePage | `boolean` | `false` | Hide when only 1 page |
+| prevText | `string` | `''` | Prev button text |
+| nextText | `string` | `''` | Next button text |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(page: number)` | Page changed |
+| change | `(page: number)` | Page changed |
+| pageSizeChange | `(size: number)` | Page size changed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| prev | Custom prev button |
+| next | Custom next button |
+
+---
+
+### Popconfirm
+
+Click-triggered confirmation popover with cancel/confirm buttons.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| content | `string` | `'确定执行此操作？'` | Confirmation message |
+| placement | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Popover placement |
+| danger | `boolean` | `false` | Show confirm button in danger style |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| confirm | `()` | Confirm clicked |
+| cancel | `()` | Cancel clicked |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Trigger element |
+
+---
+
+### Popover
+
+Floating panel triggered by hover, click, focus, or manual control, with arrow and header/footer slots.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| title | `string` | `undefined` | Panel title |
+| trigger | `'hover' \| 'click' \| 'focus' \| 'manual'` | `'hover'` | Trigger mode |
+| placement | `Placement` | `'top'` | 12 positions: top/start/end, bottom/start/end, left/start/end, right/start/end |
+| arrow | `boolean` | `true` | Show arrow indicator |
+| offset | `number` | `8` | Distance from trigger (px) |
+| width | `number \| string` | `undefined` | Panel width |
+| delay | `number \| [number, number]` | `undefined` | Show/hide delay (ms); tuple is `[show, hide]` |
+| disabled | `boolean` | `false` | Disable popover |
+| modelValue | `boolean` | `undefined` | Controlled visibility (v-model) |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(value: boolean)` | Visibility changed |
+| update:visible | `(value: boolean)` | Visibility changed |
+| show | `()` | Popover shown |
+| hide | `()` | Popover hidden |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| trigger | Trigger element |
+| default | Panel content |
+| header | Custom header |
+| footer | Custom footer |
+
+**Expose**
+
+| Name | Type | Description |
+|------|------|-------------|
+| show | `() => void` | Show popover |
+| hide | `() => void` | Hide popover |
+| updatePos | `() => void` | Recalculate position |
+
+---
+
+### Progress
+
+Progress indicator supporting line, circle, and dashboard types with status colors, stripes, and custom formatting.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| percent | `number` | required | Progress percentage (0–100) |
+| type | `'line' \| 'circle' \| 'dashboard'` | `'line'` | Display type |
+| height | `number` | `8` | Line bar height (px) |
+| color | `string` | `undefined` | Fill color override |
+| showText | `boolean` | `true` | Show percentage text |
+| textInside | `boolean` | `false` | Render text inside bar (line only) |
+| status | `'default' \| 'success' \| 'warning' \| 'error'` | `'default'` | Status preset |
+| stripe | `boolean` | `false` | Striped fill |
+| animated | `boolean` | `false` | Animate stripes |
+| strokeWidth | `number` | `6` | SVG stroke width (circle/dashboard) |
+| size | `number` | `120` | Circle/dashboard SVG size (px) |
+| format | `(percent: number) => string` | `undefined` | Custom text formatter |
+
+---
+
+### Radio
+
+Single radio button, supports circle/rect/button variants. Usually placed inside RadioGroup.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `any` | `undefined` | Selected value (v-model, standalone) |
+| value | `any` | required | Option value |
+| disabled | `boolean` | `false` | Disabled state |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Size preset |
+| variant | `'circle' \| 'rect'` | `'circle'` | Mark shape |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: any)` | Value changed |
+| change | `(val: any, e: Event)` | Value confirmed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Radio label |
+
+---
+
+### RadioGroup
+
+Group wrapper that manages a set of Radio components with shared model value.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `any` | required | Selected value (v-model) |
+| disabled | `boolean` | `false` | Disable all radios |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Size preset |
+| variant | `'circle' \| 'rect' \| 'button'` | `'circle'` | Radio variant |
+| gap | `string` | `undefined` | Custom gap between radios |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: any)` | Value changed |
+| change | `(val: any)` | Value confirmed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Radio children |
+
+---
+
+### Rate
+
+Star rating with half-star support, tooltips, custom icons, and clear functionality.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `number` | required | Rating value (v-model) |
+| count | `number` | `5` | Number of stars |
+| allowHalf | `boolean` | `false` | Allow half-star selection |
+| showText | `boolean` | `false` | Show rating text beside stars |
+| disabled | `boolean` | `false` | Disabled state |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Size preset |
+| color | `string` | `undefined` | Active star color override |
+| icon | `string` | `'★'` | Star character |
+| clearable | `boolean` | `false` | Allow clearing by re-clicking |
+| tooltips | `string[]` | `undefined` | Per-star tooltip text |
+| texts | `Record<number, string>` | `undefined` | Custom rating text map |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: number)` | Value changed |
+| change | `(val: number)` | Value confirmed |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| icon | Custom star icon; scoped `{ index, active }` |
+
+---
+
+### ResizeBox
+
+Container with a draggable bottom-right handle for resizing.
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Resizable content |
+
+---
+
+### Result
+
+Result page with status icon, title, description, and optional footer actions.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| status | `'info' \| 'success' \| 'warning' \| 'error' \| '404' \| '403' \| '500'` | `'info'` | Result status |
+| title | `string` | `undefined` | Result title |
+| description | `string` | `undefined` | Result description |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Footer actions |
+
+---
+
+### Select
+
+Dropdown selector with single/multiple, filterable, remote search, clearable, and tag rendering.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `any` | required | Selected value (v-model) |
+| options | `SelectOption[]` | required | Options `{ label: string; value: any; disabled?: boolean }` |
+| placeholder | `string` | `'请选择'` | Placeholder text |
+| disabled | `boolean` | `false` | Disabled state |
+| clearable | `boolean` | `false` | Show clear button |
+| multiple | `boolean` | `false` | Multi-select mode |
+| filterable | `boolean` | `false` | Enable local search filter |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Size preset |
+| remote | `boolean` | `false` | Enable remote search |
+| remoteMethod | `(query: string) => Promise<SelectOption[]>` | `undefined` | Async search function |
+| loading | `boolean` | `false` | Show loading state |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: any)` | Value changed |
+| change | `(val: any)` | Value confirmed |
+| search | `(query: string)` | Search input changed |
+
+---
+
+### Skeleton
+
+Content placeholder with animated shimmer, supporting text (multi-row), circle, and rect shapes with optional avatar.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| loading | `boolean` | `true` | Show skeleton vs real content |
+| rows | `number` | `3` | Number of text rows |
+| animated | `boolean` | `true` | Enable shimmer animation |
+| width | `string \| number \| Array<string \| number>` | `undefined` | Row width(s); array per row |
+| height | `number \| string` | `16` | Row height |
+| shape | `'text' \| 'circle' \| 'rect'` | `'text'` | Skeleton shape |
+| size | `'sm' \| 'md' \| 'lg' \| number` | `'md'` | Circle/rect size preset |
+| showAvatar | `boolean` | `false` | Show avatar circle (text shape) |
+| avatarSize | `number` | `40` | Avatar size (px) |
+| round | `boolean` | `false` | Round row borders |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Real content shown when `loading` is false |
+
+---
+
+### Slider
+
+Drag slider with single/range, marks, tooltips, vertical mode, and optional number input.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | `number \| [number, number]` | required | Value (v-model); tuple for range |
+| min | `number` | `0` | Minimum value |
+| max | `number` | `100` | Maximum value |
+| step | `number` | `1` | Step increment |
+| disabled | `boolean` | `false` | Disabled state |
+| showTooltip | `boolean` | `false` | Show value tooltip on hover |
+| marks | `Record<number, string>` | `undefined` | Mark labels at given values |
+| range | `boolean` | `false` | Enable range (dual-thumb) mode |
+| vertical | `boolean` | `false` | Vertical orientation |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Size preset |
+| formatTooltip | `(val: number) => string \| number` | `undefined` | Custom tooltip formatter |
+| input | `boolean` | `false` | Show numeric input (single only) |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:modelValue | `(val: number \| [number, number])` | Value changed |
+| change | `(val: number \| [number, number])` | Value confirmed |
+
+---
+
+### Space
+
+Flex-based spacing container for evenly distributing child elements.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| direction | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction |
+| align | `'start' \| 'center' \| 'end' \| 'baseline'` | `'center'` | Cross-axis alignment |
+| size | `number \| string` | `8` | Gap size |
+| wrap | `boolean` | `false` | Allow wrapping |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Child elements |
+
+---
+
+### Spin
+
+Loading spinner with overlay, delay, fullscreen mode, and three animation types (dot/ring/spinner).
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| spinning | `boolean` | `true` | Loading state |
+| size | `'sm' \| 'md' \| 'lg' \| number` | `'md'` | Spinner size |
+| type | `'dot' \| 'ring' \| 'spinner'` | `'dot'` | Animation type |
+| color | `string` | `undefined` | Color override |
+| tip | `string` | `undefined` | Loading text |
+| delay | `number` | `0` | Delay before showing (ms) |
+| fullscreen | `boolean` | `false` | Fullscreen overlay mode |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Content to overlay with spinner |
+
+---
+
+### Split
+
+Resizable split panel with drag handle, supporting horizontal/vertical layout and ratio constraints.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| direction | `'horizontal' \| 'vertical'` | `'horizontal'` | Split orientation |
+| defaultRatio | `number` | `0.5` | Initial panel ratio |
+| ratio | `number` | `undefined` | Controlled ratio (v-model:ratio) |
+| min | `number` | `0.1` | Minimum ratio |
+| max | `number` | `0.9` | Maximum ratio |
+| barSize | `number` | `4` | Drag bar thickness (px) |
+| disabled | `boolean` | `false` | Disable resizing |
+| collapsible | `boolean` | `false` | Allow collapse (reserved) |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:ratio | `(value: number)` | Ratio changed |
+| resize | `(ratio: number)` | Panel resized |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| 1 | First panel content |
+| 2 | Second panel content |
+
+---
+
+### Statistic
+
+突出展示某个或某组数字，支持趋势标识、色彩类型、数字动画、加载态等，常用于数据看板和仪表盘。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| label | string | — | 标题文本 |
+| value | number | — | 数值（必填） |
+| prefix | string | — | 前缀文本 |
+| suffix | string | — | 后缀文本 |
+| precision | number | 0 | 小数精度 |
+| separator | boolean | true | 是否显示千分位分隔符 |
+| type | 'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' | 'default' | 色彩类型 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 尺寸 |
+| trend | 'up' \| 'down' \| 'none' | 'none' | 趋势方向 |
+| trendText | string | — | 趋势描述文字 |
+| animation | boolean | false | 是否开启数字滚动动画 |
+| animationDuration | number | 1000 | 动画时长（毫秒） |
+| loading | boolean | false | 是否显示加载状态 |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| label | 自定义标签内容 |
+| prefix | 自定义前缀内容 |
+| suffix | 自定义后缀内容 |
+| footer | 底部额外内容 |
+
+---
+
+### Steps
+
+引导用户按照流程完成任务的分步导航条，支持水平和垂直方向、自定义图标、点状样式等。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| items | StepItem[] | — | 步骤数据（必填） |
+| current | number | 0 | 当前步骤索引 |
+| status | 'process' \| 'error' \| 'finish' | 'process' | 当前步骤的状态 |
+| direction | 'horizontal' \| 'vertical' | 'horizontal' | 显示方向 |
+| size | 'md' \| 'sm' | 'md' | 尺寸 |
+| dot | boolean | false | 是否使用点状样式 |
+| clickable | boolean | false | 是否允许点击步骤切换 |
+
+**StepItem**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| title | string | — | 步骤标题 |
+| description | string | — | 步骤描述 |
+| status | 'wait' \| 'process' \| 'finish' \| 'error' | — | 单独设置该步骤状态，优先级高于 current |
+| icon | Component | — | 自定义图标组件 |
+| clickable | boolean | — | 单独控制该步骤是否可点击，优先级高于组件 clickable |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| update:current | (current: number) => void | 当前步骤改变时触发，用于 v-model:current |
+| change | (current: number) => void | 点击可点击步骤时触发 |
+
+---
+
+### Switch
+
+用于两个互斥选项，用来打开或关闭选项的选择，支持自定义颜色、加载状态和异步切换。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | boolean | - | 开关状态（v-model），必填 |
+| disabled | boolean | false | 是否禁用 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 尺寸 |
+| checkedText | string | - | 开启时显示的文字 |
+| uncheckedText | string | - | 关闭时显示的文字 |
+| checkedColor | string | - | 开启时背景色 |
+| uncheckedColor | string | - | 关闭时背景色 |
+| loading | boolean | false | 是否加载中 |
+| beforeChange | (val: boolean) => boolean \| Promise<boolean> | - | 切换前回调，返回 false 阻止切换 |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| update:modelValue | (val: boolean) => void | 开关状态变化时触发 |
+| change | (val: boolean) => void | 开关状态变化时触发 |
+
+---
+
+### Table
+
+用于展示多条结构类似的数据，支持排序、选择、展开、固定表头、固定列、分页、文字省略等功能。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| columns | TableColumnData[] | [] | 列配置数据 |
+| data | Record<string, any>[] | [] | 数据源 |
+| bordered | boolean | false | 是否显示边框 |
+| stripe | boolean | false | 是否显示斑马纹 |
+| size | 'xs' \| 'sm' \| 'md' \| 'lg' | 'md' | 表格尺寸 |
+| rowKey | string \| ((record) => string \| number) | 'key' | 行唯一标识 |
+| loading | boolean | false | 加载状态 |
+| loadingText | string | '加载中...' | 加载提示文字 |
+| rowSelection | TableSelection | - | 行选择配置 |
+| pagination | object \| false | false | 分页配置，false 不显示 |
+| scroll | { x?: number \| string; y?: number \| string } | - | 滚动配置，x 横向滚动宽，y 固定表头高度 |
+| showTotal | boolean | true | 显示总数 |
+| showPageSize | boolean | false | 显示每页条数切换 |
+| emptyText | string | '暂无数据' | 空数据提示文字 |
+| rowClassName | string \| ((record, index) => string) | - | 行自定义类名 |
+| rowStyle | object \| ((record, index) => object) | - | 行自定义样式 |
+
+**Column 配置**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| title | string | - | 列标题 |
+| dataIndex | string | - | 数据字段名 |
+| width | number \| string | - | 列宽度 |
+| minWidth | number \| string | - | 最小宽度 |
+| align | 'left' \| 'center' \| 'right' | 'left' | 对齐方式 |
+| fixed | 'left' \| 'right' | - | 固定列 |
+| sortable | boolean \| { sortDirections } | - | 排序 |
+| ellipsis | boolean | false | 文字省略 |
+| slotName | string | - | 内容插槽名 |
+| titleSlotName | string | - | 标题插槽名 |
+| children | TableColumnData[] | - | 表头分组子列 |
+
+**rowSelection**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| type | 'checkbox' \| 'radio' | 'checkbox' | 选择类型 |
+| selectedRowKeys | (string \| number)[] | [] | 已选中 key 列表 |
+| onChange | (keys, rows) => void | - | 选中变化回调 |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| select | (keys, rows) | 选中变化 |
+| select-all | (keys, rows) | 全选变化 |
+| selection-change | (keys, rows) | 选中变化 |
+| sorter-change | (dataIndex, direction) | 排序变化 |
+| page-change | (page) | 页码变化 |
+| page-size-change | (pageSize) | 每页条数变化 |
+| expand | (rowKey, expanded) | 展开/收起 |
+| row-click | (record, event) | 点击行 |
+| cell-click | (record, column, event) | 点击单元格 |
+
+**Slots**
+
+| Name | Type | Description |
+|------|------|-------------|
+| toolbar | - | 表格顶部工具栏区域 |
+| empty | - | 空数据自定义内容 |
+| expand-row | { record } | 展开行内容 |
+| [slotName] | { record, column, rowIndex } | 列自定义内容 |
+| [titleSlotName] | { column } | 列标题自定义内容 |
+
+**Methods**
+
+| Name | Type | Description |
+|------|------|-------------|
+| selectAll | (checked: boolean) | 全选/取消全选 |
+| select | (rowKey, checked) | 选中/取消指定行 |
+| expandAll | (expanded: boolean) | 全部展开/收起 |
+| expand | (rowKey, expanded) | 展开/收起指定行 |
+| getSelectedRowKeys | () => (string\|number)[] | 获取选中行 key |
+| getSelectedRows | () => any[] | 获取选中行数据 |
+| clearSelection | () => void | 清除所有选中 |
+
+---
+
+### Tabs
+
+选项卡切换组件，用于在不同的内容面板之间进行切换。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | string | — | 当前激活的 key（必填，支持 v-model） |
+| tabs | TabItem[] | — | 选项卡数据（必填） |
+| type | 'line' \| 'card' \| 'segment' | 'line' | 标签页类型 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 尺寸 |
+| position | 'top' \| 'left' \| 'right' \| 'bottom' | 'top' | 标签位置 |
+| closable | boolean | false | 是否可关闭 |
+| addable | boolean | false | 是否可新增 |
+| animated | boolean | true | 是否启用切换动画 |
+
+**TabItem**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| key | string | — | 唯一标识（必填） |
+| label | string | — | 标签文字（必填） |
+| icon | string | — | 内置图标名称（iconfont font_class） |
+| disabled | boolean | false | 是否禁用 |
+| closable | boolean | undefined | 是否可关闭（为 undefined 时跟随父级 closable） |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| update:modelValue | (key: string) => void | 激活项变化时触发（v-model） |
+| change | (key: string) => void | 切换标签页时触发 |
+| close | (key: string) => void | 关闭标签时触发 |
+| add | () => void | 点击新增按钮时触发 |
+
+---
+
+### Tag
+
+用于标记和分类，支持多种颜色类型、样式和交互。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| type | 'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' | 'default' | 标签类型 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 尺寸 |
+| effect | 'light' \| 'dark' \| 'outlined' \| 'plain' | 'light' | 主题效果 |
+| round | boolean | false | 是否为圆角胶囊标签 |
+| closable | boolean | false | 是否可关闭 |
+| icon | string | — | 内置图标名称 |
+| color | string | — | 自定义背景色（优先级高于 type） |
+| textColor | string | — | 自定义文字颜色 |
+| bordered | boolean | false | 是否显示边框 |
+| disabled | boolean | false | 是否禁用 |
+| checkable | boolean | false | 是否可选中 |
+| checked | boolean | undefined | 选中状态（支持 v-model:checked） |
+| modelValue | boolean | undefined | 选中状态（支持 v-model） |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| close | () => void | 点击关闭按钮时触发 |
+| click | (e: MouseEvent) => void | 点击标签时触发 |
+| change | (checked: boolean) => void | 选中状态变化时触发（checkable 时） |
+| update:checked | (checked: boolean) => void | 选中状态变化（v-model:checked） |
+| update:modelValue | (checked: boolean) => void | 选中状态变化（v-model） |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | 标签内容 |
+
+---
+
+### Textarea
+
+用于多行文本输入，支持多种变体、自适应高度、字数统计、清除等功能。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | string | '' | 输入值（v-model） |
+| variant | 'outline' \| 'filled' \| 'borderless' | 'outline' | 文本域变体样式 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 文本域尺寸 |
+| placeholder | string | '' | 占位文本 |
+| label | string | '' | 标签文本 |
+| error | string | '' | 错误提示文本 |
+| status | 'default' \| 'error' \| 'warning' | 'default' | 状态类型 |
+| statusText | string | '' | 状态提示文本（优先于 error 显示） |
+| disabled | boolean | false | 是否禁用 |
+| readonly | boolean | false | 是否只读 |
+| clearable | boolean | false | 是否可清除 |
+| maxlength | number | — | 最大输入长度 |
+| showCount | boolean | false | 是否显示字数统计（需配合 maxlength） |
+| rows | number | 4 | 默认行数 |
+| autoSize | boolean \| { minRows?: number; maxRows?: number } | false | 自适应高度，可设置最小最大行数 |
+| resizable | boolean | false | 是否允许用户拖拽调整大小 |
+| required | boolean | false | 是否显示必填标记 |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| update:modelValue | (value: string) => void | 输入值变化时触发 |
+| input | (value: string, event: Event) => void | 输入时触发 |
+| focus | (event: FocusEvent) => void | 获得焦点时触发 |
+| blur | (event: FocusEvent) => void | 失去焦点时触发 |
+| clear | () => void | 点击清除按钮时触发 |
+| keydown | (event: KeyboardEvent) => void | 按键按下时触发 |
+
+**Methods**
+
+| Name | Type | Description |
+|------|------|-------------|
+| focus | () => void | 使文本域获得焦点 |
+| blur | () => void | 使文本域失去焦点 |
+| resize | () => void | 手动触发自适应高度计算 |
+
+---
+
+### TimePicker
+
+用于选择或输入时间，支持小时、时分、时分秒以及时间范围等多种类型，采用滚动选择交互。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | string \| [string, string] | '' | 绑定值，timerange 类型为二元数组 |
+| type | 'hour' \| 'time' \| 'timerange' | 'time' | 选择器类型：hour 仅选择小时，time 选择时分秒，timerange 选择时间范围 |
+| placeholder | string | '请选择时间' | 未选择时的占位文本 |
+| startPlaceholder | string | '开始时间' | 时间范围选择的开始占位文本 |
+| endPlaceholder | string | '结束时间' | 时间范围选择的结束占位文本 |
+| disabled | boolean | false | 是否禁用 |
+| clearable | boolean | false | 是否可清空 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 选择器尺寸 |
+| format | string | — | 显示格式，支持 HH、mm、ss 占位符。不含 ss 则隐藏秒列，不含 mm 则隐藏分列 |
+| disabledHours | () => number[] | — | 禁用小时函数，返回禁用的小时数值数组 |
+| disabledMinutes | (hour: number) => number[] | — | 禁用分钟函数，接收当前小时，返回禁用的分钟数值数组 |
+| disabledSeconds | (hour: number, minute: number) => number[] | — | 禁用秒函数，接收当前小时和分钟，返回禁用的秒数值数组 |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| update:modelValue | (value: string \| [string, string] \| undefined) => void | 值变化时触发 |
+| change | (value: string \| [string, string] \| undefined) => void | 确认选择时触发 |
+
+---
+
+### Timeline
+
+用于展示时间顺序的信息流。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| items | TimelineItem[] | — | 时间线数据（必填） |
+| mode | 'left' \| 'right' \| 'alternate' | 'left' | 布局模式，alternate 为左右交替 |
+| direction | 'vertical' \| 'horizontal' | 'vertical' | 方向 |
+| pending | boolean \| string | false | 是否显示幽灵节点，字符串值作为节点文案 |
+| pendingTime | string | '' | 幽灵节点的时间标签 |
+| reverse | boolean | false | 是否倒序排列 |
+| labelPosition | 'bottom' \| 'same' | 'bottom' | 时间标签位置（仅在 mode=left 时生效） |
+
+**TimelineItem**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| title | string | — | 标题 |
+| content | string | — | 描述内容 |
+| time | string | — | 时间标签 |
+| type | 'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' | 'default' | 节点颜色类型 |
+| icon | string | — | 内置图标名称（iconfont font_class） |
+| dot | string \| VNode | — | 自定义圆点（HTML 字符串或 VNode） |
+
+---
+
+### Tooltip
+
+简单的文字提示气泡，支持多个方向、触发方式、自定义颜色和箭头。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| placement | 'top' \| 'top-start' \| 'top-end' \| 'bottom' \| 'bottom-start' \| 'bottom-end' \| 'left' \| 'left-start' \| 'left-end' \| 'right' \| 'right-start' \| 'right-end' | 'top' | 提示框出现的位置 |
+| trigger | 'hover' \| 'click' | 'hover' | 触发方式 |
+| color | string | — | 背景颜色 |
+| textColor | string | — | 文字颜色 |
+| arrow | boolean | true | 是否显示箭头 |
+| disabled | boolean | false | 是否禁用 |
+| showDelay | number | 0 | 显示延迟(ms) |
+| hideDelay | number | 100 | 隐藏延迟(ms) |
+| offset | number | 8 | 与触发元素的间距(px) |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| show | () => void | 提示框显示时触发 |
+| hide | () => void | 提示框隐藏时触发 |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | 提示内容 |
+| trigger | 触发元素 |
+
+---
+
+### Tour
+
+用于分步引导用户了解产品功能的气泡组件。通过高亮目标区域并展示引导提示，帮助用户快速熟悉产品功能。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| steps | TourStep[] | — | 引导步骤数据（必填） |
+| current | number | 0 | 当前步骤索引，支持 v-model:current |
+| open | boolean | false | 是否显示引导，支持 v-model:open |
+| placement | Placement | 'bottom' | 气泡默认弹出位置，可被步骤单独覆盖 |
+| mask | boolean | true | 是否显示遮罩 |
+| showClose | boolean | true | 是否显示关闭按钮 |
+| closeOnOverlay | boolean | true | 点击遮罩是否关闭引导 |
+| scrollIntoView | boolean | true | 是否自动滚动到目标元素 |
+| prevText | string | '上一步' | 上一步按钮文字 |
+| nextText | string | '下一步' | 下一步按钮文字 |
+| finishText | string | '完成' | 完成按钮文字 |
+| gap | number | 8 | 气泡与目标元素的间距（px） |
+
+**TourStep**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| target | string | — | 目标元素 CSS 选择器（必填） |
+| title | string | — | 步骤标题 |
+| description | string | — | 步骤描述内容 |
+| placement | Placement | — | 该步骤的弹出位置，优先级高于全局 placement |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| change | (current: number) => void | 当前步骤变化时触发 |
+| close | (current: number) => void | 关闭引导时触发 |
+| finish | () => void | 引导完成时触发 |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| step-{index} | 自定义第 index 步的内容，作用域参数 { step, current } |
+
+**Methods**
+
+| Name | Type | Description |
+|------|------|-------------|
+| updatePos | () => void | 手动更新气泡位置 |
+
+---
+
+### Transfer
+
+用于在两栏之间移动元素，支持搜索过滤、自定义渲染、虚拟滚动分页、尺寸、禁用、高亮动画等功能。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | any[] | [] | 目标侧已选值数组（v-model） |
+| options | TransferOption[] | [] | 全部可选数据 |
+| disabled | boolean | false | 是否全局禁用 |
+| showSearch | boolean | false | 是否显示搜索框 |
+| filterable | boolean | true | 是否启用默认过滤（配合搜索框） |
+| filter | (query: string, option: TransferOption) => boolean | — | 自定义过滤函数 |
+| titles | [string, string] | ['源列表', '目标列表'] | 左右两栏标题 |
+| filterPlaceholder | string | '搜索...' | 搜索框占位文本 |
+| pageSize | number | 50 | 分页滚动每页条数 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 穿梭框尺寸 |
+| showClearRight | boolean | false | 是否显示右侧清空按钮 |
+| emptyText | string | '暂无数据' | 无数据时的提示文本 |
+
+**TransferOption**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| label | string | — | 选项显示文本 |
+| value | any | — | 选项唯一标识值 |
+| disabled | boolean | false | 是否禁用该选项 |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| update:modelValue | (value: any[]) => void | 值变化时触发 |
+| change | (targetValues: any[], direction: "left" \| "right", movedValues: any[]) => void | 元素移动后触发，direction 表示移动方向，movedValues 为移动的值 |
+| search | (direction: "left" \| "right", query: string) => void | 搜索时触发 |
+| scroll | (direction: "left" \| "right", event: Event) => void | 列表滚动时触发 |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| item | 自定义选项渲染，参数 { option, direction } |
+
+**Methods**
+
+| Name | Type | Description |
+|------|------|-------------|
+| clearRight | () => void | 清空右侧目标列表 |
+
+---
+
+### TreeSelect
+
+用于从树形结构中选择数据，支持搜索、多选、自定义字段等。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | any | undefined | 选中值（v-model），单选为 key，多选为 key[] |
+| data | TreeData[] | [] | 树形数据 |
+| placeholder | string | '请选择' | 占位文本 |
+| disabled | boolean | false | 是否禁用 |
+| clearable | boolean | false | 是否可清除 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 尺寸 |
+| keyField | string | 'key' | 节点唯一标识字段名 |
+| labelField | string | 'label' | 节点显示文本字段名 |
+| childrenField | string | 'children' | 子节点字段名 |
+| multiple | boolean | false | 是否多选 |
+| searchable | boolean | false | 是否可搜索 |
+| defaultExpandAll | boolean | false | 是否默认展开所有节点 |
+| borderless | boolean | false | 是否无边框 |
+| loading | boolean | false | 是否加载中 |
+| error | boolean | false | 是否错误状态 |
+| cascade | boolean | true | 多选时是否级联勾选（预留） |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| update:modelValue | (value: any) => void | 选中值变化时触发 |
+| change | (value: any) => void | 选中值变化时触发 |
+| search | (value: string) => void | 搜索关键词变化时触发 |
+
+---
+
+### Upload
+
+用于文件上传，支持按钮触发、拖拽上传、图片卡片等多种交互形式。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | (string \| number)[] | [] | 已上传文件的 uid 列表（v-model） |
+| multiple | boolean | false | 是否允许多选文件 |
+| accept | string | — | 接受的文件类型（MIME），picture/picture-card 模式默认 image/* |
+| disabled | boolean | false | 是否禁用上传 |
+| drag | boolean | false | 是否启用拖拽上传区域 |
+| limit | number | — | 最大上传数量限制 |
+| autoUpload | boolean | true | 是否在选取文件后自动上传 |
+| action | string | — | 上传地址，设置后使用 XMLHttpRequest 发送请求 |
+| method | string | 'POST' | 上传请求的 HTTP 方法 |
+| headers | Record<string, string> | {} | 上传请求的自定义请求头 |
+| data | Record<string, any> | {} | 上传请求附带的额外参数 |
+| name | string | 'file' | 上传文件的字段名 |
+| withCredentials | boolean | false | 请求是否携带 cookie |
+| listType | 'text' \| 'picture' \| 'picture-card' | 'text' | 文件列表展示类型 |
+| maxSize | number | — | 文件大小上限（字节），超出触发 error 事件 |
+| tip | string | — | 提示文本 |
+| buttonText | string | '上传文件' | 按钮文字 |
+| dragText | string | '点击或拖拽文件到此区域上传' | 拖拽区域文字 |
+| beforeUpload | (file: File, fileList: UploadFile[]) => boolean \| Promise<boolean> | — | 上传前钩子，返回 false 取消上传 |
+| customRequest | (options: CustomRequestOptions) => void | — | 自定义上传实现，接管整个上传流程，适合对接 OSS/S3/COS 等云存储 |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| change | (fileList: UploadFile[]) | 文件列表变化时触发 |
+| success | (file: UploadFile, response: any) | 文件上传成功时触发 |
+| error | (file: UploadFile, error: Error) | 文件上传失败时触发 |
+| progress | (file: UploadFile, percent: number) | 文件上传进度变化时触发 |
+| exceed | (files: File[]) | 文件超出数量限制时触发 |
+| preview | (file: UploadFile) | 点击文件预览时触发 |
+| remove | (file: UploadFile) | 文件被删除时触发 |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | 自定义上传触发区域（仅非拖拽、非 picture-card 模式） |
+| drag | 自定义拖拽区域内容 |
+
+**Methods**
+
+| Name | Type | Description |
+|------|------|-------------|
+| clearFiles | () => void | 清空文件列表 |
+| startUpload | () => void | 手动开始上传所有待上传文件 |
+
+**UploadFile 类型**
+
+| Name | Type | Description |
+|------|------|-------------|
+| uid | string | 文件唯一标识 |
+| name | string | 文件名 |
+| size | number | 文件大小（字节） |
+| status | 'pending' \| 'uploading' \| 'done' \| 'error' | 文件状态 |
+| progress | number | 上传进度（0-100） |
+| raw | File | 原始文件对象 |
+| url | string | 文件 URL |
+| thumbUrl | string | 缩略图 URL |
+| response | any | 上传成功后服务端返回的响应数据 |
+
+---
+
+### VerificationCode
+
+用于输入验证码，逐字符输入，支持粘贴、密码模式、多种变体和状态。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | string | '' | 验证码值（v-model） |
+| length | number | 6 | 验证码位数 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 输入框尺寸 |
+| variant | 'box' \| 'underline' \| 'circle' | 'box' | 输入框变体样式 |
+| type | 'text' \| 'number' \| 'password' | 'text' | 输入类型：number 限制数字且弹出数字键盘，password 以圆点显示 |
+| gap | number \| string | 8 | 输入框之间的间距（px 或 string） |
+| divider | number \| number[] | — | 分隔符位置，number 表示每隔 N 位分隔，number[] 指定在第几位后分隔 |
+| disabled | boolean | false | 是否禁用 |
+| readonly | boolean | false | 是否只读 |
+| error | boolean | false | 是否显示错误样式 |
+| status | 'default' \| 'error' \| 'success' \| 'warning' | 'default' | 状态类型，会影响边框颜色 |
+| plain | boolean | false | 是否使用透明背景 |
+| mask | boolean \| string | false | 是否遮罩显示，可自定义遮罩字符 |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| update:modelValue | (value: string) => void | 验证码值变化时触发 |
+| change | (value: string) => void | 验证码值变化时触发 |
+| finish | (value: string) => void | 验证码输入完成时触发 |
+| focus | () => void | 获得焦点时触发 |
+| blur | () => void | 失去焦点时触发 |
+
+**Methods**
+
+| Name | Type | Description |
+|------|------|-------------|
+| focus | () => void | 使输入框获得焦点 |
+| blur | () => void | 使输入框失去焦点 |
+| clear | () => void | 清空验证码 |
+
+---
+
+### Watermark
+
+在页面上添加文字或图片水印，用于版权保护、信息标识或防止截图。支持多行文字、图片水印、全屏模式、密度预设及动态移动效果。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| content | string | 'Nacr Design' | 水印文字，支持 \n 换行 |
+| density | 'sparse' \| 'default' \| 'dense' | 'default' | 密度预设：sparse 稀疏、default 默认、dense 密集。设置后会自动调整 gapX/gapY/width/height/fontSize，也可单独覆盖 |
+| gapX | number | 100 | 水印水平间距(px)，设置后覆盖 density 对应值 |
+| gapY | number | 100 | 水印垂直间距(px)，设置后覆盖 density 对应值 |
+| rotate | number | -22 | 旋转角度(°) |
+| fontSize | number | 14 | 文字字号(px)，设置后覆盖 density 对应值 |
+| fontFamily | string | 'sans-serif' | 字体 |
+| fontWeight | 'normal' \| 'bold' \| 'lighter' | 'normal' | 字重 |
+| color | string | 'rgba(0,0,0,0.08)' | 水印颜色 |
+| width | number | 120 | 水印单元宽度(px)，设置后覆盖 density 对应值 |
+| height | number | 64 | 水印单元高度(px)，设置后覆盖 density 对应值 |
+| offsetX | number | 0 | 水平偏移(px) |
+| offsetY | number | 0 | 垂直偏移(px) |
+| image | string | — | 图片水印 URL，设置后优先使用图片 |
+| imageWidth | number | 0 | 图片宽度(px)，0 表示原始宽度 |
+| imageHeight | number | 0 | 图片高度(px)，0 表示原始高度 |
+| opacity | number | 1 | 水印整体透明度(0~1)，值越小越淡 |
+| fullscreen | boolean | false | 是否全屏显示水印（覆盖整个文档页面） |
+| movable | boolean | false | 水印是否持续移动（防截图） |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| density-change | (density: 'sparse' \| 'default' \| 'dense') => void | 密度预设变化时触发 |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | 被水印覆盖的内容（fullscreen 模式下无效） |
+
+---
+
+## CSS Variables
+
+All components use CSS custom properties prefixed with `--n-`. Key design tokens:
+
+- `--n-color-primary`, `--n-color-primary-hover`, `--n-color-primary-active`, `--n-color-primary-light`
+- `--n-color-success`, `--n-color-warning`, `--n-color-danger`, `--n-color-info`
+- `--n-color-text`, `--n-color-text-secondary`, `--n-color-text-disabled`, `--n-color-text-inverse`
+- `--n-color-bg`, `--n-color-bg-elevated`
+- `--n-color-border`, `--n-color-border-hover`, `--n-color-fill`, `--n-color-fill-hover`
+- `--n-radius-sm`, `--n-radius-md`, `--n-radius-lg`
+- `--n-font-size-xs`, `--n-font-size-sm`, `--n-font-size-md`, `--n-font-size-lg`
+- `--n-shadow-md`, `--n-shadow-lg`
+- `--n-transition-fast`, `--n-transition-normal`
