@@ -17,7 +17,7 @@
           {
             'n-dp-panel__day--other': day.other,
             'n-dp-panel__day--today': day.today,
-            'n-dp-panel__day--selected': day.date === modelValue,
+            'n-dp-panel__day--selected': day.date === (modelValue?.slice(0, 10) ?? modelValue),
             'n-dp-panel__day--range-start': day.date === rangeStart,
             'n-dp-panel__day--range-end': day.date === rangeEnd,
             'n-dp-panel__day--in-range': isInRange(day.date),

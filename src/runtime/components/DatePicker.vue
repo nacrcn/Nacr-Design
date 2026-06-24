@@ -44,7 +44,7 @@
                     <!-- ====== Date panel ====== -->
                     <template v-if="panelView === 'date'">
                         <DatePickerPanel :view-year="viewYear" :view-month="viewMonth"
-                            :model-value="(type === 'daterange' || type === 'datetimerange') ? rangeHoverStart : modelValue as string"
+                            :model-value="(type === 'daterange' || type === 'datetimerange') ? rangeHoverStart : (type === 'datetime' && rangeStart ? rangeStart : (modelValue as string))?.slice(0, 10)"
                             :range-start="(type === 'daterange' || type === 'datetimerange') ? rangeHoverStart : undefined"
                             :range-end="(type === 'daterange' || type === 'datetimerange') ? rangeHoverEnd : undefined"
                             :hovering-date="hoveringDate" :selecting-range="selectingRange"
@@ -357,6 +357,10 @@ watch(open, (v) => {
             rangeStart.value = props.modelValue[0] || null
             rangeEnd.value = props.modelValue[1] || null
             selectingRange.value = false
+        }
+        // Init rangeStart from existing value for datetime (single) so panel shows selected date
+        if (props.type === 'datetime') {
+            rangeStart.value = (!Array.isArray(props.modelValue) && props.modelValue) ? props.modelValue.slice(0, 10) : null
         }
         selectingTimeForEnd.value = false
 
@@ -768,6 +772,8 @@ function onClickOutside(e: Event) {
         open.value = false
         selectingRange.value = false
         hoveringDate.value = null
+        // Reset temp selection for datetime so stale rangeStart doesn't persist
+        if (props.type === 'datetime') rangeStart.value = null
     }
 }
 

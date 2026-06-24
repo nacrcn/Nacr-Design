@@ -58,9 +58,8 @@ const menu = [
       { label: 'Tabs 标签页', path: '/docs/tabs' },
       { label: 'Tag 标签', path: '/docs/tag' },
       { label: 'Timeline 时间线', path: '/docs/timeline' },
-      { label: 'Tooltip 文字提示', path: '/docs/tooltip' },
-      { label: 'Markdown 编辑器 & 渲染', path: '/docs/md-editor' },
       { label: 'Chart 图表', path: '/docs/chart' },
+      { label: 'OrganizationChart 组织架构图', path: '/docs/organization-chart' },
     ],
   },
   {
@@ -84,7 +83,6 @@ const menu = [
       { label: 'Layout 布局', path: '/docs/layout' },
       { label: 'Space 间距', path: '/docs/space' },
       { label: 'Affix 固钉', path: '/docs/affix' },
-
       { label: 'Split 分割面板', path: '/docs/split' },
       { label: 'Watermark 水印', path: '/docs/watermark' },
     ],
@@ -101,6 +99,7 @@ const menu = [
       { label: 'Result 结果页', path: '/docs/result' },
       { label: 'Spin 加载中', path: '/docs/spin' },
       { label: 'Skeleton 骨架屏', path: '/docs/skeleton' },
+      { label: 'Tooltip 文字提示', path: '/docs/tooltip' },
     ],
   },
   {
@@ -126,6 +125,8 @@ const menu = [
       { label: 'Mention 提及', path: '/docs/mention' },
       { label: 'Transfer 穿梭框', path: '/docs/transfer' },
       { label: 'Upload 上传', path: '/docs/upload' },
+      { label: 'CodeEditor 代码编辑器', path: '/docs/code-editor' },
+      { label: 'Markdown 编辑器 & 渲染', path: '/docs/md-editor' },
     ],
   },
   {

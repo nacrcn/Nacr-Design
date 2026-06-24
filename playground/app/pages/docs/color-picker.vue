@@ -19,10 +19,19 @@
       </div>
     </DemoBlock>
 
-    <DemoBlock title="渐变选择" description="设置 type='gradient'，选择起始色、结束色和方向，v-model 绑定为 CSS 渐变字符串：" :code="gradientCode">
+    <DemoBlock title="渐变选择" description="设置 type='gradient'，支持线性/径向渐变、多色标拖拽、角度调节。点击色标条空白处添加色标，拖拽色标调整位置，点击色标后可在下方拾色器中修改颜色：" :code="gradientCode">
       <div style="max-width:360px;">
-        <NColorPicker v-model="val3" type="gradient" />
+        <NColorPicker v-model="val3" type="gradient" show-alpha />
         <p style="margin-top:8px;font-size:13px;color:#6b7280;word-break:break-all;">当前值：{{ val3 }}</p>
+        <div :style="{ width: '100%', height: 32, borderRadius: 6, background: val3, marginTop: 8, border: '1px solid #e5e7eb' }" />
+      </div>
+    </DemoBlock>
+
+    <DemoBlock title="径向渐变" description="在渐变面板中切换为径向模式，生成 radial-gradient 字符串：" :code="radialCode">
+      <div style="max-width:360px;">
+        <NColorPicker v-model="val3r" type="gradient" />
+        <p style="margin-top:8px;font-size:13px;color:#6b7280;word-break:break-all;">当前值：{{ val3r }}</p>
+        <div :style="{ width: 120, height: 120, borderRadius: '50%', background: val3r, marginTop: 8, border: '1px solid #e5e7eb' }" />
       </div>
     </DemoBlock>
 
@@ -81,7 +90,8 @@ definePageMeta({ layout: 'doc' })
 // demos
 const val1 = ref('#3b82f6')
 const val2 = ref('#ef4444')
-const val3 = ref('linear-gradient(to right, #3b82f6, #10b981)')
+const val3 = ref('linear-gradient(to right, #3b82f6 0%, #10b981 100%)')
+const val3r = ref('radial-gradient(circle, #f59e0b 0%, #ef4444 100%)')
 const val4 = ref('#f59e0b')
 const val5 = ref('rgb(139, 92, 246)')
 const val6 = ref('hsl(217, 91%, 60%)')
@@ -116,11 +126,23 @@ const color = ref('#ef4444')
 <\/script>`
 
 const gradientCode = `<template>
-  <NColorPicker v-model="color" type="gradient" />
+  <NColorPicker v-model="color" type="gradient" show-alpha />
+  <p>当前值：{{ color }}</p>
+  <div :style="{ width: '100%', height: 32, borderRadius: 6, background: color }" />
 </template>
 
 <script setup lang="ts">
-const color = ref('linear-gradient(to right, #3b82f6, #10b981)')
+const color = ref('linear-gradient(to right, #3b82f6 0%, #10b981 100%)')
+<\/script>`
+
+const radialCode = `<template>
+  <NColorPicker v-model="color" type="gradient" />
+  <p>当前值：{{ color }}</p>
+  <div :style="{ width: 120, height: 120, borderRadius: '50%', background: color }" />
+</template>
+
+<script setup lang="ts">
+const color = ref('radial-gradient(circle, #f59e0b 0%, #ef4444 100%)')
 <\/script>`
 
 const formatCode = `<template>

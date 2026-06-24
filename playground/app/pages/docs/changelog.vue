@@ -56,10 +56,38 @@ interface Changelog {
 
 const changelogs: Changelog[] = [
   {
-    version: 'v0.1.7',
-    date: '2026-06-23',
+    version: 'v0.1.8',
+    date: '2026-06-24',
     tag: '最新',
     tagType: 'primary',
+    sections: [
+      {
+        title: '🚀 新特性',
+        items: [
+          'ColorPicker 颜色选择器：渐变模式全面升级，支持线性渐变 / 径向渐变切换',
+          'ColorPicker 颜色选择器：线性渐变方向采用 PS 风格圆形拨盘，拖拽圆球即可调整角度，按住 Shift 以 15° 步进吸附',
+          'ColorPicker 颜色选择器：渐变模式支持多色标（Color Stop），可拖拽调整位置、点击空白处添加、超出 2 个时可删除',
+          'ColorPicker 颜色选择器：渐变模式每个色标提供完整 SV 面板 + Hue 条 + Alpha 条拾色器',
+          'ColorPicker 颜色选择器：渐变模式输出格式为标准 CSS 渐变字符串，支持带位置百分比的 color stop 语法',
+          'ColorPicker 颜色选择器：渐变编辑器面板视觉美化，圆角卡片、阴影分隔、精致色标指示器',
+          'CodeEditor 代码编辑器：新增组件，支持多语言语法高亮（基于 Shiki）、行号显示、Tab 缩进 / 反缩进、自动补全括号与引号、智能缩进、文件拖拽载入、折叠、字符统计与光标位置显示',
+          'OrganizationChart 组织架构图：新增组件，支持层级树形数据可视化、节点展开/折叠、自定义节点插槽、选中状态、方法调用',
+        ],
+      },
+      {
+        title: '🐛 修复',
+        items: [
+          'Popconfirm 气泡确认框：修复首次点击气泡不显示的问题，改用 visibility + 始终渲染面板 DOM 确保位置计算正确',
+          'DatePicker 日期选择器：修复 type="datetime" 模式下选择日期后日历面板不显示选中激活样式的问题',
+          'DatePicker 日期选择器：修复 type="datetime" 模式下面板打开时未回显已选日期高亮的问题',
+          'DatePicker 日期选择器：修复 type="datetime" 模式下点击外部关闭后重新打开仍残留上次临时选择的问题',
+        ],
+      },
+    ],
+  },
+  {
+    version: 'v0.1.7',
+    date: '2026-06-23',
     sections: [
       {
         title: '🚀 新特性',
