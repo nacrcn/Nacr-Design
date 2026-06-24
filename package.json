@@ -1,6 +1,6 @@
 {
   "name": "nacr-design",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "NacrDesign - A Nuxt 3/4 UI Component Library",
   "type": "module",
   "license": "Apache-2.0 WITH Commons-Clause",
@@ -8,7 +8,9 @@
   "main": "./dist/module.mjs",
   "typesVersions": {
     "*": {
-      ".": ["./dist/types.d.mts"]
+      ".": [
+        "./dist/types.d.mts"
+      ]
     }
   },
   "exports": {
@@ -35,7 +37,8 @@
   "dependencies": {
     "@nuxt/kit": "^3.17.5",
     "echarts": "^6.1.0",
-    "marked": "^18.0.5"
+    "marked": "^18.0.5",
+    "nacr-design": "^0.1.8"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.7.0",
