@@ -62,10 +62,33 @@ interface Changelog {
 
 const changelogs: Changelog[] = [
   {
-    version: 'v0.1.8',
-    date: '2026-06-24',
+    version: 'v0.1.11',
+    date: '2026-06-27',
     tag: '最新',
     tagType: 'primary',
+    sections: [
+      {
+        title: '🚀 新特性',
+        items: [
+          'Icon 图标：新增 105+ 图标，涵盖社交互动、媒体娱乐、生活服务、用户身份、状态反馈、操作工具、通用界面、创意装饰、英文技术、文件格式等分类',
+          'Icon 图标：新增 Font Class 模式支持，通过 fontClass 属性使用图标字体类名',
+          'Icon 图标文档：图标展示改为分类排列，新增搜索过滤与点击复制功能',
+          'llms.txt：新增 LLM 友好的 API 文档文件，支持 npm 分发与网站托管',
+          'llms.txt 文档页：新增 llms.txt 介绍页面，包含访问地址与使用说明',
+          'FileList 文件列表：新增组件，自动识别文件后缀展示对应图标，支持列表模式和卡片网格模式切换，支持文件选择、自定义图标映射、自定义插槽等',
+        ],
+      },
+      {
+        title: '🐛 修复',
+        items: [
+          'Upload 上传：修复使用默认插槽自定义触发区域时点击无效的问题，将 click 事件从按钮移至外层触发容器',
+        ],
+      },
+    ],
+  },
+  {
+    version: 'v0.1.8',
+    date: '2026-06-24',
     sections: [
       {
         title: '🚀 新特性',

@@ -58,10 +58,16 @@ export default defineNuxtModule<ModuleOptions>({
 
     // 4. 将内置 iconfont 资源目录注册为 Nitro 公共资源
     ;(nuxt.options as any).nitro = (nuxt.options as any).nitro || {}
-    ;((nuxt.options as any).nitro.publicAssets = (nuxt.options as any).nitro.publicAssets || []).push({
-      baseURL: '/iconfont',
-      dir: resolve('./runtime/assets/iconfont'),
-    })
+    ;((nuxt.options as any).nitro.publicAssets = (nuxt.options as any).nitro.publicAssets || []).push(
+      {
+        baseURL: '/iconfont',
+        dir: resolve('./runtime/assets/iconfont'),
+      },
+      {
+        baseURL: '/file-icons',
+        dir: resolve('./runtime/assets/file-icons'),
+      },
+    )
 
     // 5. 全局设计令牌 CSS
     nuxt.options.css = nuxt.options.css || []

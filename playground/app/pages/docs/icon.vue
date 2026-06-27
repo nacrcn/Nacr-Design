@@ -1,7 +1,7 @@
 <template>
   <div class="doc-page">
     <h1>Icon 图标</h1>
-    <p class="doc-page__desc">基于 iconfont.cn 的图标组件，内置常用图标，支持自定义扩展。</p>
+    <p class="doc-page__desc">基于 iconfont.cn 的图标组件，内置 {{ names.length }} 个图标，支持 Symbol 模式、Font Class 模式和自定义 SVG。</p>
 
     <DemoBlock
       title="基础用法"
@@ -14,6 +14,18 @@
         <NIcon name="shanchu" :size="24" color="#ef4444" />
         <NIcon name="chenggong" :size="24" color="#8b5cf6" />
         <NIcon name="shouye" :size="24" color="#f59e0b" />
+      </div>
+    </DemoBlock>
+
+    <DemoBlock
+      title="Font Class 模式"
+      description="通过 fontClass 属性使用 iconfont Font Class 模式："
+      :code="fontClassCode"
+    >
+      <div style="display:flex; gap:16px; align-items:center;">
+        <NIcon fontClass="icon-sousuo" :size="24" color="#3b82f6" />
+        <NIcon fontClass="icon-dianzan" :size="24" color="#10b981" />
+        <NIcon fontClass="icon-shouye" :size="24" color="#f59e0b" />
       </div>
     </DemoBlock>
 
@@ -83,18 +95,27 @@
     <h2>内置图标一览</h2>
     <p class="doc-page__desc">点击图标可复制名称，共 {{ names.length }} 个内置图标。</p>
 
-    <div class="icon-grid">
-      <div
-        v-for="name in names"
-        :key="name"
-        class="icon-grid__item"
-        :title="`点击复制: ${name}`"
-        @click="copyName(name)"
-      >
-        <NIcon :name="name" :size="28" />
-        <span class="icon-grid__label">{{ name }}</span>
+    <div class="icon-category">
+      <h3>搜索 / 发现</h3>
+      <div class="icon-search">
+        <input v-model="searchQuery" placeholder="搜索图标名称..." class="icon-search__input" />
       </div>
     </div>
+
+    <template v-for="cat in filteredCategories" :key="cat.label">
+      <h3 class="icon-cat-title">{{ cat.label }}（{{ cat.icons.length }}）</h3>
+      <div class="icon-grid">
+        <div
+          v-for="name in cat.icons"
+          :key="name"
+          :class="['icon-grid__item', { 'icon-grid__item--copied': copiedName === name }]"
+          @click="copyName(name)"
+        >
+          <NIcon :name="name" :size="28" />
+          <span class="icon-grid__label">{{ copiedName === name ? '✓ 已复制' : name }}</span>
+        </div>
+      </div>
+    </template>
 
     <ApiTable title="Props" :columns="propColumns" :data="propData" />
   </div>
@@ -104,10 +125,38 @@
 definePageMeta({ layout: 'doc' })
 
 const names = useIconNames()
+const searchQuery = ref('')
+
+const categories = [
+  { label: '社交 / 互动', icons: ['aixin', 'aixin1', 'dianzan', 'dianzan1', 'dianzan2', 'guanzhu', 'buganxingqu', 'shoucang', 'shoucang1', 'shoucang2', 'pengyouquan', 'weibo', 'weixin', 'fenxiang', 'pinglun', 'pinglun1', 'huati', 'huati1', 'huatifuhao', 'saoyisao'] },
+  { label: '媒体 / 娱乐', icons: ['dianying', 'dianying1', 'dianyingpiao', 'dianyingpiao1', 'ertongpiao', 'bofangjilu', 'xiangkan', 'yixiangkan', 'tupian', 'xiangji', 'xiangji1', 'xiaojuchang', 'yanchu', 'xiaoshi', 'yingchengka', 'yingyuan', 'lanqiu', 'youxishoubing'] },
+  { label: '生活 / 服务', icons: ['hongbao', 'lihe', 'lipinka', 'maiyizengyi', 'youhuiquan', 'qianbao', 'yinhangka', 'yinhangyouhui', 'wuyefei', 'huodong', 'duihuan', 'remen', 'mingxinghuodong', 'gongyi', 'fankui', 'wenjuan', 'wenda', 'yuding', 'qupiao'] },
+  { label: '用户 / 身份', icons: ['wode', 'wode1', 'wodeguanzhu', 'huiyuan', 'huiyuan1', 'qinghuiyuan', 'mima', 'anquan', 'zhiwen', 'nan', 'nv', 'shouji', 'shouji1', 'dianhua', 'dianhua1'] },
+  { label: '状态 / 反馈', icons: ['chenggong', 'chenggong1', 'shibai', 'shibai1', 'tanhao', 'tanhao1', 'tishi', 'shandian', 'shandian1', 'xitongfanmang', 'gonggao', 'caidan', 'riqian', 'rili'] },
+  { label: '操作 / 工具', icons: ['bianji', 'chuangzuo', 'chuangzuo1', 'fuzhi', 'dingwei', 'dingwei1', 'dingwei2', 'gengduo', 'gengduo2', 'jianshao', 'jianshao1', 'zengjia', 'zengjia1', 'shanchu', 'shanchu1', 'shaixuan', 'shuaxin', 'sousuo', 'shangchuan', 'xiazai', 'dakai', 'shezhi'] },
+  { label: '通用 / 界面', icons: ['shouye', 'shouye1', 'faxian', 'faxian1', 'shijian', 'shijian1', 'shuju', 'shuju1', 'yanjing', 'yanjing1', 'diantong_guan', 'diantong_kai', 'WIFI', 'wuwifi', 'ditu', 'TOP', 'Dyanjing', 'shequ', 'shequ1', 'taolunqu'] },
+  { label: '创意 / 装饰', icons: ['sahua', 'pintu', 'lifangjingti', 'jiangbei', 'huangguan', 'dajuan', 'ceshi', 'jiju'] },
+  { label: '英文 / 技术', icons: ['chengxuwenti_bug', 'a-3D', 'Shield', 'a-QuestionMarkCircle', 'a-ScreenFull', 'a-ScreenNormal', 'a-TrendDown', 'a-TrendUp', 'Headphone', 'cube-outline', 'link', 'pie-chart-02', 'link-broken-01', 'quanqiu_xinjiapo'] },
+]
+
+const filteredCategories = computed(() => {
+  const q = searchQuery.value.trim().toLowerCase()
+  if (!q) return categories
+  return categories
+    .map(cat => ({
+      ...cat,
+      icons: cat.icons.filter(name => name.toLowerCase().includes(q)),
+    }))
+    .filter(cat => cat.icons.length > 0)
+})
 
 const basicCode = `<NIcon name="sousuo" :size="24" color="#3b82f6" />
 <NIcon name="dianzan" :size="24" color="#10b981" />
 <NIcon name="shanchu" :size="24" color="#ef4444" />`
+
+const fontClassCode = `<!-- Font Class 模式：使用 iconfont 的 class 名 -->
+<NIcon fontClass="icon-sousuo" :size="24" color="#3b82f6" />
+<NIcon fontClass="icon-dianzan" :size="24" color="#10b981" />`
 
 const sizeCode = `<NIcon name="sousuo" :size="16" />
 <NIcon name="sousuo" :size="24" />
@@ -142,24 +191,54 @@ const propColumns = [
 ]
 
 const propData = [
-  { name: 'name', type: 'string', default: '-', desc: '图标名称，对应 iconfont 中的 font_class' },
+  { name: 'name', type: 'string', default: '-', desc: '图标名称，对应 iconfont 中的 font_class（Symbol 模式）' },
+  { name: 'fontClass', type: 'string', default: '-', desc: 'Font Class 名称，如 "icon-search"（Font Class 模式）' },
   { name: 'size', type: 'number | string', default: "'1em'", desc: '图标大小，数字为 px，字符串如 "24px"、"1.5em"' },
   { name: 'rotate', type: 'number', default: '0', desc: '旋转角度' },
   { name: 'spin', type: 'boolean', default: 'false', desc: '是否旋转动画' },
   { name: 'color', type: 'string', default: 'inherit', desc: '图标颜色' },
 ]
 
+const copiedName = ref('')
+
 function copyName(name: string) {
   navigator.clipboard.writeText(name)
+  copiedName.value = name
+  setTimeout(() => { if (copiedName.value === name) copiedName.value = '' }, 1500)
 }
 </script>
 
 <style scoped>
+.icon-search {
+  margin-bottom: 24px;
+}
+
+.icon-search__input {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px 14px;
+  border: 1px solid var(--n-color-border);
+  border-radius: var(--n-radius-md, 6px);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.icon-search__input:focus {
+  border-color: var(--n-color-primary, #3b82f6);
+}
+
+.icon-cat-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--n-color-text);
+  margin: 24px 0 12px;
+}
+
 .icon-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   gap: 12px;
-  margin-top: 16px;
 }
 
 .icon-grid__item {
@@ -180,6 +259,12 @@ function copyName(name: string) {
   color: #3b82f6;
 }
 
+.icon-grid__item--copied {
+  border-color: #10b981;
+  background: #ecfdf5;
+  color: #10b981;
+}
+
 .icon-grid__label {
   font-size: 11px;
   color: #9ca3af;
@@ -190,5 +275,10 @@ function copyName(name: string) {
 
 .icon-grid__item:hover .icon-grid__label {
   color: #3b82f6;
+}
+
+.icon-grid__item--copied .icon-grid__label {
+  color: #10b981;
+  font-weight: 500;
 }
 </style>

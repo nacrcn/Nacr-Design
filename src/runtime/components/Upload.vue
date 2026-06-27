@@ -43,9 +43,9 @@
     </div>
 
     <!-- Button trigger (default) -->
-    <div v-else class="n-upload__trigger">
+    <div v-else class="n-upload__trigger" @click="triggerInput">
       <slot>
-        <NButton :disabled="disabled" @click="triggerInput">
+        <NButton :disabled="disabled">
           <NIcon name="shangchuan" :size="16" style="margin-right:4px" />{{ buttonText }}
         </NButton>
       </slot>

@@ -60,6 +60,7 @@ const menu = [
       { label: 'Tag 标签', path: '/docs/tag' },
       { label: 'Timeline 时间线', path: '/docs/timeline' },
       { label: 'Chart 图表', path: '/docs/chart' },
+      { label: 'FileList 文件列表', path: '/docs/file-list' },
       { label: 'OrganizationChart 组织架构图', path: '/docs/organization-chart' },
     ],
   },

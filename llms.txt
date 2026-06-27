@@ -1022,15 +1022,15 @@ Single cell inside Grid with span, offset, push, pull.
 
 ### Icon
 
-Icon component supporting iconfont Symbol mode (`name`), Font Class mode (`fontClass`), and custom SVG slot.
+Icon component supporting iconfont Symbol mode (`name`), Font Class mode (`fontClass`), and custom SVG slot. 105 built-in icons from iconfont.cn project nacrDesign (font_5196910).
 
 **Props**
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| name | `string` | `undefined` | Symbol mode name (e.g. "search" → `#icon-search`) |
-| fontClass | `string` | `undefined` | Font class name (e.g. "icon-search") |
-| size | `number \| string` | `undefined` | Icon size; number → px, string like `'1em'` |
+| name | `string` | `undefined` | Symbol mode name, maps to `#icon-{name}` (e.g. "sousuo" → `#icon-sousuo`) |
+| fontClass | `string` | `undefined` | Font class name for Font Class mode (e.g. "icon-sousuo") |
+| size | `number \| string` | `undefined` | Icon size; number → px, string like `'1em'` or `'24px'` |
 | rotate | `number` | `0` | Rotation in degrees |
 | spin | `boolean` | `false` | Spin animation |
 | color | `string` | `undefined` | Icon color override |
@@ -1046,6 +1046,30 @@ Icon component supporting iconfont Symbol mode (`name`), Font Class mode (`fontC
 | Name | Description |
 |------|-------------|
 | default | Custom SVG content (when no `name` or `fontClass`) |
+
+**Built-in Icons (105)**
+
+Social / Interaction: aixin, aixin1, dianzan, dianzan1, dianzan2, guanzhu, buganxingqu, shoucang, shoucang1, shoucang2, pengyouquan, weibo, weixin, fenxiang, pinglun, pinglun1, huati, huati1, huatifuhao, saoyisao
+
+Media / Entertainment: dianying, dianying1, dianyingpiao, dianyingpiao1, ertongpiao, bofangjilu, xiangkan, yixiangkan, tupian, xiangji, xiangji1, xiaojuchang, yanchu, xiaoshi, yingchengka, yingyuan, lanqiu, youxishoubing
+
+Life / Services: hongbao, lihe, lipinka, maiyizengyi, youhuiquan, qianbao, yinhangka, yinhangyouhui, wuyefei, huodong, duihuan, remen, mingxinghuodong, gongyi, fankui, wenjuan, wenda, yuding, qupiao
+
+User / Identity: wode, wode1, wodeguanzhu, huiyuan, huiyuan1, qinghuiyuan, mima, anquan, zhiwen, nan, nv, shouji, shouji1, dianhua, dianhua1
+
+Status / Feedback: chenggong, chenggong1, shibai, shibai1, tanhao, tanhao1, tishi, shandian, shandian1, xitongfanmang, gonggao, caidan, riqian, rili
+
+Action / Tools: bianji, chuangzuo, chuangzuo1, fuzhi, dingwei, dingwei1, dingwei2, gengduo, gengduo2, jianshao, jianshao1, zengjia, zengjia1, shanchu, shanchu1, shaixuan, shuaxin, sousuo, shangchuan, xiazai, dakai, shezhi, shequ, shequ1, taolunqu
+
+General / UI: shouye, shouye1, faxian, faxian1, shijian, shijian1, shuju, shuju1, yanjing, yanjing1, diantong_guan, diantong_kai, WIFI, wuwifi, ditu, TOP, Dyanjing
+
+Creative / Decorative: sahua, pintu, lifangjingti, jiangbei, huangguan, dajuan, ceshi, jijiu
+
+English / Technical: chengxuwenti_bug, a-3D, Shield, a-QuestionMarkCircle, a-ScreenFull, a-ScreenNormal, a-TrendDown, a-TrendUp, Headphone, cube-outline, link, pie-chart-02, link-broken-01, quanqiu_xinjiapo
+
+File Formats (Uppercase): AAC, BMP, JPEG, DIF, JSON, JPG, DOCX, DOX, PPT, MP3, OGG, MP4, PPTX, M4A, TEXT, XLSX, ZIP, WXS, XLS, PDF
+
+File Formats (Lowercase): file, jar, py, exe, jpg, pdf, txt, zip, xml, class, doc, html, iso, js, sql, md, mp4, dockerfile, json, java, yml, ppt, xls, gitignore, css, mp3, png, svg
 
 ---
 
@@ -1583,6 +1607,65 @@ Tree-style org chart with expand/collapse, selection, and horizontal/vertical la
 ### OrgChartNode
 
 Internal recursive node used by OrganizationChart. Not intended for direct use.
+
+---
+
+### FileList
+
+File list with auto-detected file extension icons, list/grid/card modes, and selection support. Card mode shows image thumbnails for image files.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| files | `FileItem[]` | `[]` | File list data |
+| mode | `'list' \| 'grid' \| 'card'` | `'list'` | Display mode: list / small card grid / large card with preview |
+| header | `string` | `-` | Header title |
+| selectable | `boolean` | `false` | Enable file selection |
+| modelValue | `(string \| number)[]` | `[]` | Selected file uid list (v-model) |
+| showSize | `boolean` | `true` | Show file size |
+| showDate | `boolean` | `false` | Show file date |
+| showActions | `boolean` | `true` | Show action buttons |
+| showModeToggle | `boolean` | `false` | Show list/grid/card mode toggle |
+| icons | `Record<string, string>` | `{}` | Custom extension-to-icon-name mapping |
+| colorfulIcons | `string[]` | `[]` | Extra extensions to use colorful SVG icons (37 built-in) |
+| emptyText | `string` | `'暂无文件'` | Empty state text |
+
+**FileItem**
+
+| Name | Type | Description |
+|------|------|-------------|
+| uid | `string \| number` | Unique identifier (used for selection) |
+| name | `string` | File name with extension |
+| size | `number` | File size in bytes |
+| date | `string` | File date string |
+| url | `string` | Download/preview URL (card mode: images show thumbnail via this URL) |
+| type | `string` | Custom file type (overrides auto-detection) |
+
+**Events**
+
+| Name | Signature | Description |
+|------|-----------|-------------|
+| update:mode | `(mode: 'list' \| 'grid' \| 'card')` | Mode changed |
+| update:modelValue | `(keys: (string \| number)[])` | Selection changed |
+| file-click | `(file: FileItem)` | File clicked |
+| select | `(file: FileItem, selected: boolean)` | File selected/deselected |
+| remove | `(file: FileItem, index: number)` | Remove button clicked |
+
+**Slots**
+
+| Name | Scoped Data | Description |
+|------|-------------|-------------|
+| header | - | Custom header content |
+| file-icon | `{ file, ext, iconName }` | Custom file icon |
+| file-name | `{ file }` | Custom file name |
+| file-actions | `{ file }` | Custom action buttons |
+
+---
+
+### FileListItem
+
+Internal item used by FileList. Renders a single file row/card with extension icon, name, meta, and actions. In card mode, image files (jpg/png/gif/svg etc.) with `url` show `<img>` preview directly.
 
 ---
 
