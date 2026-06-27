@@ -264,21 +264,22 @@ function iconColor(type?: TimelineType): string | undefined {
   background: var(--n-color-border, #e0e0e0);
 }
 
-/* Alternate item positioning */
+/* Alternate item base */
 .n-timeline--alternate .n-timeline__item {
   display: flex;
   align-items: flex-start;
   position: relative;
   padding-bottom: 20px;
+  padding-left: 0;
+  padding-right: 0;
 }
 .n-timeline--alternate .n-timeline__label {
-  width: calc(50% - 24px);
-  text-align: right;
-  padding-right: 20px;
+  width: calc(50% - 20px);
   font-size: var(--n-font-size-xs, 12px);
   color: var(--n-color-text-disabled, #bbb);
   padding-top: 2px;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 .n-timeline--alternate .n-timeline__tail {
   display: none;
@@ -288,45 +289,41 @@ function iconColor(type?: TimelineType): string | undefined {
   left: auto;
   top: auto;
   flex-shrink: 0;
-  margin: 0 4px;
   z-index: 1;
 }
 .n-timeline--alternate .n-timeline__content {
-  flex: 1;
-  padding-left: 16px;
+  width: calc(50% - 20px);
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
-/* Odd items: content on right (default), Even: content on left */
-.n-timeline--alternate .n-timeline__item:nth-child(odd) {
-  flex-direction: row;
-}
+/* Odd items (1st, 3rd, 5th...): time on left, dot center, content on right */
 .n-timeline--alternate .n-timeline__item:nth-child(odd) .n-timeline__label {
   order: 1;
+  text-align: right;
+  padding-right: 20px;
 }
 .n-timeline--alternate .n-timeline__item:nth-child(odd) .n-timeline__dot-wrapper {
   order: 2;
 }
 .n-timeline--alternate .n-timeline__item:nth-child(odd) .n-timeline__content {
   order: 3;
+  padding-left: 20px;
 }
 
-.n-timeline--alternate .n-timeline__item:nth-child(even) {
-  flex-direction: row-reverse;
-}
-.n-timeline--alternate .n-timeline__item:nth-child(even) .n-timeline__label {
-  order: 3;
-  text-align: left;
-  padding-right: 0;
-  padding-left: 20px;
+/* Even items (2nd, 4th, 6th...): content on left, dot center, time on right */
+.n-timeline--alternate .n-timeline__item:nth-child(even) .n-timeline__content {
+  order: 1;
+  text-align: right;
+  padding-right: 20px;
 }
 .n-timeline--alternate .n-timeline__item:nth-child(even) .n-timeline__dot-wrapper {
   order: 2;
 }
-.n-timeline--alternate .n-timeline__item:nth-child(even) .n-timeline__content {
-  order: 1;
-  text-align: right;
-  padding-left: 0;
-  padding-right: 16px;
+.n-timeline--alternate .n-timeline__item:nth-child(even) .n-timeline__label {
+  order: 3;
+  text-align: left;
+  padding-left: 20px;
 }
 
 /* Right mode */

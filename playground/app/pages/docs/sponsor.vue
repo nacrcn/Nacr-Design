@@ -170,7 +170,7 @@ const sponsors: Sponsor[] = [
 }
 .sponsor__qr-img {
   width: 100%;
-  max-width: 100%;
+  max-width: 700px;
   border-radius: var(--n-radius-xl, 12px);
   border: 1px solid var(--nd-color-border, #e5e7eb);
 }

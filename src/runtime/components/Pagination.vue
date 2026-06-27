@@ -100,6 +100,7 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
     'update:modelValue': [page: number]
+    'update:pageSize': [size: number]
     change: [page: number]
     pageSizeChange: [size: number]
 }>()
@@ -177,6 +178,7 @@ function changePage(page: number) {
 
 function handleSizeChange(val: any) {
     innerPageSize.value = val
+    emit('update:pageSize', val)
     emit('pageSizeChange', val)
     if (currentPage.value > totalPages.value) {
         emit('update:modelValue', totalPages.value)
@@ -206,6 +208,7 @@ function handleSimpleInput(e: Event) {
 }
 
 watch(() => props.pageSize, (v) => { innerPageSize.value = v })
+watch(innerPageSize, (v) => { if (v !== props.pageSize) emit('update:pageSize', v) })
 </script>
 
 <style scoped>

@@ -1723,7 +1723,7 @@ Pagination controls with page buttons, size changer, quick jumper, and simple mo
 |------|------|---------|-------------|
 | modelValue | `number` | required | Current page (v-model) |
 | total | `number` | required | Total item count |
-| pageSize | `number` | `10` | Items per page |
+| pageSize | `number` | `10` | Items per page (v-model:pageSize) |
 | pageSizes | `number[]` | `[10,20,50,100]` | Available page sizes |
 | pagerCount | `number` | `7` | Visible pager buttons |
 | showSizeChanger | `boolean` | `false` | Show page size dropdown |
@@ -1741,6 +1741,7 @@ Pagination controls with page buttons, size changer, quick jumper, and simple mo
 | Name | Signature | Description |
 |------|-----------|-------------|
 | update:modelValue | `(page: number)` | Page changed |
+| update:pageSize | `(size: number)` | Page size changed |
 | change | `(page: number)` | Page changed |
 | pageSizeChange | `(size: number)` | Page size changed |
 
@@ -2478,7 +2479,7 @@ Resizable split panel with drag handle, supporting horizontal/vertical layout an
 
 ### Timeline
 
-用于展示时间顺序的信息流。
+用于展示时间顺序的信息流。支持左侧、右侧、交替三种布局模式，交替模式下奇数项时间在左内容在右，偶数项内容在左时间在右，时间线始终居中。
 
 **Props**
 

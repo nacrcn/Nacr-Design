@@ -13,17 +13,19 @@
       <NPagination v-model="page2" :total="200" show-total="range" />
     </DemoBlock>
 
-    <DemoBlock title="修改每页条数" description="设置 show-size-changer 切换每页条数，show-total 显示总数。" :code="sizeCode">
-      <NPagination v-model="page3" :total="500" show-size-changer show-total />
+    <DemoBlock title="修改每页条数" description="设置 show-size-changer 切换每页条数，通过 v-model:pageSize 双向绑定每页条数。" :code="sizeCode">
+      <NPagination v-model="page3" v-model:page-size="pageSize3" :total="500" show-size-changer show-total />
+      <div style="margin-top:8px;font-size:var(--n-font-size-sm);color:var(--n-color-text-secondary);">当前页：{{ page3 }}，每页条数：{{ pageSize3 }}</div>
     </DemoBlock>
 
     <DemoBlock title="快速跳转" description="设置 show-quick-jumper 可以快速跳转到某一页。" :code="jumperCode">
       <NPagination v-model="page4" :total="500" show-quick-jumper />
     </DemoBlock>
 
-    <DemoBlock title="完整功能" description="同时使用 show-total、show-size-changer、show-quick-jumper 显示完整功能。" :code="fullCode">
+    <DemoBlock title="完整功能" description="同时使用 show-total、show-size-changer、show-quick-jumper 显示完整功能，v-model:pageSize 双向绑定每页条数。" :code="fullCode">
       <NPagination
         v-model="page5"
+        v-model:page-size="pageSize5"
         :total="1000"
         show-total="range"
         show-size-changer
@@ -61,9 +63,10 @@
       <NPagination v-model="page11" :total="5" :hide-on-single-page="hideWhenSingle" :page-size="5" />
     </DemoBlock>
 
-    <DemoBlock title="事件回调" description="监听 change 和 page-size-change 事件。" :code="eventCode">
+    <DemoBlock title="事件回调" description="监听 change 和 page-size-change 事件，通过 v-model:pageSize 双向绑定每页条数。" :code="eventCode">
       <NPagination
         v-model="page12"
+        v-model:page-size="pageSize12"
         :total="500"
         show-size-changer
         show-total
@@ -88,8 +91,10 @@ definePageMeta({ layout: 'doc' })
 const page1 = ref(1)
 const page2 = ref(1)
 const page3 = ref(1)
+const pageSize3 = ref(10)
 const page4 = ref(1)
 const page5 = ref(1)
+const pageSize5 = ref(10)
 const page6 = ref(1)
 const page7 = ref(1)
 const page8 = ref(1)
@@ -97,6 +102,7 @@ const page9 = ref(1)
 const page10 = ref(1)
 const page11 = ref(1)
 const page12 = ref(1)
+const pageSize12 = ref(10)
 const hideWhenSingle = ref(true)
 const changeMsg = ref('—')
 const sizeChangeMsg = ref('—')
@@ -130,11 +136,13 @@ const page = ref(1)
 <\/script>`
 
 const sizeCode = `<template>
-  <NPagination v-model="page" :total="500" show-size-changer show-total />
+  <NPagination v-model="page" v-model:page-size="pageSize" :total="500" show-size-changer show-total />
+  <div>当前页：{{ page }}，每页条数：{{ pageSize }}</div>
 </template>
 
 <script setup lang="ts">
 const page = ref(1)
+const pageSize = ref(10)
 <\/script>`
 
 const jumperCode = `<template>
@@ -148,6 +156,7 @@ const page = ref(1)
 const fullCode = `<template>
   <NPagination
     v-model="page"
+    v-model:page-size="pageSize"
     :total="1000"
     show-total="range"
     show-size-changer
@@ -157,6 +166,7 @@ const fullCode = `<template>
 
 <script setup lang="ts">
 const page = ref(1)
+const pageSize = ref(10)
 <\/script>`
 
 const simpleCode = `<template>
@@ -217,6 +227,7 @@ const hide = ref(true)
 const eventCode = `<template>
   <NPagination
     v-model="page"
+    v-model:page-size="pageSize"
     :total="500"
     show-size-changer
     show-total
@@ -231,6 +242,7 @@ const eventCode = `<template>
 
 <script setup lang="ts">
 const page = ref(1)
+const pageSize = ref(10)
 const changeMsg = ref('—')
 const sizeChangeMsg = ref('—')
 
@@ -266,7 +278,7 @@ const slotColumns = [
 const propData = [
   { name: 'modelValue', type: 'number', default: '—', desc: '当前页码（必填，支持 v-model）' },
   { name: 'total', type: 'number', default: '—', desc: '数据总量（必填）' },
-  { name: 'pageSize', type: 'number', default: '10', desc: '每页条数' },
+  { name: 'pageSize', type: 'number', default: '10', desc: '每页条数，支持 v-model:pageSize 双向绑定' },
   { name: 'pageSizes', type: 'number[]', default: '[10, 20, 50, 100]', desc: '每页条数选项' },
   { name: 'pagerCount', type: 'number', default: '7', desc: '页码按钮的数量（≥5 且为奇数）' },
   { name: 'showSizeChanger', type: 'boolean', default: 'false', desc: '是否展示每页条数切换器' },
@@ -282,6 +294,7 @@ const propData = [
 
 const eventData = [
   { name: 'update:modelValue', type: '(page: number) => void', desc: '页码变化时触发' },
+  { name: 'update:pageSize', type: '(size: number) => void', desc: '每页条数变化时触发' },
   { name: 'change', type: '(page: number) => void', desc: '页码改变回调' },
   { name: 'pageSizeChange', type: '(size: number) => void', desc: '每页条数变化时触发' },
 ]
