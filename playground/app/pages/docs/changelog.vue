@@ -62,10 +62,34 @@ interface Changelog {
 
 const changelogs: Changelog[] = [
   {
-    version: 'v0.1.11',
-    date: '2026-06-27',
+    version: 'v0.1.12',
+    date: '2026-07-13',
     tag: '最新',
     tagType: 'primary',
+    sections: [
+      {
+        title: '🚀 新特性',
+        items: [
+          'FileList 文件列表：新增 card 大卡片模式，图片文件直接展示缩略图预览，其他类型展示大图标',
+          'FileList 文件列表：删除确认交互改为使用 Modal 对话框替代浏览器原生 confirm',
+          'Pagination 分页：新增 v-model:pageSize 双向绑定每页条数',
+          'ImageUpload 单图片上传：新增组件，v-model 绑定图片 URL，内置预览/删除、大小校验、自定义上传等，适合头像、封面图等单图上传场景',
+          'Upload 上传：文档页重构，补充详细示例代码和综合示例（含 Modal 删除确认弹窗），新增 ImageUpload 单图片上传部分',
+          'Title 标题：新增轻量标题组件，适用于卡片标题、区块标题等场景，支持层级、图标、副标题、额外区域、下划线、斜体',
+        ],
+      },
+      {
+        title: '🐛 修复',
+        items: [
+          'Upload 上传：修复使用默认插槽自定义触发区域时点击无效的问题，将 click 事件从按钮移至外层触发容器',
+          'Timeline 时间线：修复交替展现模式（mode=alternate）布局错误，奇数项时间在左内容在右，偶数项内容在左时间在右',
+        ],
+      },
+    ],
+  },
+  {
+    version: 'v0.1.11',
+    date: '2026-06-27',
     sections: [
       {
         title: '🚀 新特性',
@@ -76,16 +100,6 @@ const changelogs: Changelog[] = [
           'llms.txt：新增 LLM 友好的 API 文档文件，支持 npm 分发与网站托管',
           'llms.txt 文档页：新增 llms.txt 介绍页面，包含访问地址与使用说明',
           'FileList 文件列表：新增组件，自动识别文件后缀展示对应图标，支持列表模式和卡片网格模式切换，支持文件选择、自定义图标映射、自定义插槽等',
-          'FileList 文件列表：新增 card 大卡片模式，图片文件直接展示缩略图预览，其他类型展示大图标',
-          'FileList 文件列表：删除确认交互改为使用 Modal 对话框替代浏览器原生 confirm',
-          'Pagination 分页：新增 v-model:pageSize 双向绑定每页条数',
-        ],
-      },
-      {
-        title: '🐛 修复',
-        items: [
-          'Upload 上传：修复使用默认插槽自定义触发区域时点击无效的问题，将 click 事件从按钮移至外层触发容器',
-          'Timeline 时间线：修复交替展现模式（mode=alternate）布局错误，奇数项时间在左内容在右，偶数项内容在左时间在右',
         ],
       },
     ],

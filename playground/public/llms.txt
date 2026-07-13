@@ -1713,6 +1713,35 @@ Page-level header with breadcrumb, back arrow, title, subtitle, and extra action
 
 ---
 
+### Title
+
+Lightweight title component for card headers, section titles, etc. Supports level, icon, subtitle, extra area, underline, italic.
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| text | `string` | `undefined` | Title text |
+| level | `'h1' \| 'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6'` | `'h3'` | Title level, controls font size |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Title size override (sm=13px, md=14px, lg=16px) |
+| sub | `string` | `undefined` | Subtitle text, displayed on the right |
+| icon | `string` | `undefined` | Icon name before title (NIcon) |
+| bold | `boolean` | `true` | Bold text |
+| underline | `boolean` | `false` | Underline text |
+| italic | `boolean` | `false` | Italic text |
+| disabled | `boolean` | `false` | Disabled state (gray text) |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | Title text content (replaces text prop) |
+| icon | Custom icon area |
+| sub | Custom subtitle area |
+| extra | Right-side extra area (buttons, tags, etc.) |
+
+---
+
 ### Pagination
 
 Pagination controls with page buttons, size changer, quick jumper, and simple mode.
@@ -2747,6 +2776,49 @@ Resizable split panel with drag handle, supporting horizontal/vertical layout an
 | url | string | 文件 URL |
 | thumbUrl | string | 缩略图 URL |
 | response | any | 上传成功后服务端返回的响应数据 |
+
+---
+
+### ImageUpload
+
+单图片上传组件，v-model 绑定图片 URL，内置预览/删除、大小校验、自定义上传等。适合头像、封面图等单图上传场景。
+
+**Props**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | string | '' | 图片 URL（v-model） |
+| action | string | — | 服务端上传地址，设置后使用 XMLHttpRequest |
+| method | string | 'POST' | HTTP 请求方法 |
+| headers | Record<string, string> | {} | 自定义请求头 |
+| data | Record<string, any> | {} | 上传附带额外参数 |
+| name | string | 'file' | 上传文件字段名 |
+| withCredentials | boolean | false | 是否携带 cookie |
+| customRequest | (options) => void | — | 自定义上传实现，适合对接云存储 |
+| beforeUpload | (file: File) => boolean | — | 上传前钩子，返回 false 取消 |
+| maxSize | number | — | 文件大小上限（字节） |
+| accept | string | 'image/*' | 接受的文件类型 |
+| disabled | boolean | false | 是否禁用 |
+| width | number | string | 104 | 预览框宽度 |
+| height | number | string | 104 | 预览框高度 |
+| tip | string | '上传图片' | 提示文字 |
+
+**Events**
+
+| Name | Type | Description |
+|------|------|-------------|
+| update:modelValue | (url: string) | 图片 URL 变化 |
+| change | (url: string) | 图片 URL 变化 |
+| success | (response: any) | 上传成功 |
+| error | (error: Error) | 上传失败或校验不通过 |
+| progress | (percent: number) | 上传进度变化 |
+| remove | () | 图片被删除 |
+
+**Slots**
+
+| Name | Description |
+|------|-------------|
+| default | 自定义上传触发区域内容（未上传时显示的区域） |
 
 ---
 
