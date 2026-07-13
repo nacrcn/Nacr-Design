@@ -60,9 +60,36 @@
       </div>
     </DemoBlock>
 
+    <DemoBlock title="面板内容" description="通过 default 插槽配合 NTabsPanel 组件，为每个标签页渲染对应的面板内容。NTabsPanel 的 active 属性跟随当前激活的 key。" :code="panelCode">
+      <NTabs v-model="panelActive" :tabs="panelTabs">
+        <NTabsPanel :active="panelActive === 'info'">
+          <p style="margin:0;color:var(--n-color-text-secondary);">这里是「个人信息」面板的内容区域。</p>
+        </NTabsPanel>
+        <NTabsPanel :active="panelActive === 'security'">
+          <p style="margin:0;color:var(--n-color-text-secondary);">这里是「安全设置」面板的内容区域。</p>
+        </NTabsPanel>
+        <NTabsPanel :active="panelActive === 'notify'">
+          <p style="margin:0;color:var(--n-color-text-secondary);">这里是「通知偏好」面板的内容区域。</p>
+        </NTabsPanel>
+      </NTabs>
+    </DemoBlock>
+
+    <DemoBlock title="懒加载与强制渲染" description="默认情况下，未激活的 NTabsPanel 不会渲染 DOM（懒加载）。设置 forceRender 可强制渲染，保留面板状态（如表单输入内容不会丢失）。" :code="forceCode">
+      <NTabs v-model="forceActive" :tabs="forceTabs">
+        <NTabsPanel :active="forceActive === 'edit'" force-render>
+          <NInput v-model="forceInputVal" placeholder="输入内容后切换标签页再回来，内容不会丢失" />
+        </NTabsPanel>
+        <NTabsPanel :active="forceActive === 'preview'">
+          <p style="margin:0;color:var(--n-color-text-secondary);">预览面板：{{ forceInputVal || '（暂无内容）' }}</p>
+        </NTabsPanel>
+      </NTabs>
+    </DemoBlock>
+
     <ApiTable title="Props" :columns="propColumns" :data="propData" />
     <ApiTable title="TabItem" :columns="itemColumns" :data="itemData" />
     <ApiTable title="Events" :columns="eventColumns" :data="eventData" />
+    <ApiTable title="Slots" :columns="slotColumns" :data="slotData" />
+    <ApiTable title="TabsPanel Props" :columns="propColumns" :data="panelPropData" />
   </div>
 </template>
 
@@ -190,7 +217,7 @@ function onClose(key: string) {
   closeMsg.value = `已关闭 ${key}`
   closableTabs.value = closableTabs.value.filter(t => t.key !== key)
   if (closableActive.value === key && closableTabs.value.length > 0) {
-    closableActive.value = closableTabs.value[0].key
+    closableActive.value = closableTabs.value[0]?.key ?? ''
   }
 }
 function onAdd() {
@@ -361,7 +388,64 @@ function onClose(key: string) {
 }
 <\/script>`
 
-// ===== API Tables =====
+// ===== 面板内容 =====
+const panelActive = ref('info')
+const panelTabs = [
+  { key: 'info', label: '个人信息' },
+  { key: 'security', label: '安全设置' },
+  { key: 'notify', label: '通知偏好' },
+]
+
+const panelCode = `<template>
+  <NTabs v-model="active" :tabs="tabs">
+    <NTabsPanel :active="active === 'info'">
+      <p>个人信息面板内容</p>
+    </NTabsPanel>
+    <NTabsPanel :active="active === 'security'">
+      <p>安全设置面板内容</p>
+    </NTabsPanel>
+    <NTabsPanel :active="active === 'notify'">
+      <p>通知偏好面板内容</p>
+    </NTabsPanel>
+  </NTabs>
+</template>
+
+<script setup lang="ts">
+const active = ref('info')
+const tabs = [
+  { key: 'info', label: '个人信息' },
+  { key: 'security', label: '安全设置' },
+  { key: 'notify', label: '通知偏好' },
+]
+<\/script>`
+
+// ===== 懒加载与强制渲染 =====
+const forceActive = ref('edit')
+const forceTabs = [
+  { key: 'edit', label: '编辑' },
+  { key: 'preview', label: '预览' },
+]
+const forceInputVal = ref('')
+
+const forceCode = `<template>
+  <NTabs v-model="active" :tabs="tabs">
+    <NTabsPanel :active="active === 'edit'" force-render>
+      <NInput v-model="inputVal" placeholder="输入内容后切换标签页再回来，内容不会丢失" />
+    </NTabsPanel>
+    <NTabsPanel :active="active === 'preview'">
+      <p>预览：{{ inputVal || '（暂无内容）' }}</p>
+    </NTabsPanel>
+  </NTabs>
+</template>
+
+<script setup lang="ts">
+const active = ref('edit')
+const inputVal = ref('')
+const tabs = [
+  { key: 'edit', label: '编辑' },
+  { key: 'preview', label: '预览' },
+]
+<\/script>`
 const propColumns = [
   { key: 'name', title: '参数', code: true },
   { key: 'type', title: '类型', code: true },
@@ -406,5 +490,19 @@ const eventData = [
   { name: 'change', type: '(key: string) => void', desc: '切换标签页时触发' },
   { name: 'close', type: '(key: string) => void', desc: '关闭标签时触发' },
   { name: 'add', type: '() => void', desc: '点击新增按钮时触发' },
+]
+
+const slotColumns = [
+  { key: 'name', title: '插槽名', code: true },
+  { key: 'desc', title: '说明' },
+]
+
+const slotData = [
+  { name: 'default', desc: '面板内容区域，配合 NTabsPanel 组件使用' },
+]
+
+const panelPropData = [
+  { name: 'active', type: 'boolean', default: '—', desc: '是否为当前激活面板，通常写为 :active="currentKey === tabKey"' },
+  { name: 'forceRender', type: 'boolean', default: 'false', desc: '强制渲染面板 DOM（即使未激活），用于保留表单等状态' },
 ]
 </script>

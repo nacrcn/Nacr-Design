@@ -17,11 +17,12 @@
     </div>
 
     <!-- 未上传：显示上传按钮 -->
-    <div v-else class="n-image-upload__trigger" :style="boxStyle" @click="triggerInput">
+    <div v-else class="n-image-upload__trigger" :class="{ 'n-image-upload__trigger--error': errorMsg }" :style="boxStyle" @click="triggerInput">
       <slot>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         <span v-if="tip" class="n-image-upload__tip">{{ tip }}</span>
       </slot>
+      <div v-if="errorMsg" class="n-image-upload__error-msg">{{ errorMsg }}</div>
     </div>
 
     <input ref="inputRef" type="file" :accept="computedAccept" class="n-image-upload__input" @change="handleFileChange" />
@@ -43,7 +44,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, useAttrs } from 'vue'
+
+const attrs = useAttrs()
 
 const props = withDefaults(defineProps<{
   /** 图片 URL，支持 v-model */
@@ -61,14 +64,9 @@ const props = withDefaults(defineProps<{
   /** 携带 cookie */
   withCredentials?: boolean
   /** 自定义上传实现 */
-  customRequest?: (options: {
-    file: File
-    onProgress: (percent: number) => void
-    onSuccess: (response: any) => void
-    onError: (error: Error) => void
-  }) => void
+  customRequest?: Function
   /** 上传前钩子，返回 false 取消上传 */
-  beforeUpload?: (file: File) => boolean | Promise<boolean>
+  beforeUpload?: Function
   /** 文件大小上限（字节） */
   maxSize?: number
   /** 接受的文件类型 */
@@ -105,6 +103,7 @@ const previewVisible = ref(false)
 const status = ref<'idle' | 'uploading' | 'done' | 'error'>('idle')
 const progress = ref(0)
 const localUrl = ref('')
+const errorMsg = ref('')
 
 const imageUrl = computed(() => props.modelValue || localUrl.value)
 
@@ -125,22 +124,34 @@ async function handleFileChange(e: Event) {
   if (!file) return
   ;(e.target as HTMLInputElement).value = ''
 
-  // 类型校验
-  if (!file.type.startsWith('image/')) {
-    emit('error', new Error('只能上传图片文件'))
+  // 类型校验（部分浏览器 file.type 可能为空，此时根据 accept 或扩展名判断）
+  if (file.type && !file.type.startsWith('image/')) {
+    errorMsg.value = '只能上传图片文件'
+    emit('error', new Error(errorMsg.value))
     return
+  }
+  if (!file.type && computedAccept.value === 'image/*') {
+    const ext = file.name.split('.').pop()?.toLowerCase()
+    const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg', 'ico', 'tiff', 'avif']
+    if (!ext || !imageExts.includes(ext)) {
+      errorMsg.value = '只能上传图片文件'
+      emit('error', new Error(errorMsg.value))
+      return
+    }
   }
 
   // 大小校验
   if (props.maxSize && file.size > props.maxSize) {
-    emit('error', new Error(`图片大小不能超过 ${(props.maxSize / 1024 / 1024).toFixed(1)}MB`))
+    errorMsg.value = `图片大小不能超过 ${(props.maxSize / 1024 / 1024).toFixed(1)}MB`
+    emit('error', new Error(errorMsg.value))
     return
   }
 
-  // beforeUpload 钩子
-  if (props.beforeUpload) {
+  // beforeUpload 钩子（attrs fallback）
+  const beforeFn = props.beforeUpload || (attrs as any).beforeUpload || (attrs as any)['before-upload'] as typeof props.beforeUpload | undefined
+  if (beforeFn) {
     try {
-      const pass = await props.beforeUpload(file)
+      const pass = await beforeFn(file)
       if (pass === false) return
     } catch {
       return
@@ -150,13 +161,16 @@ async function handleFileChange(e: Event) {
   // 生成本地预览
   localUrl.value = URL.createObjectURL(file)
 
+  // 获取 customRequest（props 优先，attrs fallback 兼容 Nuxt 自动注册组件时的 prop 丢失）
+  const customFn = props.customRequest || (attrs as any).customRequest || (attrs as any)['custom-request'] as typeof props.customRequest | undefined
+
   // 上传
-  if (props.customRequest) {
-    doCustomUpload(file)
+  if (customFn) {
+    doCustomUpload(file, customFn)
   } else if (props.action) {
     doXhrUpload(file)
   } else {
-    // 无 action 时直接使用本地 URL
+    // 无 customRequest 且无 action 时直接使用本地 URL
     status.value = 'done'
     progress.value = 100
     emit('update:modelValue', localUrl.value)
@@ -165,10 +179,10 @@ async function handleFileChange(e: Event) {
   }
 }
 
-function doCustomUpload(file: File) {
+function doCustomUpload(file: File, fn: Function) {
   status.value = 'uploading'
   progress.value = 0
-  props.customRequest!({
+  fn({
     file,
     onProgress(percent: number) {
       progress.value = percent
@@ -184,6 +198,7 @@ function doCustomUpload(file: File) {
     },
     onError(error: Error) {
       status.value = 'error'
+      errorMsg.value = error.message || '上传失败'
       emit('error', error)
     },
   })
@@ -229,13 +244,15 @@ function doXhrUpload(file: File) {
       }
     } else {
       status.value = 'error'
-      emit('error', new Error(`HTTP ${xhr.status}`))
+      errorMsg.value = `HTTP ${xhr.status}`
+      emit('error', new Error(errorMsg.value))
     }
   })
 
   xhr.addEventListener('error', () => {
     status.value = 'error'
-    emit('error', new Error('网络错误'))
+    errorMsg.value = '网络错误'
+    emit('error', new Error(errorMsg.value))
   })
 
   xhr.open(props.method, props.action!, true)
@@ -263,6 +280,7 @@ function handleRemove() {
   }
   status.value = 'idle'
   progress.value = 0
+  errorMsg.value = ''
   emit('update:modelValue', '')
   emit('change', '')
   emit('remove')
@@ -303,6 +321,23 @@ function handleRemove() {
 .n-image-upload__trigger:hover {
   border-color: var(--n-color-primary, #3b82f6);
   color: var(--n-color-primary, #3b82f6);
+}
+
+.n-image-upload__trigger--error {
+  border-color: var(--n-color-danger, #ef4444);
+}
+
+.n-image-upload__trigger--error .n-image-upload__tip {
+  color: var(--n-color-danger, #ef4444);
+}
+
+.n-image-upload__error-msg {
+  font-size: 12px;
+  color: var(--n-color-danger, #ef4444);
+  line-height: 1.2;
+  text-align: center;
+  max-width: 100%;
+  word-break: break-all;
 }
 
 .n-image-upload__tip {

@@ -1693,6 +1693,7 @@ Page-level header with breadcrumb, back arrow, title, subtitle, and extra action
 | subtitle | `string` | `undefined` | Subtitle text |
 | icon | `string` | `undefined` | Title icon name (NIcon) |
 | backArrow | `boolean` | `false` | Show back arrow |
+| bordered | `boolean` | `true` | Show bottom border, set false to remove underline |
 | breadcrumb | `BreadcrumbItem[]` | `undefined` | Breadcrumb items `{ label, href?, icon? }` |
 
 **Events**

@@ -7,6 +7,10 @@
       <NPageHeader title="页面标题" subtitle="这是副标题" />
     </DemoBlock>
 
+    <DemoBlock title="无边框" description="设置 bordered=false 去除底部下划线，适合卡片内嵌等场景。" :code="noBorderCode">
+      <NPageHeader title="页面标题" subtitle="这是副标题" :bordered="false" />
+    </DemoBlock>
+
     <DemoBlock title="带返回按钮" description="设置 backArrow 显示返回按钮，点击触发 back 事件。" :code="backCode">
       <NPageHeader title="页面标题" back-arrow @back="handleBack" />
     </DemoBlock>
@@ -122,6 +126,7 @@ const footerTabItems = [
 ]
 
 const basicCode = `<NPageHeader title="页面标题" subtitle="这是副标题" />`
+const noBorderCode = `<NPageHeader title="页面标题" subtitle="这是副标题" :bordered="false" />`
 const backCode = `<NPageHeader title="页面标题" back-arrow @back="handleBack" />`
 const iconCode = `<NPageHeader title="用户管理" icon="user" back-arrow @back="handleBack" />`
 const breadcrumbCode = `<NPageHeader title="页面标题" :breadcrumb="[
@@ -198,6 +203,7 @@ const phPropData = [
   { name: 'subtitle', type: 'string', default: '—', desc: '副标题' },
   { name: 'icon', type: 'string', default: '—', desc: '标题前的图标名' },
   { name: 'backArrow', type: 'boolean', default: 'false', desc: '是否显示返回按钮' },
+  { name: 'bordered', type: 'boolean', default: 'true', desc: '是否显示底部下划线，设为 false 去除边框' },
   { name: 'breadcrumb', type: 'BreadcrumbItem[]', default: '—', desc: '面包屑数据' },
 ]
 

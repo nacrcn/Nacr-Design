@@ -76,6 +76,7 @@ const changelogs: Changelog[] = [
           'ImageUpload 单图片上传：新增组件，v-model 绑定图片 URL，内置预览/删除、大小校验、自定义上传等，适合头像、封面图等单图上传场景',
           'Upload 上传：文档页重构，补充详细示例代码和综合示例（含 Modal 删除确认弹窗），新增 ImageUpload 单图片上传部分',
           'Title 标题：新增轻量标题组件，适用于卡片标题、区块标题等场景，支持层级、图标、副标题、额外区域、下划线、斜体',
+          'PageHeader 页头：新增 bordered 属性，设置 false 可去除底部下划线',
         ],
       },
       {

@@ -1,5 +1,5 @@
 <template>
-  <div class="n-page-header">
+  <div :class="['n-page-header', { 'n-page-header--bordered': bordered }]">
     <div class="n-page-header__main">
       <div v-if="$slots.breadcrumb || breadcrumb" class="n-page-header__breadcrumb">
         <slot name="breadcrumb">
@@ -48,8 +48,10 @@ withDefaults(defineProps<{
   icon?: string
   backArrow?: boolean
   breadcrumb?: BreadcrumbItem[]
+  bordered?: boolean
 }>(), {
   backArrow: false,
+  bordered: true,
 })
 
 const emit = defineEmits<{
@@ -58,7 +60,8 @@ const emit = defineEmits<{
 </script>
 
 <style scoped>
-.n-page-header { padding-bottom: 16px; border-bottom: 1px solid var(--n-color-border); }
+.n-page-header { padding-bottom: 16px; }
+.n-page-header--bordered { border-bottom: 1px solid var(--n-color-border); }
 .n-page-header__breadcrumb { margin-bottom: 8px; }
 .n-page-header__row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .n-page-header__left { display: flex; align-items: center; gap: 12px; min-width: 0; }
